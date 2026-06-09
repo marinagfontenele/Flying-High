@@ -1,0 +1,43 @@
+# Arquivos gerados durante a compilação e cache do Xcode
+build/
+DerivedData/
+*.ipa
+*.app
+*.dSYM
+*.framework
+*.xctest
+
+# Configurações e dados pessoais do usuário no Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xcscmblueprint
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/xcschemes/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/xcshareddata/xcschemes/
+
+# === Gerenciadores de Dependências ===
+# Swift Package Manager (SPM) - Pasta de artefatos locais
+.build/
+
+# CocoaPods - Recomendado versionar apenas Podfile e Podfile.lock
+Pods/
+
+# Carthage - Pasta de builds das dependências
+Carthage/Build/
+
+# === Segurança e Configurações ===
+# Arquivos de chaves, segredos e variáveis de ambiente
+*.env
+*.env.*
+*.xcconfig
+
+# === Sistema Operacional (macOS) ===
+# Arquivos invisíveis de sistema e visualização de pastas
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
