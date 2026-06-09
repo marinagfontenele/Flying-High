@@ -16,7 +16,7 @@ class TaskModel {
     var title       : String
     var category    : CategoryModel
     var room        : RoomModel
-    var info        : String
+    var info        : String?
     var lastDuration: [TimeInterval]?
     var isActive    : Bool = false
     
@@ -26,7 +26,6 @@ class TaskModel {
         self.title      = title
         self.category   = category
         self.room       = room
-        self.info       = info
         
     }
     
