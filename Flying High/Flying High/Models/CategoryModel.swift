@@ -1,5 +1,5 @@
 //
-//  ScheduleModel.swift
+//  Type.swift
 //  Flying High
 //
 //  Created by Ulisses Bonfim on 09/06/26.
@@ -8,19 +8,14 @@
 import Foundation
 import SwiftData
 
-
 @Model
-class ScheduleModel {
+class CategoryModel {
     
     @Attribute(.unique) var id: UUID
-    
     var title: String
-    var tasks: [TaskModel]?
-    
     
     init(id: UUID, title: String) {
         self.id = id
         self.title = title
- 
     }
 }
