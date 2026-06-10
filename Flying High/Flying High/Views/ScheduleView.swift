@@ -58,6 +58,8 @@ struct ScheduleView: View {
                     .padding(.horizontal, 16)
                 }
             }
+            .background(Color.background
+            .ignoresSafeArea())
         }
     }
 }
