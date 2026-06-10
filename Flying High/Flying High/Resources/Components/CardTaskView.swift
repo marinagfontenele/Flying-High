@@ -13,7 +13,7 @@ struct CardTaskView: View {
     var body: some View {
         HStack {
             
-            VStack {
+            VStack (spacing: 8){
                 Button {
                     
                 } label: {
@@ -22,9 +22,6 @@ struct CardTaskView: View {
                         .fontWeight(.semibold)
                 }
                 
-                Spacer().frame(maxHeight: 10)
-                
-                ZStack {
                     Button {
                         isEnabled.toggle()
                     } label: {
@@ -37,10 +34,7 @@ struct CardTaskView: View {
                                 .font(.title)
                                 .fontWeight(.semibold)
                         }
-                    }
-                }.padding(5)
-                
-                Spacer().frame(maxHeight: 10)
+                    }.padding(5)
                 
                 Button {
                     
@@ -49,36 +43,34 @@ struct CardTaskView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                 }
-            }.padding(16)
+            } //.padding(16)
             
-            Spacer().frame(maxWidth: 15)
+            Spacer(minLength: 0)
             
             HStack {
-                VStack (alignment: .leading) {
+                VStack (alignment: .leading, spacing: 15) {
                     Text("Nome da Tarefa")
                         .font(.title3)
                         .fontWeight(.semibold)
-                    
-                    Spacer().frame(height: 10)
                     
                     Label("30 minutos", systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                 }
-                Spacer()
+                Spacer(minLength: 0)
                 
                 NavigationLink (destination: EmptyView() ) {
                     Label("Iniciar", systemImage: "play.fill")
-                        .frame(width: 90, height: 40)
+                        .padding(10)
                         .background(Color(.blue), in: RoundedRectangle(cornerRadius: 296))
                         .foregroundStyle(.white)
                         .fontWeight(.semibold)
                 }
             }
-            .padding(16)  //TODO: consertar padding
-         //   .frame(maxWidth: 330)
+            .padding(20)
             .background(Color(.systemGray6), in: RoundedRectangle(cornerRadius: 15))
         }
+        .padding(.horizontal, 16)
     }
 }
 
