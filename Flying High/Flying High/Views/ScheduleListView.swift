@@ -21,6 +21,7 @@ struct ScheduleListView: View {
                     .padding(.horizontal, 16)
                     .padding(.top, 10)
                 }
+                .padding(.top, 10)
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{
@@ -34,7 +35,7 @@ struct ScheduleListView: View {
                     }
                 }
             }
-            .background(Color.background
+                .background(Color.background
                 .ignoresSafeArea())
         }
     }

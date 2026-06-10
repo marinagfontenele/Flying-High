@@ -18,16 +18,17 @@ struct CardProgressView: View {
                     Text("Tempo Restante:")
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.white)
                     
                     Text("30 minutos")
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.white)
                 }
                 Spacer(minLength: 0)
             }
-            .padding(20) 
-         //   .frame(maxWidth: 330)
-            .background(Color(.systemGray6), in: RoundedRectangle(cornerRadius: 15))
+            .padding(20)
+            .background(Color(.purple), in: RoundedRectangle(cornerRadius: 15))
         }
         .padding(16)
     }
