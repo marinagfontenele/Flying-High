@@ -32,7 +32,7 @@ struct ScheduleCardView: View {
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: EmptyView()){
+            NavigationLink (destination: ScheduleView()){
                 Label("Iniciar", systemImage: "play.fill")
                     .font(.body)
                     .fontWeight(.semibold)

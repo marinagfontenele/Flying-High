@@ -60,6 +60,7 @@ struct ScheduleView: View {
             }
             .background(Color.background
             .ignoresSafeArea())
+            .toolbarVisibility(.hidden, for: .tabBar)
         }
     }
 }
