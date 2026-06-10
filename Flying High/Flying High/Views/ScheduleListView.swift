@@ -8,36 +8,34 @@
 import SwiftUI
 
 struct ScheduleListView: View {
-//    var schedule_list: [Schedule] = []
+    var titleNumber: [Int] = [1, 2, 3]
     
     var body: some View {
         NavigationStack{
-            ZStack {
-                Color.background
-                .ignoresSafeArea()
-                
-                List {
-                    ScheduleCardView()
-                    ScheduleCardView()
-                    ScheduleCardView()
-                }
-                .listRowSeparator(.visible)
-                .listStyle(.plain)
-                    .navigationTitle("Cronogramas")
-            }
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button{
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                            .fontWeight(.semibold)
+            ScrollView {
+                VStack {
+                    ForEach(titleNumber, id: \.self) { number in
+                        ScheduleCardView(titleNumber: number)
                     }
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
+                    .navigationTitle("Cronogramas")
+                    .padding(.horizontal, 16)
+                    .padding(.top, 10)
+                }
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button{
+                            
+                        } label: {
+                            Image(systemName: "plus")
+                                .fontWeight(.semibold)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                    }
                 }
             }
-            
+            .background(Color.background
+                .ignoresSafeArea())
         }
     }
 }
