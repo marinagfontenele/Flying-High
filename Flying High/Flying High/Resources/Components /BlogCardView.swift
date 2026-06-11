@@ -12,7 +12,6 @@ struct BlogGroupBoxStyle: GroupBoxStyle {
         VStack(alignment: .leading, spacing: 0) {
             configuration.content
         }
-        .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .shadow(color: Color.black.opacity(0.08), radius: 15, x: 0, y: 8)
     }
@@ -26,34 +25,39 @@ struct BlogCardView: View {
     
     var body: some View {
         GroupBox {
-            VStack(spacing: 0) {
-                ZStack {
-                    headerColor //(red: 0.38, green: 0.60, blue: 0.96)
-                    Image("baldinho")
+            VStack (spacing: 0){
+                     //(red: 0.38, green: 0.60, blue: 0.96)
+                    Image(image)
                         .font(.system(size:50))
                         .foregroundColor(.white.opacity(0.8))
-                }
-                .frame(height: 160)
-                .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity)
+                        .padding(20)
+                        .background(headerColor)
+                        
+                
+//                .frame(height: 160)
+//                .frame(maxWidth: .infinity)
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Banheiro")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .font(.title2)
+                        .fontWeight(.semibold)
                         .foregroundColor(.black)
                     
                     Text("Dicas de limpeza")
-                        .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .foregroundColor(.gray)
+                        .font(.body)
+                        .fontWeight(.regular)
+                        .foregroundColor(.black)
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 16)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
                 
             }
         }
-
         .groupBoxStyle(BlogGroupBoxStyle())
-        .frame(width: 360)
+//        .frame(width: 360)
     }
 }
 

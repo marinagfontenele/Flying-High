@@ -11,7 +11,7 @@ struct BlogView: View {
         NavigationStack{
             ScrollView{
                 VStack(spacing:20){
-                    
+                    Spacer()
                     BlogCardView(
                         title: "Banheiro",
                         subtitle: "Dicas de limpeza",
@@ -33,9 +33,9 @@ struct BlogView: View {
                     }
                     
                     BlogCardView(
-                        title: "Banheiro",
+                        title: "Alimentação",
                         subtitle: "Dicas de limpeza",
-                        image: "baldinho",
+                        image: "alimentacao",
                         headerColor: Color("card_alimentacao")
                     )
                     .onTapGesture{
@@ -58,33 +58,57 @@ struct TelaCheiaPostView: View{
     
     var body:some View{
         NavigationStack{
-            VStack{
-                Spacer()
-                
-                Text(tituloDoPost)
-                    .font(.largeTitle)
-                    .bold()
-                
-                Text("Vai tomando viu")
-                    .foregroundStyle(.secondary)
-                    .padding()
-                
-                Spacer()
-            }
-            .toolbar{
-                ToolbarItem(placement: .topBarTrailing){
-                    Button(action: {
-                        dismiss()
-                    }){
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.gray)
+            ScrollView{
+                VStack(alignment: .leading, spacing: 0){
+                    ZStack {
+                        Color("card_limpeza")
+                        Image("baldinho")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:180, height: 180)
+                    }
+                    .frame(height:280)
+                    .frame(maxWidth:.infinity)
+                    
+                    VStack(alignment:.leading, spacing: 12){
+                        Text("Mágica")
+                            .font(.title)
+                            .bold()
+                            .foregroundColor(.primary)
+                        
+                        Text("Calcinha Preta")
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                            .padding(.bottom, 12)
+                        
+                        Text("não consico colocar a musica")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(.primary)
+                            .lineSpacing(6)
+                    }
+                    .padding(24)
+                }
+                .background(Color(.systemBackground))
+                .ignoresSafeArea(edges: .top)
+                .navigationTitle("Marca AGORA")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement: .topBarTrailing){
+                        Button(action: {
+                            dismiss()
+                        }){
+                            Text("OK")
+                                .font(.headline)
+                                .foregroundColor(.purple)
+                        }
                     }
                 }
             }
         }
     }
 }
+           
     extension String: Identifiable {
     public var id: String { self }
 }
