@@ -29,8 +29,8 @@ struct BlogCardView: View {
             VStack(spacing: 0) {
                 ZStack {
                     headerColor //(red: 0.38, green: 0.60, blue: 0.96)
-                    Image(systemName: "inhaler")
-                        .font(.system(size:90))
+                    Image("baldinho")
+                        .font(.system(size:50))
                         .foregroundColor(.white.opacity(0.8))
                 }
                 .frame(height: 160)
@@ -51,8 +51,9 @@ struct BlogCardView: View {
                 
             }
         }
+
         .groupBoxStyle(BlogGroupBoxStyle())
-        .frame(width: 320)
+        .frame(width: 360)
     }
 }
 
@@ -64,7 +65,7 @@ struct BlogCardView: View {
         BlogCardView (
             title: "Banheiro",
             subtitle: "Dicas de Limpeza",
-            image : "inhaler",
+            image : "baldinho",
             headerColor: Color(red: 0.38, green: 0.60, blue: 0.96)
         )
         .frame(width: 320)
