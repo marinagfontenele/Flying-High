@@ -37,41 +37,9 @@ struct TimerView: View {
                 
                 //  Image (.bucket)
                 
-                Text ("00 : 00 : 00")
-                    .font(Font.largeTitle.bold())
-                    .padding(16)
-                HStack {
-                    Button{
-                        
-                    } label: {
-                        Circle()
-                            .frame(maxWidth: 90, maxHeight: 80)
-                            .overlay(alignment: .center) {
-                                Image(systemName: "pause.fill")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .padding(5)
-                                    .font(.system(size: 34))
-                            }
-                    }
-                    .tint(Color(.main))
-                    
-                    Button{
-                        
-                    } label: {
-                        Circle()
-                            .frame(maxWidth: 90, maxHeight:80)
-                            .overlay(alignment: .center) {
-                                Image(systemName: "forward.end.fill")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .padding(5)
-                                    .font(.system(size: 34))
-                            }
-                    }
-                    .tint(Color(.main))
-                }
-                
+                // TODO: ajeitar o timer quebrando quando a sheet abre
+                TimerCardView()
+               
                 Spacer(minLength: 0)
                 
                 Button {
