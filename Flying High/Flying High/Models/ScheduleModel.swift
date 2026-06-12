@@ -39,17 +39,31 @@ extension ScheduleModel {
     }
     
     func formatTimeExtended() -> String {
-        let totalSeconds = Int(self.totalTime!)
-        
-        let minutes = (totalSeconds / 60) % 60
-        let hours = totalSeconds / 3600
-
-        if hours == 0 {
-            return String(format: "%02d minutos", minutes)
-        } else if hours == 1 {
-            return String(format: "%02d hora %02d minutos", hours, minutes)
+        guard let totalTimeUnwrapped = self.totalTime else {
+            return "00 minutos"
         }
         
-        return String(format: "%02d hora %02d minutos", hours, minutes)
+        let totalSeconds = Int(totalTimeUnwrapped)
+        let minutes = (totalSeconds / 60) % 60
+        let hours = totalSeconds / 3600
+        
+        let hourString = hours == 1 ? "1 hora" : "\(hours) horas"
+        let minuteString = minutes == 1 ? "1 minuto" : "\(minutes) minutos"
+        
+        if hours == 0 {
+            return minuteString
+        }
+        
+        if minutes == 0 {
+            return hourString
+        }
+        
+        let formattedHour = String(format: "%02d", hours)
+        let formattedMinute = String(format: "%02d", minutes)
+        
+        let hourSuffix = hours == 1 ? "hora" : "horas"
+        let minuteSuffix = minutes == 1 ? "minuto" : "minutos"
+        
+        return "\(formattedHour) \(hourSuffix) \(formattedMinute) \(minuteSuffix)"
     }
 }
