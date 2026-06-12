@@ -44,11 +44,9 @@ extension ScheduleModel {
         let minutes = (totalSeconds / 60) % 60
         let hours = totalSeconds / 3600
 
-        if hours < 0 {
-            return String(format: "%02d minutos %02d segundos", minutes)
-        }
-        
-        if hours == 1 {
+        if hours == 0 {
+            return String(format: "%02d minutos", minutes)
+        } else if hours == 1 {
             return String(format: "%02d hora %02d minutos", hours, minutes)
         }
         

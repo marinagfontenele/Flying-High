@@ -52,7 +52,7 @@ struct ScheduleCardView: View {
 }
 
 #Preview {
-    let schedule = ScheduleModel(title: "teste", totalTime: 4999)
+    let schedule = ScheduleModel(title: "teste", totalTime: 9999)
     ScheduleCardView(titleNumber: 1, schedule: schedule)
     
 }
