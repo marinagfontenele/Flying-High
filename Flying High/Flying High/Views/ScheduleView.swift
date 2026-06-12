@@ -12,6 +12,7 @@ struct ScheduleView: View {
         NavigationStack {
             VStack {
                 CardProgressView()
+                    .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){
                     Spacer(minLength: 0)
