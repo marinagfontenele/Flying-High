@@ -29,13 +29,13 @@ struct ScheduleCardView: View {
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Duração do cronograma"))
                 
-                CategoryTagView()
+                CategoryTagView(category: schedule.category!)
             }
             
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: ScheduleView()){
+            NavigationLink (destination: ScheduleView(tasks: schedule.tasks!)){
                 Label("Iniciar", systemImage: "play.fill")
                     .font(.body)
                     .fontWeight(.semibold)
@@ -52,7 +52,38 @@ struct ScheduleCardView: View {
 }
 
 #Preview {
-    let schedule = ScheduleModel(title: "teste", totalTime: 9999)
+    var mockedTasks: [TaskModel] = [
+        TaskModel(
+            title: "Lavar a louça",
+            category: .cleaning,
+            room: nil,
+            info: "Lavar e secar toda a louça do almoço.",
+            estimatedTime: 900
+        ),
+        TaskModel(
+            title: "Organizar guarda-roupa",
+            category: .organization,
+            room: nil,
+            info: "Separar roupas para doação e dobrar o restante.",
+            estimatedTime: 3600
+        ),
+        TaskModel(
+            title: "Trocar lâmpada queimada",
+            category: .repair,
+            room: nil,
+            info: "Substituir por uma lâmpada LED de 9W.",
+            estimatedTime: nil
+        ),
+        TaskModel(
+            title: "Limpar janelas",
+            category: .cleaning,
+            room: nil,
+            info: "Usar limpa-vidros e pano de microfibra.",
+            estimatedTime: 1800
+        )
+    ]
+    
+    let schedule = ScheduleModel(title: "testeeeee", totalTime: 9999, tasks: mockedTasks, category: CategoryModel.repair)
     ScheduleCardView(titleNumber: 1, schedule: schedule)
     
 }

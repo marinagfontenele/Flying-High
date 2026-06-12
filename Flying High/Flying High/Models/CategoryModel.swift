@@ -16,23 +16,28 @@ enum CategoryModel: String, CaseIterable, Codable{
     case other = "Outros"
     case organization = "Organização"
     
-    var displayName: String {
+    var title: String {
         switch self {
-            case .none: return "Não definido"
-            case .cleaning: return "Limpeza"
-            case .repair: return "Reparo"
-            case .other: return "Outros"
-            case .organization: return "Organização"
+        case .none:
+            return "Não definido"
+        case .cleaning:
+            return "Limpeza"
+        case .organization:
+            return "Organização"
+        case .repair:
+            return "Reparo"
+        case .other:
+            return "Outro"
         }
     }
     
     var iconColor: Color {
         switch self{
             case .none: return .gray
-            case .cleaning: return .blue
-            case .repair: return .red
+            case .cleaning: return .blueTag
+            case .repair: return .redTag
             case .other: return .gray
-            case .organization: return .orange
+            case .organization: return .orangeTag
         }
     }
     
@@ -46,30 +51,4 @@ enum CategoryModel: String, CaseIterable, Codable{
         }
     }
     
-}
-
-enum Category: Codable, CaseIterable {
-    case clean, organization, repairs
-    
-    var title: String {
-        switch self {
-        case .clean:
-            return "Limpeza"
-        case .organization:
-            return "Organização"
-        case .repairs:
-            return "Reparo"
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .clean:
-            return .blueTag
-        case .organization:
-            return .orangeTag
-        case .repairs:
-            return .redTag
-        }
-    }
 }

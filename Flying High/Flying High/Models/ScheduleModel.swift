@@ -18,13 +18,15 @@ class ScheduleModel {
     var tasks: [TaskModel]?
     var totalTime: TimeInterval?
     var timeString: String?
-    var Category: CategoryModel?
+    var category: CategoryModel?
     var isActive: Bool = false
     
     
-    init(title: String, totalTime: TimeInterval? = nil) {
+    init(title: String, totalTime: TimeInterval? = nil, tasks: [TaskModel]? = nil, category: CategoryModel? = nil) {
         self.title = title
         self.totalTime = totalTime
+        self.tasks = tasks
+        self.category = category ?? CategoryModel.none
     }
 }
 
@@ -40,30 +42,39 @@ extension ScheduleModel {
     
     func formatTimeExtended() -> String {
         guard let totalTimeUnwrapped = self.totalTime else {
-            return "00 minutos"
+            return "00 min"
         }
         
         let totalSeconds = Int(totalTimeUnwrapped)
         let minutes = (totalSeconds / 60) % 60
         let hours = totalSeconds / 3600
         
-        let hourString = hours == 1 ? "1 hora" : "\(hours) horas"
-        let minuteString = minutes == 1 ? "1 minuto" : "\(minutes) minutos"
-        
         if hours == 0 {
-            return minuteString
+            return "\(minutes) min"
         }
-        
         if minutes == 0 {
-            return hourString
+            return "\(hours)h"
         }
         
-        let formattedHour = String(format: "%02d", hours)
-        let formattedMinute = String(format: "%02d", minutes)
+        return "\(hours)h \(minutes)min"
         
-        let hourSuffix = hours == 1 ? "hora" : "horas"
-        let minuteSuffix = minutes == 1 ? "minuto" : "minutos"
-        
-        return "\(formattedHour) \(hourSuffix) \(formattedMinute) \(minuteSuffix)"
+//        let hourString = hours == 1 ? "1 hora" : "\(hours) horas"
+//        let minuteString = minutes == 1 ? "1 minuto" : "\(minutes) minutos"
+//        
+//        if hours == 0 {
+//            return minuteString
+//        }
+//        
+//        if minutes == 0 {
+//            return hourString
+//        }
+//        
+//        let formattedHour = String(format: "%02d", hours)
+//        let formattedMinute = String(format: "%02d", minutes)
+//        
+//        let hourSuffix = hours == 1 ? "hora" : "horas"
+//        let minuteSuffix = minutes == 1 ? "minuto" : "minutos"
+//        
+//        return "\(formattedHour) \(hourSuffix) \(formattedMinute) \(minuteSuffix)"
     }
 }
