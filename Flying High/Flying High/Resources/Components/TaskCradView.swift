@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardTaskView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var isEnabled = false
     
     var body: some View {
@@ -39,6 +40,22 @@ struct CardTaskView: View {
                     }
                 }
                 .padding(5)
+                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled, actions: {
+                    HStack {
+                        Button("Cancelar", role: .cancel) {
+                            
+                        }
+                        .tint(.black)
+                        
+                        Button("Finalizar") {
+                            
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                    }
+                }, message: {
+                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
+                })
                 
                 Button {
                     
@@ -66,13 +83,14 @@ struct CardTaskView: View {
                 }
                 Spacer(minLength: 0)
                 
-                NavigationLink (destination: TimerView() ) {
-                    Label("Iniciar", systemImage: "play.fill")
-                        .padding(10)
-                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
-                        .foregroundStyle(.white)
-                        .fontWeight(.semibold)
-                }
+//                NavigationLink (destination: TimerView() ) {
+//                    Label("Iniciar", systemImage: "play.fill")
+//                        .padding(10)
+//                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
+//                        .foregroundStyle(.white)
+//                        .fontWeight(.semibold)
+//                }
+                
             }
             .padding(20)
             .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
