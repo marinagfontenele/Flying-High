@@ -8,63 +8,108 @@
 import SwiftUI
 
 struct TimerView: View {
+    @State private var isPaused: Bool = false
+    @State private var isPresented: Bool = false
+    @State var nextTask: String = "Comprar Pões"
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack {
-            CardProgressView(title: "Em Progresso", info: "Nome da Tarefa")
-            
-            HStack {
-                Text("Próxima Tarefa: Comprar Pões")
-                    .font(.body)
+        NavigationStack{
+            VStack {
+                CardProgressView(title: "Em Progresso", info: "Nome da Tarefa")
+                
+                if !isPresented {
+                    HStack {
+                        Text("Próxima Tarefa: \(nextTask)")
+                            .font(.body)
+                            .fontWeight(.semibold)
+                        
+                        Spacer(minLength: 0)
+                    }
+                    .padding(15)
+                    .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
+                    .padding(.horizontal, 16)
+                }
+                
+                if !isPresented {
+                    Spacer(minLength: 0)
+                }
+                
+                //  Image (.bucket)
+                
+                Text ("00 : 00 : 00")
+                    .font(Font.largeTitle.bold())
+                    .padding(16)
+                HStack {
+                    Button{
+                        
+                    } label: {
+                        Circle()
+                            .frame(maxWidth: 90, maxHeight: 80)
+                            .overlay(alignment: .center) {
+                                Image(systemName: "pause.fill")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.white)
+                                    .padding(5)
+                                    .font(.system(size: 34))
+                            }
+                    }
+                    .tint(Color(.main))
+                    
+                    Button{
+                        
+                    } label: {
+                        Circle()
+                            .frame(maxWidth: 90, maxHeight:80)
+                            .overlay(alignment: .center) {
+                                Image(systemName: "forward.end.fill")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.white)
+                                    .padding(5)
+                                    .font(.system(size: 34))
+                            }
+                    }
+                    .tint(Color(.main))
+                }
                 
                 Spacer(minLength: 0)
-            }
-            .padding(15)
-            .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
-            .padding(.horizontal, 16)
                 
-            Spacer(minLength: 0)
-            
-            Text ("00 : 00 : 00")
-                .font(Font.largeTitle.bold())
-                .padding(20)
-            
-            HStack {
-                Button{
-                    
+                Button {
+                    isPresented.toggle()
                 } label: {
-                    Circle()
-                        .frame(maxWidth: 70, maxHeight: 60)
-                        .overlay(alignment: .center) {
-                            Image(systemName: "pause.fill")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .padding(5)
-                                .frame(maxWidth: 31)
-                        }
-                    
+                    Label("Informações", systemImage: "info.circle.fill")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .background(.main)
+                        .clipShape(RoundedRectangle(cornerRadius: 1000))
                 }
-                .tint(Color(.main))
-                
-                Button{
-                    
-                } label: {
-                    Circle()
-                        .frame(maxWidth: 70, maxHeight:60)
-                        .overlay(alignment: .center) {
-                            Image(systemName: "forward.end.fill")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .padding(5)
-                                
-                        }
+                .sheet(isPresented: $isPresented){
+                    NavigationStack {
+                        SheetTimerView()
+                    }
+                    .presentationDetents([.medium])
+                    .presentationBackground(Color(.systemBackground))
+                    .presentationBackgroundInteraction(.enabled)
                 }
-                .tint(Color(.main))
             }
-            
-            Spacer(minLength: 0)
+            .animation(.default, value: isPresented)
+            .background(Color.background
+                .ignoresSafeArea())
         }
-        .background(Color.background
-        .ignoresSafeArea())
+        .toolbar{
+            ToolbarItem(placement: .navigationBarTrailing){
+                Button{
+                    
+                } label: {
+                    Image(systemName: "checkmark")
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(.glassProminent)
+                .tint(.main)
+            }
+        }
     }
 }
 

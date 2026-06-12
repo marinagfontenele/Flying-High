@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 class CategoryModel {
@@ -17,5 +18,31 @@ class CategoryModel {
     init(id: UUID, title: String) {
         self.id = id
         self.title = title
+    }
+}
+
+enum Category: Codable, CaseIterable {
+    case clean, organization, repairs
+    
+    var title: String {
+        switch self {
+        case .clean:
+            return "Limpeza"
+        case .organization:
+            return "Organização"
+        case .repairs:
+            return "Reparo"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .clean:
+            return .blueTag
+        case .organization:
+            return .orangeTag
+        case .repairs:
+            return .redTag
+        }
     }
 }
