@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ScheduleListView: View {
     var titleNumber: [Int] = [1, 2, 3]
@@ -14,8 +15,9 @@ struct ScheduleListView: View {
         NavigationStack{
             ScrollView {
                 VStack {
+                    var schedule = ScheduleModel(title: "teste", totalTime: 3999)
                     ForEach(titleNumber, id: \.self) { number in
-                        ScheduleCardView(titleNumber: number)
+                        ScheduleCardView(titleNumber: number, schedule: schedule)
                     }
                     .navigationTitle("Cronogramas")
                     .padding(.horizontal, 16)

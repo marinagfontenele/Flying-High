@@ -11,7 +11,7 @@ import SwiftData
 @Model
 class TaskModel {
     
-    @Attribute(.unique) var id: UUID
+    @Attribute(.unique) var id = UUID()
     
     var title       : String
     var category    : CategoryModel
@@ -21,8 +21,7 @@ class TaskModel {
     var isActive    : Bool = false
     
     
-    init(id: UUID, title: String, category: CategoryModel, room: RoomModel, info: String) {
-        self.id         = id
+    init(title: String, category: CategoryModel, room: RoomModel, info: String) {
         self.title      = title
         self.category   = category
         self.room       = room
