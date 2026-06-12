@@ -39,12 +39,12 @@ struct BlogCardView: View {
 //                .frame(maxWidth: .infinity)
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Banheiro")
+                    Text(title)
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                     
-                    Text("Dicas de limpeza")
+                    Text(subtitle)
                         .font(.body)
                         .fontWeight(.regular)
                         .foregroundColor(.black)

@@ -5,8 +5,28 @@
 //  Created by Clara on 09/06/26.
 //
 import SwiftUI
+
+struct PostBlog: Identifiable {
+    let id = UUID()
+    let titulo: String
+    let subtitulo: String
+    let textoArtigo: String
+    let nomeImagem: String
+    let corDeFundo: Color
+}
+
+struct ConteudoPost{
+    let id = UUID()
+    let titulo: String
+    let subtitulo: String
+    let textoArtigo: String
+    let nomeImagem: String
+    let corDeFundo: Color
+}
 struct BlogView: View {
     @State private var cardSelecionado: String?
+    @State private var postSelecionado : BlogCardView?
+    
     var body:some View {
         NavigationStack{
             ScrollView{
@@ -23,8 +43,8 @@ struct BlogView: View {
                     }
                     
                     BlogCardView(
-                        title: "Banheiro",
-                        subtitle: "Dicas de limpeza",
+                        title: "Reparos",
+                        subtitle: "Dicas de reparos",
                         image: ("martelo2"),
                         headerColor: Color("card_reparo")
                     )
@@ -34,7 +54,7 @@ struct BlogView: View {
                     
                     BlogCardView(
                         title: "Alimentação",
-                        subtitle: "Dicas de limpeza",
+                        subtitle: "Dicas de Alimentação",
                         image: "alimentacao",
                         headerColor: Color("card_alimentacao")
                     )
@@ -56,12 +76,39 @@ struct TelaCheiaPostView: View{
     let tituloDoPost: String
     @Environment(\.dismiss) var dismiss
     
+    var corDeFundo: Color{
+        switch tituloDoPost {
+        case "Dicas de Limpeza": return Color("card_limpeza")
+        case "Dicas de Alimentação": return Color("card_alimentacao")
+        case "Dicas de Reparos":return Color("card_reparo")
+        default:return Color("card_limpeza")
+        }
+    }
+    
+    var nomeImage: String{
+        switch tituloDoPost {
+        case "Banheiro": return "baldinho"
+        case "Alimentação": return "alimentacao"
+        case "Reparos":return "martelo2"
+        default:return "baldinho"
+        }
+    }
+    
+    var textoArtigo: String {
+        switch tituloDoPost {
+        case "Limpeza" : return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a tortor eget massa tincidunt interdum. Donec vitae justo eget elit ultrices ultricies. Donec vitae justo eget elit ultrices ultricies. Donec vitae justo eget elit ultrices ultricies."
+        case "Reparos" : return "Ele prescisa de uns reparos, mas ouça por favor"
+        case "Alimentação" : return "vamo ta comendo?"
+        default: return "conteudo não encontrado"
+        }
+    }
+    
     var body:some View{
         NavigationStack{
             ScrollView{
                 VStack(alignment: .leading, spacing: 0){
                     ZStack {
-                        Color("card_limpeza")
+                        corDeFundo
                         Image("baldinho")
                             .resizable()
                             .scaledToFit()
