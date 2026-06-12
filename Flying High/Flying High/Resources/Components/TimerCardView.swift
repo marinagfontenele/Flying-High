@@ -10,7 +10,7 @@ import SwiftUI
 struct TimerCardView: View {
     private let engine = TimerEngine()
     
-    @State private var displayText: String = "00:00.00"
+    @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false
     
     var body: some View {
