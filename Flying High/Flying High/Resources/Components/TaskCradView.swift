@@ -66,7 +66,7 @@ struct CardTaskView: View {
                 }
                 Spacer(minLength: 0)
                 
-                NavigationLink (destination: EmptyView() ) {
+                NavigationLink (destination: TimerView() ) {
                     Label("Iniciar", systemImage: "play.fill")
                         .padding(10)
                         .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
