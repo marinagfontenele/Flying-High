@@ -35,8 +35,8 @@ struct ScheduleListView: View {
                     }
                 }
             }
-                .background(Color.background
-                .ignoresSafeArea())
+//                .background(Color.background
+//                .ignoresSafeArea())
         }
     }
 }
