@@ -11,7 +11,7 @@ struct ScheduleView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                CardProgressView()
+                CardProgressView(progress: false)
                     .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){
@@ -45,7 +45,7 @@ struct ScheduleView: View {
                     
                     Spacer(minLength: 0)
                     
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: TimerView()) {
                         Label("Iniciar Bloco", systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                             .padding(16)

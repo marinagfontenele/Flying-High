@@ -11,16 +11,30 @@ struct CardProgressView: View {
     @State private var isEnabled = false
     @State var title: String = "Tempo Restante"
     @State var info: String = "30 minutos"
+    @State var doneTasks: Int = 1
+    @State var totalTasks: Int = 4
+    @State var progress: Bool = true
     
     var body: some View {
         HStack {
             
             HStack {
                 VStack (alignment: .leading, spacing: 15) {
-                    Text(title)
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                    HStack {
+                        Text(title)
+                            .font(.body)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.white)
+                        
+                        Spacer(minLength: 0)
+                        
+                        if progress {
+                            Text("\(doneTasks) / \(totalTasks)")
+                                .font(.body)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                        }
+                    }
                     
                     Text(info)
                         .font(.title2)
