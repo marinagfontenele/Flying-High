@@ -20,7 +20,7 @@ struct ContentView: View {
                 EmptyView()
             }
             Tab("Blog", systemImage: "info.circle") {
-                EmptyView()
+                BlogView()
             }
         }
         .tint(.main)

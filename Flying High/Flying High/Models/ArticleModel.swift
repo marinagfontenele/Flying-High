@@ -16,10 +16,14 @@ class ArticleModel {
     var title: String
     var subtitle: String
     var text: String
+    var imageName: String
+    var colorName: String
     
     init(title: String, subtitle: String, text: String) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
+        self.imageName = imageName
+        self.colorName = colorName
     }
 }
