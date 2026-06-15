@@ -54,7 +54,8 @@ struct BlogView: View {
                 .padding(.horizontal)
                 .navigationTitle("Blog")
             }
-            
+            .background(Color.background
+            .ignoresSafeArea())
             .fullScreenCover(item: $cardSelecionado){ item in TelaCheiaPostView(content: item)
             }
         }
