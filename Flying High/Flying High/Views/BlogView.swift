@@ -27,9 +27,9 @@ struct BlogView: View {
     @State private var postSelecionado : BlogCardView?
     
     let blogs: [ArticleModel] = [
-        ArticleModel(id: UUID(), title: "Banheiro", subtitle: "Dicas de limpeza", text: "texto do banheiro", imageName: "baldinho", colorName: "card_limpeza"),
-        ArticleModel(id: UUID(), title: "Reparos", subtitle: "Dicas de reparos", text: "texto do reparo", imageName: "martelo2", colorName: "card_reparos"),
-        ArticleModel(id: UUID(), title: "Organização", subtitle: "Dicas de organização", text: "i'm not that girl", imageName: "casa1", colorName: "card_alimentacao")
+        ArticleModel(title: "Banheiro", subtitle: "Dicas de limpeza", text: "texto do banheiro", imageName: "baldinho", colorName: "card_limpeza"),
+        ArticleModel(title: "Reparos", subtitle: "Dicas de reparos", text: "texto do reparo", imageName: "martelo2", colorName: "card_reparos"),
+        ArticleModel(title: "Organização", subtitle: "Dicas de organização", text: "i'm not that girl", imageName: "casa1", colorName: "card_alimentacao")
     ]
     
     var body:some View {

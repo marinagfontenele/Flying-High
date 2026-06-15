@@ -38,8 +38,8 @@ struct ScheduleListView: View {
                     }
                 }
             }
-            //                .background(Color.background
-            //                .ignoresSafeArea())
+            .background(Color.background
+                .ignoresSafeArea())
         }
     }
 }
@@ -103,7 +103,7 @@ struct ScheduleListView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-
+    
     ScheduleListView(schedules: mockSchedules)
-        
+    
 }

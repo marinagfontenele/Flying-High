@@ -41,7 +41,9 @@
 		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				BlogView.swift,
 				ContentView.swift,
+				RecordsView.swift,
 				ScheduleListView.swift,
 				ScheduleView.swift,
 				SheetTimerView.swift,

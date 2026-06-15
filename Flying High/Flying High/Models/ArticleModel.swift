@@ -19,7 +19,7 @@ class ArticleModel {
     var imageName: String
     var colorName: String
     
-    init(title: String, subtitle: String, text: String) {
+    init(title: String, subtitle: String, text: String, imageName: String, colorName: String) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
