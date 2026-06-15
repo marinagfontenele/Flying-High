@@ -17,7 +17,7 @@ struct ContentView: View {
                 ScheduleListView(schedules: schedules)
             }
             Tab("Relatórios", systemImage: "chart.bar.xaxis") {
-                EmptyView()
+                RecordsView()
             }
             Tab("Blog", systemImage: "info.circle") {
                 BlogView()
