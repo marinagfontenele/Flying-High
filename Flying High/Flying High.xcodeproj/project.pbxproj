@@ -6,14 +6,79 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E20562FE01F1000A9AEE6 /* Extensions.swift */; };
+		F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EE9F95612FC86B310027294B /* Flying High.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying High.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F13E20562FE01F1000A9AEE6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flying_HighApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F1D8BD552FDC74D3009A4538 /* Exceptions for "Models" folder in "Flying High" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ArticleModel.swift,
+				CategoryModel.swift,
+				RoomModel.swift,
+				ScheduleModel.swift,
+				TaskModel.swift,
+				TimerEngine.swift,
+			);
+			target = EE9F95602FC86B310027294B /* Flying High */;
+		};
+		F1D8BD562FDC74D3009A4538 /* Exceptions for "ViewModels" folder in "Flying High" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ScheduleModelView.swift,
+				TaskModelView.swift,
+			);
+			target = EE9F95602FC86B310027294B /* Flying High */;
+		};
+		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				ScheduleListView.swift,
+				ScheduleView.swift,
+				SheetTimerView.swift,
+				TimerView.swift,
+			);
+			target = EE9F95602FC86B310027294B /* Flying High */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		EE9F95632FC86B310027294B /* Flying High */ = {
+		F1D8BD302FDC74D2009A4538 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Flying High";
+			exceptions = (
+				F1D8BD552FDC74D3009A4538 /* Exceptions for "Models" folder in "Flying High" target */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F1D8BD382FDC74D2009A4538 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F1D8BD3B2FDC74D2009A4538 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F1D8BD562FDC74D3009A4538 /* Exceptions for "ViewModels" folder in "Flying High" target */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F1D8BD412FDC74D2009A4538 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +97,7 @@
 		EE9F95582FC86B310027294B = {
 			isa = PBXGroup;
 			children = (
-				EE9F95632FC86B310027294B /* Flying High */,
+				F1D8BD582FDCA2C3009A4538 /* Flying High */,
 				EE9F95622FC86B310027294B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +108,27 @@
 				EE9F95612FC86B310027294B /* Flying High.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F13E20582FE0201300A9AEE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F13E20562FE01F1000A9AEE6 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F1D8BD582FDCA2C3009A4538 /* Flying High */ = {
+			isa = PBXGroup;
+			children = (
+				F13E20582FE0201300A9AEE6 /* Extensions */,
+				F1D8BD302FDC74D2009A4538 /* Models */,
+				F1D8BD382FDC74D2009A4538 /* Resources */,
+				F1D8BD3B2FDC74D2009A4538 /* ViewModels */,
+				F1D8BD412FDC74D2009A4538 /* Views */,
+				F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */,
+			);
+			path = "Flying High";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -61,7 +147,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				EE9F95632FC86B310027294B /* Flying High */,
+				F1D8BD382FDC74D2009A4538 /* Resources */,
 			);
 			name = "Flying High";
 			packageProductDependencies = (
@@ -119,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */,
+				F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +341,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y953PP465H;
+				DEVELOPMENT_TEAM = RFG67ZDTSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -285,7 +373,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y953PP465H;
+				DEVELOPMENT_TEAM = RFG67ZDTSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
