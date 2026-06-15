@@ -11,14 +11,13 @@ import SwiftData
 @Model
 class ArticleModel {
     
-    @Attribute(.unique) var id: UUID
+    @Attribute(.unique) var id = UUID()
 //    TODO: colocar imagem
     var title: String
     var subtitle: String
     var text: String
     
-    init(id: UUID, title: String, subtitle: String, text: String) {
-        self.id = id
+    init(title: String, subtitle: String, text: String) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
