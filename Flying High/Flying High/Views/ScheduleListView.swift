@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ScheduleListView: View {
-    var titleNumber: [Int] = [1, 2, 3]
+    @State var scheduleList: [ScheduleModel] = [
+        ScheduleModel(
+            title: "Lavar banheiro",
+            tasks: [
+                TaskModel(
+                    title: "oiiiii 1",
+                    info: "",
+                    timeGoal: 10000000
+                ),
+                TaskModel(
+                    title: "oiiiii 2",
+                    info: "",
+                    timeGoal: 600
+                )],
+            timeTest: 10000000 + 600,
+            category: CategoryModel.cleaning,
+            room: RoomModel(title: "Banheiro")
+        )]
     
     var body: some View {
         NavigationStack{
             ScrollView {
                 VStack {
-                    ForEach(titleNumber, id: \.self) { number in
-                        ScheduleCardView(titleNumber: number)
+                    ForEach(scheduleList) { schedule in
+                        ScheduleCardView(schedule: schedule)
                     }
                     .navigationTitle("Cronogramas")
                     .padding(.horizontal, 16)
@@ -35,8 +52,8 @@ struct ScheduleListView: View {
                     }
                 }
             }
-//                .background(Color.background
-//                .ignoresSafeArea())
+            .background(Color.background
+                .ignoresSafeArea())
         }
     }
 }

@@ -9,20 +9,19 @@ import SwiftUI
 
 struct CardProgressView: View {
     @State private var isEnabled = false
-    @State var title: String = "Tempo Restante"
-    @State var info: String = "30 minutos"
+    @State var timeLeft: String
     
     var body: some View {
         HStack {
             
             HStack {
                 VStack (alignment: .leading, spacing: 15) {
-                    Text(title)
+                    Text("Tempo Restante")
                         .font(.body)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                     
-                    Text(info)
+                    Text(timeLeft)
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
@@ -36,6 +35,6 @@ struct CardProgressView: View {
     }
 }
 
-#Preview {
-    CardProgressView()
-}
+//#Preview {
+//    CardProgressView()
+//}

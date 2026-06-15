@@ -10,7 +10,7 @@ import SwiftUI
 struct SheetTimerView: View {
     @Environment(\.dismiss) var dismiss
     @State var room: String = "Banheiro"
-    @State var category: Category = .clean
+    @State var category: CategoryModel = .cleaning
     @State var info: String = "Vivamus erat quam, auctor vitae ligula ut, rhoncus ullamcorper erat. Sed velit metus, facilisis at mi vehicula, blandit mollis erat. Fusce elementum ipsum nec consectetur dictum. Praesent non sem et dui molestie condimentum. Donec placerat dignissim luctus. Nam ex ligula, tempor sit amet massa ac, sodales dictum magna. Quisque posuere, velit ut tristique commodo, arcu mi commodo metus, eget tempor est arcu a nibh. Phasellus gravida placerat ante ac feugiat. Sed suscipit non nisi nec pellentesque. Aliquam eget malesuada orci, in dignissim lacus. In ut viverra arcu. Aenean rutrum rhoncus sapien, sed volutpat ipsum condimentum quis. Sed eleifend risus ut tempor molestie. Quisque et ullamcorper sem. Etiam quis elementum elit. Aliquam hendrerit sapien eros, sed fermentum quam congue a. Aliquam mattis pretium mollis."
     
     
@@ -29,7 +29,7 @@ struct SheetTimerView: View {
                         
                         Spacer(minLength: 0)
                         
-                        CategoryTagView()
+                        CategoryTagView(category: category)
                     }
                     .padding(16)
                     

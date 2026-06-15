@@ -9,30 +9,32 @@ import SwiftUI
 
 
 struct ScheduleCardView: View {
-    @State var titleNumber: Int
+    let schedule: ScheduleModel
     
     var body: some View {
         HStack {
             VStack (alignment: .leading, spacing: 18){
-                Text("Título \(titleNumber)")
+                Text("Título \(schedule.title)")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Título do cronograma"))
                 
-                Label("x horas e y minutos", systemImage: "timer")
+                let timeGoal = calculateTimeGoal(taskList: schedule.tasks)
+                
+                Label("\(timeGoal)", systemImage: "timer")
                     .font(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Duração do cronograma"))
                 
-                CategoryTagView()
+                CategoryTagView(category: schedule.category)
             }
             
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: ScheduleView()){
+            NavigationLink (destination: TaskListView(taskList: schedule.tasks)){
                 Label("Iniciar", systemImage: "play.fill")
                     .font(.body)
                     .fontWeight(.semibold)
@@ -46,8 +48,18 @@ struct ScheduleCardView: View {
         .background(.violet)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
+    
+    func calculateTimeGoal(taskList: [TaskModel]) -> String {
+        var timeGoal: TimeInterval = 0
+        for task in taskList {
+            timeGoal += task.timeGoal
+//            print(timeGoal)
+        }
+        
+        return timeGoal.stringFormatted()
+    }
 }
 
 #Preview {
-    ScheduleCardView(titleNumber: 1)
+    ScheduleCardView(schedule: ScheduleModel(title: "Lavar banheiro", tasks: [TaskModel(title: "oiiiii 1", info: "", timeGoal: 1800), TaskModel(title: "oiiiii 2", info: "", timeGoal: 600)], timeTest: 1800 + 600, category: CategoryModel.cleaning, room: RoomModel(title: "Banheiro")))
 }

@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct TimerView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var isPaused: Bool = false
     @State private var isPresented: Bool = false
-    @State var nextTask: String = "Comprar Pões"
-    @Environment(\.dismiss) var dismiss
+    @State var nextTask: String
+    
+    let timeLeft: String
     
     var body: some View {
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: "Nome da Tarefa")
+                CardProgressView(timeLeft: timeLeft)
                 
                 if !isPresented {
                     HStack {
@@ -79,8 +81,18 @@ struct TimerView: View {
             }
         }
     }
+    
+    func calculateTimeLeft(taskList: [TaskModel]) -> String {
+        var timeLeft: TimeInterval = 0
+        for task in taskList {
+            timeLeft += task.timeGoal
+            //            print(timeGoal)
+        }
+        
+        return timeLeft.stringFormatted()
+    }
 }
 
-#Preview {
-    TimerView()
-}
+//#Preview {
+//    TimerView()
+//}

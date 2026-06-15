@@ -8,51 +8,37 @@
 import SwiftUI
 
 struct TaskListView: View {
+    let taskList: [TaskModel]
+    
     var body: some View {
         NavigationStack {
             VStack {
-                CardProgressView()
+                let timeLeft = calculateTimeLeft(taskList: taskList)
+                CardProgressView(timeLeft: timeLeft)
                     .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        
-                        CardTaskView(task: TaskModel(title: "tarefar", room: RoomModel(title: "Banheiro"), info: "oiiii", timeGoal: 300))
-                            .padding(.top, 10)
-                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-                            .padding(.bottom, 100)
+                        ForEach(taskList) { task in
+                            CardTaskView(task: task, timeLeft: timeLeft)
+                                .padding(.top, 10)
+                        }
+                        .padding(.bottom, 100)
                     }
                     
                     
                     Spacer(minLength: 0)
                     
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: TimerView(nextTask: taskList[0].title, timeLeft: timeLeft)) {
                         Label("Iniciar Bloco", systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                             .padding(16)
                             .font(.title2)
                             .foregroundStyle(.white)
                             .fontWeight(.bold)
-                            
+                        
                     }
                     .buttonStyle(.glassProminent)
                     .tint(.main)
@@ -60,12 +46,24 @@ struct TaskListView: View {
                 }
             }
             .background(Color.background
-            .ignoresSafeArea())
+                .ignoresSafeArea())
             .toolbarVisibility(.hidden, for: .tabBar)
         }
+    }
+    
+    func calculateTimeLeft(taskList: [TaskModel]) -> String {
+        var timeLeft: TimeInterval = 0
+        for task in taskList {
+            timeLeft += task.timeGoal
+            //            print(timeGoal)
+        }
+        
+        return timeLeft.stringFormatted()
     }
 }
 
 #Preview {
-    ScheduleView()
+//    TaskListView(taskList: [TaskModel(title: "oiiiii 1",
+//                            info: "",
+//                            timeGoal: 1800)])
 }

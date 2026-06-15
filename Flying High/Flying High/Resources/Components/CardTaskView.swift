@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CardTaskView: View {
     @State private var isEnabled = false
+    let task: TaskModel
+    let timeLeft: String
     
     var body: some View {
         HStack {
-            
             VStack (spacing: 8){
                 Button {
                     
@@ -55,18 +56,20 @@ struct CardTaskView: View {
             
             HStack {
                 VStack (alignment: .leading, spacing: 15) {
-                    Text("Nome da Tarefa")
+                    Text("\(task.title)")
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Label("30 minutos", systemImage: "timer")
+                    let timeGoal = task.timeGoal.stringFormatted()
+                    
+                    Label("\(timeGoal)", systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                     
                 }
                 Spacer(minLength: 0)
                 
-                NavigationLink (destination: EmptyView() ) {
+                NavigationLink (destination: TimerView(nextTask: "proxima tarefa", timeLeft: timeLeft) ) {
                     Label("Iniciar", systemImage: "play.fill")
                         .padding(10)
                         .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
@@ -82,5 +85,5 @@ struct CardTaskView: View {
 }
 
 #Preview {
-    CardTaskView()
+    CardTaskView(task: TaskModel(title: "tarefar", info: "oiiii", timeGoal: 300), timeLeft: "30 min")
 }
