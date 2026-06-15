@@ -10,7 +10,6 @@ import SwiftData
 
 @Model
 class ArticleModel {
-    
     @Attribute(.unique) var id: UUID
 //    TODO: colocar imagem
     var title: String

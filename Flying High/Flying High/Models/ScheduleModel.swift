@@ -12,18 +12,20 @@ import SwiftData
 @Model
 class ScheduleModel {
     
-    @Attribute(.unique) var id: UUID
+    @Attribute(.unique) var id = UUID()
     
     var title: String
-    var tasks: [TaskModel]?
-    var timeTest: TimeInterval?
-    var Category: CategoryModel?
+    var tasks: [TaskModel]
+    var timeTest: TimeInterval
     var isActive: Bool = false
+    var category: CategoryModel
+    var room: RoomModel
     
-    
-    init(id: UUID, title: String) {
-        self.id = id
+    init(title: String, tasks: [TaskModel], timeTest: TimeInterval, category: CategoryModel, room: RoomModel) {
         self.title = title
- 
+        self.tasks = tasks
+        self.timeTest = 0
+        self.category = category
+        self.room = room
     }
 }

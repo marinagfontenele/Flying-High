@@ -11,22 +11,18 @@ import SwiftData
 @Model
 class TaskModel {
     
-    @Attribute(.unique) var id: UUID
+    @Attribute(.unique) var id = UUID()
     
     var title       : String
-    var category    : CategoryModel
-    var room        : RoomModel
     var info        : String?
     var lastDuration: [TimeInterval]?
+    var timeGoal    : TimeInterval
     var isActive    : Bool = false
     
     
-    init(id: UUID, title: String, category: CategoryModel, room: RoomModel, info: String) {
-        self.id         = id
+    init(title: String, info: String, timeGoal: TimeInterval) {
         self.title      = title
-        self.category   = category
-        self.room       = room
-        
+        self.timeGoal   = timeGoal
     }
     
 }
