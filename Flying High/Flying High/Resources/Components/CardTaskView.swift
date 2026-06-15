@@ -61,7 +61,7 @@ struct CardTaskView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Label(task.formatTimeExtended(), systemImage: "timer")
+                    Label("tste", systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                     

@@ -23,7 +23,7 @@ struct ScheduleCardView: View {
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Título do cronograma"))
                 
-                Label(schedule.formatTimeExtended(), systemImage: "timer")
+                Label(schedule.totalTime.formatTimeStringExtended(), systemImage: "timer")
                     .font(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
@@ -35,7 +35,7 @@ struct ScheduleCardView: View {
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: ScheduleView(tasks: schedule.tasks!)){
+            NavigationLink (destination: ScheduleView(schedule: schedule)){
                 Label("Iniciar", systemImage: "play.fill")
                     .font(.body)
                     .fontWeight(.semibold)
@@ -72,7 +72,7 @@ struct ScheduleCardView: View {
             category: .repair,
             room: nil,
             info: "Substituir por uma lâmpada LED de 9W.",
-            estimatedTime: nil
+            estimatedTime: 1800
         ),
         TaskModel(
             title: "Limpar janelas",
@@ -83,7 +83,7 @@ struct ScheduleCardView: View {
         )
     ]
     
-    let schedule = ScheduleModel(title: "testeeeee", totalTime: 9999, tasks: mockedTasks, category: CategoryModel.repair)
+    let schedule = ScheduleModel(title: "testeeeee", tasks: mockedTasks, category: CategoryModel.repair)
     ScheduleCardView(titleNumber: 1, schedule: schedule)
     
 }

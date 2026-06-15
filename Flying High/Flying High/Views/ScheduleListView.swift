@@ -45,24 +45,65 @@ struct ScheduleListView: View {
 }
 
 #Preview {
-    let mockSchedules: [ScheduleModel] = [
-        ScheduleModel(title: "Apenas zeros", totalTime: 0), // "00:00"
-        
-        // 2. Menos de 1 hora (Apenas minutos)
-        ScheduleModel(title: "Apenas 1 minuto", totalTime: 60), // "00:01"
-        ScheduleModel(title: "45 minutos", totalTime: 2700), // 45 * 60 -> "00:45"
-        
-        // 3. Exatamente 1 hora
-        ScheduleModel(title: "Exatamente 1 hora", totalTime: 3600), // "01:00"
-        
-        // 4. Horas e minutos combinados (1h e 1min)
-        ScheduleModel(title: "1h e 1min", totalTime: 3660), // 3600 + 60 -> "01:01"
-        
-        // 5. Tempo longo aleatório
-        ScheduleModel(title: "Tempo longo", totalTime: 18420),
-        
-        ScheduleModel(title: "Tempo longo", totalTime: 18060)
+    var localTasks: [TaskModel] = [
+        TaskModel(
+            title: "Lavar a louça",
+            category: .cleaning,
+            room: nil,
+            info: "Lavar e secar toda a louça do almoço.",
+            estimatedTime: 900
+        ),
+        TaskModel(
+            title: "Organizar guarda-roupa",
+            category: .organization,
+            room: nil,
+            info: "Separar roupas para doação e dobrar o restante.",
+            estimatedTime: 3600
+        ),
+        TaskModel(
+            title: "Trocar lâmpada queimada",
+            category: .repair,
+            room: nil,
+            info: "Substituir por uma lâmpada LED de 9W.",
+            estimatedTime: 1800
+        ),
+        TaskModel(
+            title: "Limpar janelas",
+            category: .cleaning,
+            room: nil,
+            info: "Usar limpa-vidros e pano de microfibra.",
+            estimatedTime: 1800
+        )
     ]
     
+    let mockSchedules: [ScheduleModel] = [
+        ScheduleModel(
+            title: "Faxina Pesada de Sábado",
+            tasks: [localTasks[0], localTasks[3]], // Lavar a louça e Limpar janelas
+            category: .cleaning
+        ),
+        ScheduleModel(
+            title: "Manutenção do Apartamento",
+            tasks: [localTasks[2]], // Trocar lâmpada queimada
+            category: .repair
+        ),
+        ScheduleModel(
+            title: "Organização do Quarto",
+            tasks: [localTasks[1]], // Organizar guarda-roupa
+            category: .organization
+        ),
+        ScheduleModel(
+            title: "Rotina Rápida Matinal",
+            tasks: [localTasks[0]], // Lavar a louça
+            category: .other
+        ),
+        ScheduleModel(
+            title: "Planejamento Livre",
+            tasks: nil,
+            category: nil // Seu init vai transformar automaticamente em .none
+        )
+    ]
+
     ScheduleListView(schedules: mockSchedules)
+        
 }

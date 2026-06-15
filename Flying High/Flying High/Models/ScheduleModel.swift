@@ -17,35 +17,38 @@ class ScheduleModel {
     var title: String
     var tasks: [TaskModel]?
     var totalTime: TimeInterval?
-    var timeString: String?
+    var timePassed: TimeInterval?
+    var timeRemaining: TimeInterval?
     var category: CategoryModel?
     var isActive: Bool = false
     
     
-    init(title: String, totalTime: TimeInterval? = nil, tasks: [TaskModel]? = nil, category: CategoryModel? = nil) {
+    init(title: String, tasks: [TaskModel]? = nil, category: CategoryModel? = nil) {
         self.title = title
-        self.totalTime = totalTime
         self.tasks = tasks
         self.category = category ?? CategoryModel.none
-    }
-}
-
-extension ScheduleModel {
-    func formatTime() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad // Garante os zeros à esquerda (00:00:00)
         
-        return formatter.string(from: self.totalTime!) ?? "00:00:00"
+        var timeAux: TimeInterval = totalTime ?? 0
+
+        for task in tasks ?? [] {
+            timeAux += task.estimatedTime
+        }
+        
+        self.totalTime = timeAux
     }
     
-    func formatTimeExtended() -> String {
-        guard let totalTimeUnwrapped = self.totalTime else {
+    func setTimePassed(timePassed: TimeInterval) {
+        self.timePassed = timePassed
+    }
+    
+    func remainingTimeString(timePassed: TimeInterval?) -> String {
+        self.timeRemaining = (totalTime ?? 0) - (timePassed ?? 0)
+        
+        guard let timeRemaining = self.timeRemaining else {
             return "00 min"
         }
         
-        let totalSeconds = Int(totalTimeUnwrapped)
+        let totalSeconds = Int(self.timeRemaining!)
         let minutes = (totalSeconds / 60) % 60
         let hours = totalSeconds / 3600
         
@@ -57,24 +60,5 @@ extension ScheduleModel {
         }
         
         return "\(hours)h \(minutes)min"
-        
-//        let hourString = hours == 1 ? "1 hora" : "\(hours) horas"
-//        let minuteString = minutes == 1 ? "1 minuto" : "\(minutes) minutos"
-//        
-//        if hours == 0 {
-//            return minuteString
-//        }
-//        
-//        if minutes == 0 {
-//            return hourString
-//        }
-//        
-//        let formattedHour = String(format: "%02d", hours)
-//        let formattedMinute = String(format: "%02d", minutes)
-//        
-//        let hourSuffix = hours == 1 ? "hora" : "horas"
-//        let minuteSuffix = minutes == 1 ? "minuto" : "minutos"
-//        
-//        return "\(formattedHour) \(hourSuffix) \(formattedMinute) \(minuteSuffix)"
     }
 }

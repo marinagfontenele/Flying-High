@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E20562FE01F1000A9AEE6 /* Extensions.swift */; };
 		F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EE9F95612FC86B310027294B /* Flying High.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying High.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F13E20562FE01F1000A9AEE6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flying_HighApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,9 +110,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F13E20582FE0201300A9AEE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F13E20562FE01F1000A9AEE6 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F1D8BD582FDCA2C3009A4538 /* Flying High */ = {
 			isa = PBXGroup;
 			children = (
+				F13E20582FE0201300A9AEE6 /* Extensions */,
 				F1D8BD302FDC74D2009A4538 /* Models */,
 				F1D8BD382FDC74D2009A4538 /* Resources */,
 				F1D8BD3B2FDC74D2009A4538 /* ViewModels */,
@@ -194,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */,
 				F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
