@@ -10,8 +10,9 @@ import SwiftUI
 struct TimerCardView: View {
     private let engine = TimerEngine()
     
-    @State private var displayText: String = "00:00.00"
+    @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false
+    @State var isEnabledForward: Bool = false
     
     var body: some View {
         VStack {
@@ -38,6 +39,7 @@ struct TimerCardView: View {
                 
                 Button {
                     resetTimer()
+                    isEnabledForward.toggle()
                 } label: {
                     Circle()
                         .frame(maxWidth: 90, maxHeight:80)
@@ -50,6 +52,25 @@ struct TimerCardView: View {
                         }
                 }
                 .tint(Color(.main))
+                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabledForward, actions: {
+                    HStack {
+                        Button("Cancelar", role: .cancel) {
+                        //    dismiss()
+                        }
+                        .tint(.black)
+                        .foregroundStyle(Color(.systemGray2))
+                        
+                        NavigationLink (destination: EmptyView()){
+                            Button("Finalizar") {
+                                
+                            }
+                            .buttonStyle(.glassProminent)
+                            .tint(.main)
+                        }
+                    }
+                }, message: {
+                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
+                })
             }
         }
     }
