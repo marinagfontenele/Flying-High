@@ -13,11 +13,11 @@ struct CardProgressView: View {
     @State var info: String = "30 minutos"
     @State var doneTasks: Int = 1
     @State var totalTasks: Int = 4
-    @State var progress: Bool = true
+    @State var progress: Bool = false
+  //  @State var image: Bool = true
     
     var body: some View {
         HStack {
-            
             HStack {
                 VStack (alignment: .leading, spacing: 15) {
                     HStack {
@@ -42,6 +42,10 @@ struct CardProgressView: View {
                         .foregroundStyle(.white)
                 }
                 Spacer(minLength: 0)
+//
+//                if image {
+//                    Image(systemName: "timer")
+//                }
             }
             .padding(20)
             .background(Color(.purple), in: RoundedRectangle(cornerRadius: 15))

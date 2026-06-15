@@ -11,6 +11,13 @@ struct TimerView: View {
     
     @Environment(\.dismiss) var dismiss
     
+ //   @State var path: [TaskModel] = []
+//    @State var tasks = [
+//        TaskModel("Task 1"),
+//        TaskModel("Task 2"),
+//        TaskModel("Task 3"),
+//    ]
+
     @State private var isPaused: Bool = false
     @State private var isPresented: Bool = false
     @State var nextTask: String = "Comprar Pões"
@@ -50,7 +57,7 @@ struct TimerView: View {
                 Button {
                     isEnabled.toggle()
                 } label: {
-                    Label("Finalizar Bloco", systemImage: "checkmark")
+                    Label("Finalizar Tarefa", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
                         .padding(16)
                         .font(.title2)
