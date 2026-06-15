@@ -9,26 +9,26 @@ import SwiftUI
 
 struct ScheduleView: View {
     
-    var tasks: [TaskModel]
+    var schedule: ScheduleModel
     
     var body: some View {
         NavigationStack {
             VStack {
-                CardProgressView()
+                // TODO: melhorar a lógica do tempo restante
+                CardProgressView(schedule: schedule, timePassed: 199)
                     .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(tasks){ task in
+                        ForEach(schedule.tasks!){ task in
                             CardTaskView(task: task)
                                 .padding(.top, 10)
                         }
                         .padding(.bottom,100)
                         
                     }
-
                     
                     Spacer(minLength: 0)
                     
@@ -74,7 +74,7 @@ struct ScheduleView: View {
             category: .repair,
             room: nil,
             info: "Substituir por uma lâmpada LED de 9W.",
-            estimatedTime: nil
+            estimatedTime: 1800
         ),
         TaskModel(
             title: "Limpar janelas",
@@ -84,5 +84,10 @@ struct ScheduleView: View {
             estimatedTime: 1800
         )
     ]
-    ScheduleView(tasks: mockedTasks)
+    var schedule = ScheduleModel(
+        title: "Faxina Pesada de Sábado",
+        tasks: [mockedTasks[0], mockedTasks[3]], // Lavar a louça e Limpar janelas
+        category: .cleaning
+    )
+    ScheduleView(schedule: schedule)
 }

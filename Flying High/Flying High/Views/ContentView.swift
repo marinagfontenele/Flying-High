@@ -48,7 +48,7 @@ struct ContentView: View {
             category: .repair,
             room: nil,
             info: "Substituir por uma lâmpada LED de 9W.",
-            estimatedTime: nil
+            estimatedTime: 1800
         ),
         TaskModel(
             title: "Limpar janelas",
@@ -62,31 +62,26 @@ struct ContentView: View {
     let mockSchedules: [ScheduleModel] = [
         ScheduleModel(
             title: "Faxina Pesada de Sábado",
-            totalTime: 5400, // 1h 30m (900s + 1800s + extra)
             tasks: [localTasks[0], localTasks[3]], // Lavar a louça e Limpar janelas
             category: .cleaning
         ),
         ScheduleModel(
             title: "Manutenção do Apartamento",
-            totalTime: 600, // 10 minutos
             tasks: [localTasks[2]], // Trocar lâmpada queimada
             category: .repair
         ),
         ScheduleModel(
             title: "Organização do Quarto",
-            totalTime: 3600, // 1 hora
             tasks: [localTasks[1]], // Organizar guarda-roupa
             category: .organization
         ),
         ScheduleModel(
             title: "Rotina Rápida Matinal",
-            totalTime: 900, // 15 minutos
             tasks: [localTasks[0]], // Lavar a louça
             category: .other
         ),
         ScheduleModel(
             title: "Planejamento Livre",
-            totalTime: nil,
             tasks: nil,
             category: nil // Seu init vai transformar automaticamente em .none
         )
