@@ -42,6 +42,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				BlogView.swift,
+				ChartView.swift,
 				ContentView.swift,
 				RecordsView.swift,
 				ScheduleListView.swift,

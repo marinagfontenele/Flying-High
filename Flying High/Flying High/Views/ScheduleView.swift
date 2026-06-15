@@ -15,7 +15,7 @@ struct ScheduleView: View {
         NavigationStack {
             VStack {
                 // TODO: melhorar a lógica do tempo restante
-                CardProgressView(schedule: schedule, timePassed: 199)
+                CardProgressView()
                     .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){

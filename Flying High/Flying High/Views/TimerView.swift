@@ -28,7 +28,7 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-//                CardProgressView(title: "Em Progresso", info: "Nome da Tarefa")
+                CardProgressView(title: "Em Progresso", info: "Nome da Tarefa", progress: false)
                 
                 if !isPresented {
                     HStack {
