@@ -17,7 +17,7 @@ struct ContentView: View {
                 ScheduleListView()
             }
             Tab("Blog", systemImage: "info.circle") {
-                ScheduleListView()
+                BlogView()
             }
         }
         .tint(.main)
