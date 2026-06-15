@@ -60,9 +60,9 @@ struct CardTaskView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    let timeGoal = task.timeGoal.stringFormatted()
+                    let estimatedTime = task.formatTimeExtended()
                     
-                    Label("\(timeGoal)", systemImage: "timer")
+                    Label(estimatedTime, systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                     
@@ -85,5 +85,5 @@ struct CardTaskView: View {
 }
 
 #Preview {
-    CardTaskView(task: TaskModel(title: "tarefar", info: "oiiii", timeGoal: 300), timeLeft: "30 min")
+    CardTaskView(task: TaskModel(title: "tarefar", info: "oiiii", estimatedTime: 300), timeLeft: "30 min")
 }

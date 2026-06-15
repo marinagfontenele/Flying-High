@@ -15,21 +15,19 @@ struct ScheduleListView: View {
                 TaskModel(
                     title: "oiiiii 1",
                     info: "",
-                    timeGoal: 10000000
+                    estimatedTime: 1800
                 ),
                 TaskModel(
                     title: "oiiiii 2",
                     info: "",
-                    timeGoal: 600
+                    estimatedTime: 600
                 )],
-            timeTest: 10000000 + 600,
-            category: CategoryModel.cleaning,
-            room: RoomModel(title: "Banheiro")
+            totalTime: 1800 + 600,
+            category: CategoryModel.cleaning
         )]
     
     var body: some View {
         NavigationStack{
-            
             ScrollView {
                 VStack {
                     ForEach(scheduleList) { schedule in

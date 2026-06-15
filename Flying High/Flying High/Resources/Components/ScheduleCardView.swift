@@ -20,9 +20,9 @@ struct ScheduleCardView: View {
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Título do cronograma"))
                 
-                let timeGoal = calculateTimeGoal(taskList: schedule.tasks)
+//                let timeGoal = calculateTimeGoal(taskList: schedule.tasks)
                 
-                Label("\(timeGoal)", systemImage: "timer")
+                Label(schedule.formatTimeExtended(), systemImage: "timer")
                     .font(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
@@ -52,17 +52,28 @@ struct ScheduleCardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
-    func calculateTimeGoal(taskList: [TaskModel]) -> String {
-        var timeGoal: TimeInterval = 0
-        for task in taskList {
-            timeGoal += task.timeGoal
-//            print(timeGoal)
-        }
-        
-        return timeGoal.stringFormatted()
-    }
+//    func calculateTimeGoal(taskList: [TaskModel]) -> String {
+//        var estimatedTime: TimeInterval = 0
+//        for task in taskList {
+//            estimatedTime += task.estimatedTime
+////            print(timeGoal)
+//        }
+//        
+//        return estimatedTime.formatTime()
+//    }
 }
 
 #Preview {
-    ScheduleCardView(schedule: ScheduleModel(title: "Lavar banheiro", tasks: [TaskModel(title: "oiiiii 1", info: "", timeGoal: 1800), TaskModel(title: "oiiiii 2", info: "", timeGoal: 600)], timeTest: 1800 + 600, category: CategoryModel.cleaning, room: RoomModel(title: "Banheiro")))
+    
+    
+    ScheduleCardView(schedule:
+                        ScheduleModel(title: "Lavar banheiro",
+                                      tasks: [TaskModel(title: "oiiiii 1",
+                                                        info: "",
+                                                        estimatedTime: 1800),
+                                              TaskModel(title: "oiiiii 2",
+                                                        info: "",
+                                                        estimatedTime: 600)],
+                                      totalTime: 1800 + 600,
+                                      category: CategoryModel.cleaning))
 }

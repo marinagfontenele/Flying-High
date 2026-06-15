@@ -54,7 +54,7 @@ struct TaskListView: View {
     func calculateTimeLeft(taskList: [TaskModel]) -> String {
         var timeLeft: TimeInterval = 0
         for task in taskList {
-            timeLeft += task.timeGoal
+            timeLeft += task.estimatedTime
             //            print(timeGoal)
         }
         

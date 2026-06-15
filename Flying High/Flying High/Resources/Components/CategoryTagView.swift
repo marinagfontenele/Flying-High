@@ -11,7 +11,7 @@ struct CategoryTagView: View {
     @State var category: CategoryModel
     
     var body: some View {
-        Text("\(category.displayName)")
+        Text(category.title)
             .font(.footnote)
             .fontWeight(.semibold)
             .foregroundColor(.white)

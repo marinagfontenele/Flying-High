@@ -16,16 +16,44 @@ class ScheduleModel {
     
     var title: String
     var tasks: [TaskModel]
-    var timeTest: TimeInterval
+    var totalTime: TimeInterval
+//    var timeString: String?
     var isActive: Bool = false
     var category: CategoryModel
-    var room: RoomModel
     
-    init(title: String, tasks: [TaskModel], timeTest: TimeInterval, category: CategoryModel, room: RoomModel) {
+    init(title: String, tasks: [TaskModel], totalTime: TimeInterval, category: CategoryModel) {
         self.title = title
         self.tasks = tasks
-        self.timeTest = 0
+        self.totalTime = totalTime
         self.category = category
-        self.room = room
+//        self.timeString = timeString
+    }
+}
+
+extension ScheduleModel {
+    func formatTime() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad // Garante os zeros à esquerda (00:00:00)
+        
+        return formatter.string(from: self.totalTime) ?? "00:00:00"
+    }
+    
+    func formatTimeExtended() -> String {
+        let totalTimeUnwrapped = self.totalTime
+        
+        let totalSeconds = Int(totalTimeUnwrapped)
+        var minutes = (totalSeconds / 60) % 60
+        var hours = totalSeconds / 3600
+        
+        if hours == 0 {
+            return "\(minutes) min"
+        }
+        if minutes == 0 {
+            return "\(hours)h"
+        }
+        
+        return "\(hours)h \(minutes)min"
     }
 }
