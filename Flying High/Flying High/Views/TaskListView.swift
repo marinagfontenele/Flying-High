@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScheduleView: View {
+struct TaskListView: View {
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,26 +19,26 @@ struct ScheduleView: View {
                     
                     ScrollView(.vertical, showsIndicators: false) {
                         
-                        CardTaskView()
+                        CardTaskView(task: TaskModel(title: "tarefar", room: RoomModel(title: "Banheiro"), info: "oiiii", timeGoal: 300))
                             .padding(.top, 10)
                         
-                        CardTaskView()
-                            .padding(.top, 10)
-                        
-                        CardTaskView()
-                            .padding(.top, 10)
-                        
-                        CardTaskView()
-                            .padding(.top, 10)
-                        
-                        CardTaskView()
-                            .padding(.top, 10)
-                        
-                        CardTaskView()
-                            .padding(.top, 10)
-                        
-                        CardTaskView()
-                            .padding(.top, 10)
+//                        CardTaskView()
+//                            .padding(.top, 10)
+//                        
+//                        CardTaskView()
+//                            .padding(.top, 10)
+//                        
+//                        CardTaskView()
+//                            .padding(.top, 10)
+//                        
+//                        CardTaskView()
+//                            .padding(.top, 10)
+//                        
+//                        CardTaskView()
+//                            .padding(.top, 10)
+//                        
+//                        CardTaskView()
+//                            .padding(.top, 10)
                             .padding(.bottom, 100)
                     }
                     
