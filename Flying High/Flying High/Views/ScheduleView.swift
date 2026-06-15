@@ -27,29 +27,8 @@ struct ScheduleView: View {
                         }
                         .padding(.bottom,100)
                         
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                        
-//                        CardTaskView()
-//                            .padding(.top, 10)
-//                            .padding(.bottom, 100)
                     }
-                    
+
                     
                     Spacer(minLength: 0)
                     

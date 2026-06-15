@@ -9,8 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var schedules : [ScheduleModel]
     
-    static var localTasks: [TaskModel] = [
+    var body: some View {
+        TabView {
+            Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
+                ScheduleListView(schedules: schedules)
+            }
+            Tab("Relatórios", systemImage: "chart.bar.xaxis") {
+                EmptyView()
+            }
+            Tab("Blog", systemImage: "info.circle") {
+                EmptyView()
+            }
+        }
+        .tint(.main)
+    }
+}
+
+#Preview {
+    var localTasks: [TaskModel] = [
         TaskModel(
             title: "Lavar a louça",
             category: .cleaning,
@@ -41,7 +59,7 @@ struct ContentView: View {
         )
     ]
     
-    static let mockSchedules: [ScheduleModel] = [
+    let mockSchedules: [ScheduleModel] = [
         ScheduleModel(
             title: "Faxina Pesada de Sábado",
             totalTime: 5400, // 1h 30m (900s + 1800s + extra)
@@ -73,23 +91,5 @@ struct ContentView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-    
-    var body: some View {
-        TabView {
-            Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
-                ScheduleListView(schedules: ContentView.mockSchedules)
-            }
-            Tab("Relatórios", systemImage: "chart.bar.xaxis") {
-                ScheduleListView(schedules: ContentView.mockSchedules)
-            }
-            Tab("Blog", systemImage: "info.circle") {
-                ScheduleListView(schedules: ContentView.mockSchedules)
-            }
-        }
-        .tint(.main)
-    }
-}
-
-#Preview {
-    ContentView()
+    ContentView(schedules: mockSchedules)
 }
