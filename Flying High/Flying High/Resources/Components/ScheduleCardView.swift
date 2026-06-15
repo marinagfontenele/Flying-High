@@ -6,33 +6,36 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
 struct ScheduleCardView: View {
     @State var titleNumber: Int
     
+    @State var schedule: ScheduleModel
+    
     var body: some View {
         HStack {
             VStack (alignment: .leading, spacing: 18){
-                Text("Título \(titleNumber)")
+                Text(schedule.title)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Título do cronograma"))
                 
-                Label("x horas e y minutos", systemImage: "timer")
+                Label(schedule.totalTime.formatTimeStringExtended(), systemImage: "timer")
                     .font(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
                     .accessibilityLabel(Text("Duração do cronograma"))
                 
-                CategoryTagView()
+                CategoryTagView(category: schedule.category!)
             }
             
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: ScheduleView()){
+            NavigationLink (destination: ScheduleView(schedule: schedule)){
                 Label("Iniciar", systemImage: "play.fill")
                     .font(.body)
                     .fontWeight(.semibold)
@@ -49,5 +52,38 @@ struct ScheduleCardView: View {
 }
 
 #Preview {
-    ScheduleCardView(titleNumber: 1)
+    var mockedTasks: [TaskModel] = [
+        TaskModel(
+            title: "Lavar a louça",
+            category: .cleaning,
+            room: nil,
+            info: "Lavar e secar toda a louça do almoço.",
+            estimatedTime: 900
+        ),
+        TaskModel(
+            title: "Organizar guarda-roupa",
+            category: .organization,
+            room: nil,
+            info: "Separar roupas para doação e dobrar o restante.",
+            estimatedTime: 3600
+        ),
+        TaskModel(
+            title: "Trocar lâmpada queimada",
+            category: .repair,
+            room: nil,
+            info: "Substituir por uma lâmpada LED de 9W.",
+            estimatedTime: 1800
+        ),
+        TaskModel(
+            title: "Limpar janelas",
+            category: .cleaning,
+            room: nil,
+            info: "Usar limpa-vidros e pano de microfibra.",
+            estimatedTime: 1800
+        )
+    ]
+    
+    let schedule = ScheduleModel(title: "testeeeee", tasks: mockedTasks, category: CategoryModel.repair)
+    ScheduleCardView(titleNumber: 1, schedule: schedule)
+    
 }
