@@ -1,5 +1,5 @@
 //
-//  ScheduleModel.swift
+//  RoomModel.swift
 //  Flying High
 //
 //  Created by Ulisses Bonfim on 09/06/26.
@@ -8,22 +8,14 @@
 import Foundation
 import SwiftData
 
-
 @Model
-class ScheduleModel {
+class RoomModel {
     
     @Attribute(.unique) var id: UUID
-    
     var title: String
-    var tasks: [TaskModel]?
-    var timeTest: TimeInterval?
-    var Category: CategoryModel?
-    var isActive: Bool = false
-    
     
     init(id: UUID, title: String) {
         self.id = id
         self.title = title
- 
     }
 }
