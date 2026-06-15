@@ -11,6 +11,8 @@ struct CardTaskView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isEnabled = false
     
+    var task: TaskModel
+    
     var body: some View {
         HStack {
             
@@ -72,11 +74,11 @@ struct CardTaskView: View {
             
             HStack {
                 VStack (alignment: .leading, spacing: 15) {
-                    Text("Nome da Tarefa")
+                    Text(task.title)
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Label("30 minutos", systemImage: "timer")
+                    Label("tste", systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                     
@@ -100,5 +102,13 @@ struct CardTaskView: View {
 }
 
 #Preview {
-    CardTaskView()
+    let taskTest = TaskModel(
+        title: "Limpar janelas",
+        category: CategoryModel.cleaning,
+        room: nil,
+        info: "Usar limpa-vidros e pano de microfibra.",
+        estimatedTime: 4800
+    )
+    
+    CardTaskView(task: taskTest)
 }
