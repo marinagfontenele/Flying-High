@@ -34,15 +34,18 @@ struct ScheduleCardView: View {
             
             Spacer(minLength: 0)
             
-            NavigationLink (destination: TaskListView(taskList: schedule.tasks)){
-                Label("Iniciar", systemImage: "play.fill")
-                    .font(.body)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .background(.main)
-                    .clipShape(RoundedRectangle(cornerRadius: 1000))
-            }
+            Image(systemName: "chevron.right")
+                .foregroundStyle(.main)
+            
+//            NavigationLink (destination: TaskListView(taskList: schedule.tasks)){
+//                Label("Iniciar", systemImage: "play.fill")
+//                    .font(.body)
+//                    .fontWeight(.semibold)
+//                    .foregroundStyle(.white)
+//                    .padding(10)
+//                    .background(.main)
+//                    .clipShape(RoundedRectangle(cornerRadius: 1000))
+//            }
         }
         .padding(10)
         .background(.violet)

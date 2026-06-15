@@ -29,10 +29,13 @@ struct ScheduleListView: View {
     
     var body: some View {
         NavigationStack{
+            
             ScrollView {
                 VStack {
                     ForEach(scheduleList) { schedule in
-                        ScheduleCardView(schedule: schedule)
+                        NavigationLink(destination: TaskListView(taskList: schedule.tasks)){
+                            ScheduleCardView(schedule: schedule)
+                        }
                     }
                     .navigationTitle("Cronogramas")
                     .padding(.horizontal, 16)
