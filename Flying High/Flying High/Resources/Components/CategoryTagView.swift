@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct CategoryTagView: View {
+    
+    var category: CategoryModel
     var body: some View {
-        Text("Limpeza")
+        Text(category.title)
             .font(.footnote)
             .fontWeight(.semibold)
             .foregroundColor(.white)
             .padding(.vertical, 1)
             .padding(.horizontal, 16)
-            .background(.blueTag)
+            .background(category.iconColor)
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .accessibilityLabel(Text("Categoria do cronograma"))
     }
 }
 
 #Preview {
-    CategoryTagView()
+    var category = CategoryModel.organization
+    CategoryTagView(category: category)
 }
