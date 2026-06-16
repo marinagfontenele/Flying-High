@@ -81,7 +81,7 @@ struct CardTaskView: View {
                         .fontWeight(.semibold)
                     
                     if (task.isFinished == false) {
-                        Label(task.estimatedTimeString(), systemImage: "timer")
+                        Label("Meta: \(task.estimatedTimeString())", systemImage: "timer")
                             .font(.body)
                             .fontWeight(.semibold)
                     } else {

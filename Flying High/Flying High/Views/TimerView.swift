@@ -102,7 +102,7 @@ struct TimerView: View {
 //                        }
                         
                        // NavigationLink(destination: ScheduleView()) {
-                            Button("Finalizar e voltar para a tela inicial") {
+                            Button("Finalizar e voltar para a tela do cronograma") {
                                 dismiss()
                                 dismiss()
                                 task.isFinished.toggle()
