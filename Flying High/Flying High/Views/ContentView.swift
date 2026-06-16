@@ -82,7 +82,7 @@ struct ContentView: View {
         ),
         ScheduleModel(
             title: "Planejamento Livre",
-            tasks: nil,
+            tasks: [localTasks[0]],
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
