@@ -16,10 +16,10 @@ struct TimerView: View {
     
     @State private var isPaused: Bool = false
     @State private var isPresented: Bool = false
-    @State var nextTask: String = "Comprar Pões"
     @State private var isEnabled: Bool = false
     @State private var isEnabled2: Bool = false
     @State private var navigation: Bool = false
+    @State private var navigateToNextTask = false
     
     var body: some View {
         
@@ -57,8 +57,6 @@ struct TimerView: View {
                     Spacer(minLength: 0)
                 }
                 
-                //  Image (.bucket)
-                
                 // TODO: ajeitar o timer quebrando quando a sheet abre
                 TimerCardView()
                 
@@ -77,78 +75,20 @@ struct TimerView: View {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
                 .padding(.horizontal, 16)
-                
-                //                NavigationLink(destination: EmptyView()) {
-                //                    Label("Finalizar Bloco", systemImage: "checkmark")
-                //                        .frame(maxWidth: .infinity)
-                //                        .padding(16)
-                //                        .font(.title2)
-                //                        .foregroundStyle(.white)
-                //                        .fontWeight(.bold)
-                //                }
-                //                .buttonStyle(.glassProminent)
-                //                .tint(.main)
-                //                .padding(.horizontal, 16)
-                //                .simultaneousGesture(TapGesture().onEnded {
-                //                    isEnabled.toggle()
-                //                })
-                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled, actions: {
-                    VStack {
-                        Button("Cancelar", role: .cancel) {
-                            
-                        }
-                        .tint(.black)
-                        
-                        //                        Button("Finalizar e voltar para a tela inicial 2") {
-                        //                            navigation.toggle()
-                        //                        }
-                        //                        .buttonStyle(.glassProminent)
-                        //                        .tint(.main)
-                        //
-                        //                        if navigation {
-                        //                            ScheduleView()
-                        //                        }
-                        
-                        // NavigationLink(destination: ScheduleView()) {
-                        Button("Finalizar e voltar para a tela inicial") {
-                            dismiss()
-                            dismiss()
-                        }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                        //  }
-                        
-                        NavigationLink(destination: EmptyView()) {
-                            Button("Finalizar e passar para a próxima tarefa") {
-                                
-                            }
-                            .buttonStyle(.glassProminent)
-                            .tint(.main)
-                        }
+                .confirmationAlert(
+                    isPresented: $isEnabled,
+                    onFinishAll: {
+                        dismiss()
+                        dismiss()
+                    },
+                    onNextTask: {
+                        navigateToNextTask = true
                     }
-                }, message: {
-                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
-                })
+                )
+                .navigationDestination(isPresented: $navigateToNextTask) {
+                    EmptyView()
+                }
                 
-                //                Button {
-                //                    isPresented.toggle()
-                //                } label: {
-                //                    Label("Informações", systemImage: "info.circle.fill")
-                //                        .font(.body)
-                //                        .fontWeight(.semibold)
-                //                        .foregroundStyle(.white)
-                //                        .padding(10)
-                //                        .background(.main)
-                //                        .clipShape(RoundedRectangle(cornerRadius: 1000))
-                //                }
-                //                .sheet(isPresented: $isPresented){
-                //                    NavigationStack {
-                //                        SheetTimerView()
-                //                    }
-                //                    .presentationDetents([.medium])
-                //                    .presentationBackground(Color(.systemBackground))
-                //                    .presentationBackgroundInteraction(.enabled)
-                //                }
             }
             .animation(.default, value: isPresented)
             .background(Color.background
