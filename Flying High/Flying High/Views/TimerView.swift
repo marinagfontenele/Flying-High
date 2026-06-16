@@ -25,10 +25,12 @@ struct TimerView: View {
     @State private var isEnabled2: Bool = false
     @State private var navigation: Bool = false
     
+    let task: TaskModel
+    
     var body: some View {
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: "Nome da Tarefa", progress: false)
+                CardProgressView(title: "Em Progresso", info: task.title, progress: false)
                 
                 if !isPresented {
                     HStack {
@@ -103,6 +105,7 @@ struct TimerView: View {
                             Button("Finalizar e voltar para a tela inicial") {
                                 dismiss()
                                 dismiss()
+                                task.isFinished.toggle()
                             }
                             .buttonStyle(.glassProminent)
                             .tint(.main)
@@ -165,6 +168,7 @@ struct TimerView: View {
                         Button("Finalizar") {
                             dismiss()
                             dismiss()
+                            task.isFinished.toggle()
                         }
                         .buttonStyle(.glassProminent)
                         .tint(.main)
@@ -196,7 +200,7 @@ struct TimerView: View {
         .navigationBarBackButtonHidden(true)
     }
 }
-
-#Preview {
-    TimerView()
-}
+//
+//#Preview {
+//    TimerView()
+//}
