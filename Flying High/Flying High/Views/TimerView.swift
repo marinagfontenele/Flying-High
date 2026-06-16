@@ -12,7 +12,19 @@ struct TimerView: View {
     @Environment(\.dismiss) var dismiss
     
     var schedule: ScheduleModel
-    var index: Int = 3
+    @State private var currentTaskIndex: Int = 0
+    
+    var currentTask: TaskModel {
+        schedule.tasks[currentTaskIndex]
+    }
+    
+    var nextTaskExists: Bool {
+        currentTaskIndex + 1 < schedule.tasks.count
+    }
+    
+    @State private var activeAlert: TaskAlertType?
+    
+    @State private var isAlertPresented: Bool = false
     
     @State private var isPaused: Bool = false
     @State private var isPresented: Bool = false
@@ -22,34 +34,29 @@ struct TimerView: View {
     @State private var navigateToNextTask = false
     
     var body: some View {
-        
-        var task: TaskModel {
-            schedule.tasks[index]
-        }
-        
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: task.title, progress: false)
+                CardProgressView(title: "Em Progresso", info: currentTask.title, progress: false)
+                    .id(currentTaskIndex)
                 
                 if !isPresented {
-                        HStack {
-                            if index != schedule.tasks.count - 1 {
-                                Text("Próxima Tarefa: \(schedule.tasks[index+1].title)")
-                                    .font(.body)
-                                    .fontWeight(.semibold)
-                            }
-                            else {
-                                Text("Última Tarefa!")
-                                    .font(.body)
-                                    .fontWeight(.semibold)
-
-                            }
-                            
-                            Spacer(minLength: 0)
+                    HStack {
+                        if nextTaskExists {
+                            Text("Próxima Tarefa: \(schedule.tasks[currentTaskIndex + 1].title)")
+                                .font(.body)
+                                .fontWeight(.semibold)
                         }
-                        .padding(15)
-                        .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
-                        .padding(.horizontal, 16)
+                        else {
+                            Text("Última Tarefa!")
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .padding(15)
+                    .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
+                    .padding(.horizontal, 16)
                     
                 }
                 
@@ -63,7 +70,13 @@ struct TimerView: View {
                 Spacer(minLength: 0)
                 
                 Button {
-                    isEnabled.toggle()
+                    activeAlert = .optionsMenu(onFinishAll: {
+                        dismiss()
+                        dismiss()
+                    }, onNextTask: {
+                        goToNextTask()
+                    })
+                    isAlertPresented.toggle()
                 } label: {
                     Label("Finalizar Tarefa", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
@@ -75,75 +88,87 @@ struct TimerView: View {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
                 .padding(.horizontal, 16)
-                .confirmationAlert(
-                    isPresented: $isEnabled,
-                    onFinishAll: {
-                        dismiss()
-                        dismiss()
-                    },
-                    onNextTask: {
-                        navigateToNextTask = true
-                    }
-                )
-                .navigationDestination(isPresented: $navigateToNextTask) {
-                    EmptyView()
-                }
-                
             }
             .animation(.default, value: isPresented)
             .background(Color.background
                 .ignoresSafeArea())
-        }
-        .toolbar{
-            ToolbarItem(placement: .navigationBarLeading){
-                Button{
-                    isEnabled2.toggle()
-                } label: {
-                    Image(systemName: "chevron.backward")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.black)
-                }
-                .tint(.white)
-                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled2, actions: {
-                    HStack {
-                        Button("Cancelar", role: .cancel) {
-                            //    dismiss()
-                        }
-                        .tint(.black)
-                        .foregroundStyle(Color(.systemGray2))
-                        
-                        Button("Finalizar") {
-                            dismiss()
-                            dismiss()
-                        }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        activeAlert = .directNext(onConfirm: { goToNextTask() })
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.black)
                     }
-                }, message: {
-                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
-                })
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing){
-                Button{
-                    isPresented.toggle()
-                } label: {
-                    Image(systemName: "info")
-                        .fontWeight(.semibold)
                 }
-                .buttonStyle(.glassProminent)
-                .tint(.main)
-                .sheet(isPresented: $isPresented){
-                    NavigationStack {
-                        SheetTimerView()
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isPresented.toggle()
+                    } label: {
+                        Image(systemName: "info")
+                            .fontWeight(.semibold)
                     }
-                    .presentationDetents([.medium])
-                    .presentationBackground(Color(.systemBackground))
-                    .presentationBackgroundInteraction(.enabled)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $isPresented) {
+            NavigationStack {
+                SheetTimerView()
+            }
+            .presentationDetents([.medium])
+            .presentationBackground(Color(.systemBackground))
+            .presentationBackgroundInteraction(.enabled)
+        }
+        .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
+        //        .toolbar{
+        //            ToolbarItem(placement: .navigationBarLeading){
+        //                Button{
+        //                    isEnabled2.toggle()
+        //                    activeAlert = .directNext(onConfirm: {goToNextTask()})
+        //                } label: {
+        //                    Image(systemName: "chevron.backward")
+        //                        .fontWeight(.semibold)
+        //                        .foregroundColor(.black)
+        //                }
+        //                .tint(.white)
+        //
+        //            }
+        //
+        //            ToolbarItem(placement: .navigationBarTrailing){
+        //                Button{
+        //                    isPresented.toggle()
+        //                } label: {
+        //                    Image(systemName: "info")
+        //                        .fontWeight(.semibold)
+        //                }
+        //                .buttonStyle(.glassProminent)
+        //                .tint(.main)
+        //                .sheet(isPresented: $isPresented){
+        //                    NavigationStack {
+        //                        SheetTimerView()
+        //                    }
+        //                    .presentationDetents([.medium])
+        //                    .presentationBackground(Color(.systemBackground))
+        //                    .presentationBackgroundInteraction(.enabled)
+        //                }
+        //            }
+        //        }
+        //        .navigationBarBackButtonHidden(true)
+    }
+    
+    private func goToNextTask() {
+        if nextTaskExists {
+            withAnimation{
+                currentTaskIndex += 1
+            }
+        } else {
+            dismiss()
+        }
     }
 }
 

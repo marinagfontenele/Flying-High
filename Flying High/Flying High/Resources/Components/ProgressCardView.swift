@@ -10,7 +10,7 @@ import SwiftUI
 struct CardProgressView: View {
     @State private var isEnabled = false
     @State var title: String = "Tempo Restante"
-    @State var info: String = "30 minutos"
+    var info: String = "30 minutos"
     @State var doneTasks: Int = 1
     @State var totalTasks: Int = 4
     @State var progress: Bool = true
