@@ -10,7 +10,7 @@ import SwiftData
 
 struct ScheduleListView: View {
     var schedules: [ScheduleModel]
-    var titleNumber: [Int] = [1, 2, 3]
+//    var titleNumber: [Int] = [1, 2, 3]
     
     var body: some View {
         NavigationStack{
@@ -18,25 +18,25 @@ struct ScheduleListView: View {
                 VStack {
                     //                    var schedule = ScheduleModel(title: "teste", totalTime: 3999)
                     ForEach(schedules) { schedule in
-                        ScheduleCardView(titleNumber: 1, schedule: schedule)
+                        ScheduleCardView(schedule: schedule)
                     }
                     .navigationTitle("Cronogramas")
                     .padding(.horizontal, 16)
                     .padding(.top, 10)
                 }
                 .padding(.top, 10)
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button{
-                            
-                        } label: {
-                            Image(systemName: "plus")
-                                .fontWeight(.semibold)
-                        }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                    }
-                }
+//                .toolbar{
+//                    ToolbarItem(placement: .navigationBarTrailing){
+//                        Button{
+//                            
+//                        } label: {
+//                            Image(systemName: "plus")
+//                                .fontWeight(.semibold)
+//                        }
+//                        .buttonStyle(.glassProminent)
+//                        .tint(.main)
+//                    }
+//                }
             }
             .background(Color.background
                 .ignoresSafeArea())

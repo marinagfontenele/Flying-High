@@ -32,7 +32,7 @@ struct ScheduleView: View {
                     
                     Spacer(minLength: 0)
                     
-                    NavigationLink(destination: TimerView()) {
+                    NavigationLink(destination: TimerView(task: schedule.tasks!.first!)) {
                         Label("Iniciar Bloco", systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                             .padding(16)

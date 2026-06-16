@@ -26,10 +26,11 @@ struct CardTaskView: View {
                         .foregroundStyle(.main)
                 }
                 
+                
                 Button {
                     isEnabled.toggle()
                 } label: {
-                    if (isEnabled) {
+                    if (task.isFinished) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.title)
                             .fontWeight(.semibold)
@@ -41,6 +42,7 @@ struct CardTaskView: View {
                             .foregroundStyle(.main)
                     }
                 }
+                .disabled(task.isFinished)
                 .padding(5)
                 .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled, actions: {
                     HStack {
@@ -50,7 +52,7 @@ struct CardTaskView: View {
                         .tint(.black)
                         
                         Button("Finalizar") {
-                            
+                            task.isFinished.toggle()
                         }
                         .buttonStyle(.glassProminent)
                         .tint(.main)
@@ -78,20 +80,32 @@ struct CardTaskView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Label("tste", systemImage: "timer")
-                        .font(.body)
-                        .fontWeight(.semibold)
+                    if (task.isFinished == false) {
+                        Label("Meta: \(task.estimatedTimeString())", systemImage: "timer")
+                            .font(.body)
+                            .fontWeight(.semibold)
+                    } else {
+//                        VStack {
+                        Label("Concluída em Xh e Ymin", systemImage: "timer")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            // Apenas para teste por enquanto
+//                            Label("Xh e Ymin", systemImage: "timer")
+//                        }
+                        
+                    }
+                    
                     
                 }
                 Spacer(minLength: 0)
                 
-//                NavigationLink (destination: TimerView() ) {
-//                    Label("Iniciar", systemImage: "play.fill")
-//                        .padding(10)
-//                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
-//                        .foregroundStyle(.white)
-//                        .fontWeight(.semibold)
-//                }
+                //                NavigationLink (destination: TimerView() ) {
+                //                    Label("Iniciar", systemImage: "play.fill")
+                //                        .padding(10)
+                //                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
+                //                        .foregroundStyle(.white)
+                //                        .fontWeight(.semibold)
+                //                }
                 
             }
             .padding(20)
