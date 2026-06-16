@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53ED7BFB2FE1A4D300626097 /* LogoHomeTic.icon in Resources */ = {isa = PBXBuildFile; fileRef = 53ED7BFA2FE1A4CB00626097 /* LogoHomeTic.icon */; };
 		F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E20562FE01F1000A9AEE6 /* Extensions.swift */; };
 		F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53ED7BFA2FE1A4CB00626097 /* LogoHomeTic.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = LogoHomeTic.icon; sourceTree = "<group>"; };
 		EE9F95612FC86B310027294B /* Flying High.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying High.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13E20562FE01F1000A9AEE6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flying_HighApp.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				F1D8BD3B2FDC74D2009A4538 /* ViewModels */,
 				F1D8BD412FDC74D2009A4538 /* Views */,
 				F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */,
+				53ED7BFA2FE1A4CB00626097 /* LogoHomeTic.icon */,
 			);
 			path = "Flying High";
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53ED7BFB2FE1A4D300626097 /* LogoHomeTic.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,9 +344,9 @@
 		EE9F956D2FC86B310027294B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LogoHomeTic;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MQG7QNYQ5V;
@@ -379,9 +383,9 @@
 		EE9F956E2FC86B310027294B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LogoHomeTic;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MQG7QNYQ5V;
