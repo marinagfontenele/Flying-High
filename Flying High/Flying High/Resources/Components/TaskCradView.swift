@@ -17,14 +17,14 @@ struct CardTaskView: View {
         HStack {
             
             VStack (spacing: 8){
-                Button {
-                    
-                } label: {
-                    Image(systemName: "chevron.up")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.main)
-                }
+//                Button {
+//                    
+//                } label: {
+//                    Image(systemName: "chevron.up")
+//                        .font(.title3)
+//                        .fontWeight(.semibold)
+//                        .foregroundStyle(.main)
+//                }
                 
                 
                 Button {
@@ -61,15 +61,15 @@ struct CardTaskView: View {
                     Text("Após finalizada, a tarefa não poderá mais ser retomada.")
                 })
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "chevron.down")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.main)
-                    
-                }
+//                Button {
+//                    
+//                } label: {
+//                    Image(systemName: "chevron.down")
+//                        .font(.title3)
+//                        .fontWeight(.semibold)
+//                        .foregroundStyle(.main)
+//                    
+//                }
             }
             
             Spacer(minLength: 0)
@@ -85,13 +85,10 @@ struct CardTaskView: View {
                             .font(.body)
                             .fontWeight(.semibold)
                     } else {
-//                        VStack {
-                        Label("Concluída em Xh e Ymin", systemImage: "timer")
+                        Text("Concluída")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             // Apenas para teste por enquanto
-//                            Label("Xh e Ymin", systemImage: "timer")
-//                        }
                         
                     }
                     
@@ -99,13 +96,6 @@ struct CardTaskView: View {
                 }
                 Spacer(minLength: 0)
                 
-                //                NavigationLink (destination: TimerView() ) {
-                //                    Label("Iniciar", systemImage: "play.fill")
-                //                        .padding(10)
-                //                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
-                //                        .foregroundStyle(.white)
-                //                        .fontWeight(.semibold)
-                //                }
                 
             }
             .padding(20)
