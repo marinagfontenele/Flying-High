@@ -6,23 +6,6 @@
 //
 import SwiftUI
 
-struct PostBlog: Identifiable {
-    let id = UUID()
-    let titulo: String
-    let subtitulo: String
-    let textoArtigo: String
-    let nomeImagem: String
-    let corDeFundo: Color
-}
-
-struct ConteudoPost{
-    let id = UUID()
-    let titulo: String
-    let subtitulo: String
-    let textoArtigo: String
-    let nomeImagem: String
-    let corDeFundo: Color
-}
 struct BlogView: View {
     @State private var cardSelecionado: ArticleModel?
     @State private var postSelecionado : BlogCardView?
@@ -33,10 +16,7 @@ struct BlogView: View {
         ArticleModel(title: "Organização", subtitle: "Dicas de organização", text: "i'm not that girl", imageName: "casa1", colorName: "card_alimentacao")
     ]
     
-    @State private var cardSelecionado: String?
-    @State private var postSelecionado : BlogCardView?
-    
-    var body:some View {
+    var body: some View {
         NavigationStack{
             ScrollView{
                 VStack(spacing:20){
@@ -53,45 +33,13 @@ struct BlogView: View {
                             cardSelecionado = blog
                         }
                     }
-
-                    BlogCardView(
-                        title: "Banheiro",
-                        subtitle: "Dicas de limpeza",
-                        image: "baldinho",
-                        headerColor: Color("card_limpeza")
-                    )
-                    .onTapGesture{
-                        cardSelecionado = "Dicas de limpeza"
-                    }
-                    
-                    BlogCardView(
-                        title: "Reparos",
-                        subtitle: "Dicas de reparos",
-                        image: ("martelo2"),
-                        headerColor: Color("card_reparo")
-                    )
-                    .onTapGesture{
-                        cardSelecionado = "Dicas de Reparos"
-                    }
-                    
-                    BlogCardView(
-                        title: "Alimentação",
-                        subtitle: "Dicas de Alimentação",
-                        image: "alimentacao",
-                        headerColor: Color("card_alimentacao")
-                    )
-                    .onTapGesture{
-                        cardSelecionado = "Dicas de Alimentação"
-                    }
                 }
                 .padding(.horizontal)
                 .navigationTitle("Blog")
             }
             .background(Color.background
-            .ignoresSafeArea())
-            .fullScreenCover(item: $cardSelecionado){ item in TelaCheiaPostView(content: item)
-            
-            .fullScreenCover(item: $cardSelecionado){item in TelaCheiaPostView(tituloDoPost: item)
+                .ignoresSafeArea())
+            .fullScreenCover(item: $cardSelecionado){ item in TelaCheiaPostView(content: item, tituloDoPost: cardSelecionado?.title ?? "titulo")
             }
         }
     }
@@ -102,7 +50,6 @@ struct TelaCheiaPostView: View{
     @Environment(\.dismiss) var dismiss
     
     let tituloDoPost: String
-    @Environment(\.dismiss) var dismiss
     
     var corDeFundo: Color{
         switch tituloDoPost {
@@ -189,13 +136,10 @@ struct TelaCheiaPostView: View{
         }
     }
 }
-           
-    extension String: Identifiable {
 
 extension String: Identifiable {
     public var id: String { self }
 }
-// }
 
 #Preview {
     BlogView()
