@@ -33,6 +33,8 @@ struct TimerView: View {
     @State private var navigation: Bool = false
     @State private var navigateToNextTask = false
     
+    let task: TaskModel
+    
     var body: some View {
         NavigationStack{
             VStack {

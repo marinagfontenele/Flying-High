@@ -17,19 +17,20 @@ struct CardTaskView: View {
         HStack {
             
             VStack (spacing: 8){
-                Button {
-                    
-                } label: {
-                    Image(systemName: "chevron.up")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.main)
-                }
+//                Button {
+//                    
+//                } label: {
+//                    Image(systemName: "chevron.up")
+//                        .font(.title3)
+//                        .fontWeight(.semibold)
+//                        .foregroundStyle(.main)
+//                }
+                
                 
                 Button {
                     isEnabled.toggle()
                 } label: {
-                    if (isEnabled) {
+                    if (task.isFinished) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.title)
                             .fontWeight(.semibold)
@@ -41,6 +42,7 @@ struct CardTaskView: View {
                             .foregroundStyle(.main)
                     }
                 }
+                .disabled(task.isFinished)
                 .padding(5)
                 .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled, actions: {
                     HStack {
@@ -50,7 +52,7 @@ struct CardTaskView: View {
                         .tint(.black)
                         
                         Button("Finalizar") {
-                            
+                            task.isFinished.toggle()
                         }
                         .buttonStyle(.glassProminent)
                         .tint(.main)
@@ -59,15 +61,15 @@ struct CardTaskView: View {
                     Text("Após finalizada, a tarefa não poderá mais ser retomada.")
                 })
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "chevron.down")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.main)
-                    
-                }
+//                Button {
+//                    
+//                } label: {
+//                    Image(systemName: "chevron.down")
+//                        .font(.title3)
+//                        .fontWeight(.semibold)
+//                        .foregroundStyle(.main)
+//                    
+//                }
             }
             
             Spacer(minLength: 0)
@@ -78,20 +80,22 @@ struct CardTaskView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Label("tste", systemImage: "timer")
-                        .font(.body)
-                        .fontWeight(.semibold)
+                    if (task.isFinished == false) {
+                        Label("Meta: \(task.estimatedTimeString())", systemImage: "timer")
+                            .font(.body)
+                            .fontWeight(.semibold)
+                    } else {
+                        Text("Concluída")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            // Apenas para teste por enquanto
+                        
+                    }
+                    
                     
                 }
                 Spacer(minLength: 0)
                 
-//                NavigationLink (destination: TimerView() ) {
-//                    Label("Iniciar", systemImage: "play.fill")
-//                        .padding(10)
-//                        .background(Color(.main), in: RoundedRectangle(cornerRadius: 296))
-//                        .foregroundStyle(.white)
-//                        .fontWeight(.semibold)
-//                }
                 
             }
             .padding(20)

@@ -10,44 +10,35 @@ import SwiftData
 
 
 struct ScheduleCardView: View {
-    @State var titleNumber: Int
-    
     @State var schedule: ScheduleModel
     
     var body: some View {
-        HStack {
-            VStack (alignment: .leading, spacing: 18){
-                Text(schedule.title)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.text)
-                    .accessibilityLabel(Text("Título do cronograma"))
+        NavigationLink (destination: ScheduleView(schedule: schedule)) {
+            HStack {
+                VStack (alignment: .leading, spacing: 18){
+                    Text(schedule.title)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.text)
+                        .accessibilityLabel(Text("Título do cronograma"))
+                    
+                    Label(schedule.totalTime.formatTimeStringExtended(), systemImage: "timer")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.text)
+                        .accessibilityLabel(Text("Duração do cronograma"))
+                    
+                    CategoryTagView(category: schedule.category!)
+                }
                 
-                Label(schedule.totalTime.formatTimeStringExtended(), systemImage: "timer")
-                    .font(.body)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.text)
-                    .accessibilityLabel(Text("Duração do cronograma"))
+                Spacer(minLength: 0)
                 
-                CategoryTagView(category: schedule.category!)
+                Image(systemName: "chevron.right")
             }
-            
-            
-            Spacer(minLength: 0)
-            
-            NavigationLink (destination: ScheduleView(schedule: schedule)){
-                Label("Iniciar", systemImage: "play.fill")
-                    .font(.body)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .background(.main)
-                    .clipShape(RoundedRectangle(cornerRadius: 1000))
-            }
+            .padding(10)
+            .background(.violet)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .padding(10)
-        .background(.violet)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
@@ -82,8 +73,6 @@ struct ScheduleCardView: View {
             estimatedTime: 1800
         )
     ]
-    
     let schedule = ScheduleModel(title: "testeeeee", tasks: mockedTasks, category: CategoryModel.repair)
-    ScheduleCardView(titleNumber: 1, schedule: schedule)
-    
+    ScheduleCardView(schedule: schedule)
 }
