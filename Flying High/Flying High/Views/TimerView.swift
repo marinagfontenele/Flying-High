@@ -33,8 +33,6 @@ struct TimerView: View {
     @State private var navigation: Bool = false
     @State private var navigateToNextTask = false
     
-    let task: TaskModel
-    
     var body: some View {
         NavigationStack{
             VStack {
@@ -175,40 +173,40 @@ struct TimerView: View {
 }
 
 #Preview {
-    var mockedTasks: [TaskModel] = [
-        TaskModel(
-            title: "Lavar a louça",
-            category: .cleaning,
-            room: nil,
-            info: "Lavar e secar toda a louça do almoço.",
-            estimatedTime: 900
-        ),
-        TaskModel(
-            title: "Organizar guarda-roupa",
-            category: .organization,
-            room: nil,
-            info: "Separar roupas para doação e dobrar o restante.",
-            estimatedTime: 3600
-        ),
-        TaskModel(
-            title: "Trocar lâmpada queimada",
-            category: .repair,
-            room: nil,
-            info: "Substituir por uma lâmpada LED de 9W.",
-            estimatedTime: 1800
-        ),
-        TaskModel(
-            title: "Limpar janelas",
-            category: .cleaning,
-            room: nil,
-            info: "Usar limpa-vidros e pano de microfibra.",
-            estimatedTime: 1800
-        )
-    ]
-    var schedule = ScheduleModel(
-        title: "Faxina Pesada de Sábado",
-        tasks: mockedTasks,
-        category: .cleaning
-    )
-    TimerView(schedule: schedule)
+//    var mockedTasks: [TaskModel] = [
+//        TaskModel(
+//            title: "Lavar a louça",
+//            category: .cleaning,
+//            room: nil,
+//            info: "Lavar e secar toda a louça do almoço.",
+//            estimatedTime: 900
+//        ),
+//        TaskModel(
+//            title: "Organizar guarda-roupa",
+//            category: .organization,
+//            room: nil,
+//            info: "Separar roupas para doação e dobrar o restante.",
+//            estimatedTime: 3600
+//        ),
+//        TaskModel(
+//            title: "Trocar lâmpada queimada",
+//            category: .repair,
+//            room: nil,
+//            info: "Substituir por uma lâmpada LED de 9W.",
+//            estimatedTime: 1800
+//        ),
+//        TaskModel(
+//            title: "Limpar janelas",
+//            category: .cleaning,
+//            room: nil,
+//            info: "Usar limpa-vidros e pano de microfibra.",
+//            estimatedTime: 1800
+//        )
+//    ]
+//    var schedule = ScheduleModel(
+//        title: "Faxina Pesada de Sábado",
+//        tasks: mockedTasks,
+//        category: .cleaning
+//    )
+//    TimerView(schedule: schedule)
 }
