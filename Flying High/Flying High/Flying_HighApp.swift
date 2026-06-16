@@ -165,6 +165,34 @@ struct Flying_HighApp: App {
                                                                     estimatedTime: 1200),],
                                                             category: .repair)
             ]
+            
+//             let mockSchedules: [ScheduleModel] = [
+//                 ScheduleModel(
+//                     title: "Faxina Pesada de Sábado",
+//                     tasks: [localTasks[0], localTasks[3]], // Lavar a louça e Limpar janelas
+//                     category: .cleaning
+//                 ),
+//                 ScheduleModel(
+//                     title: "Manutenção do Apartamento",
+//                     tasks: [localTasks[2]], // Trocar lâmpada queimada
+//                     category: .repair
+//                 ),
+//                 ScheduleModel(
+//                     title: "Organização do Quarto",
+//                     tasks: [localTasks[1]], // Organizar guarda-roupa
+//                     category: .organization
+//                 ),
+//                 ScheduleModel(
+//                     title: "Rotina Rápida Matinal",
+//                     tasks: [localTasks[0]], // Lavar a louça
+//                     category: .other
+//                 ),
+//                 ScheduleModel(
+//                     title: "Planejamento Livre",
+//                     tasks: [localTasks[0]],
+//                     category: nil // Seu init vai transformar automaticamente em .none
+//                 )
+//             ]
             ContentView(schedules: schedules)
         }
     }

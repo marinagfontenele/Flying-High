@@ -20,7 +20,8 @@ class TaskModel {
     var estimatedTime   : TimeInterval
     var lastDuration    : [TimeInterval]?
     var isActive        : Bool = false
-    var isFinished     : Bool = false
+    var isFinished      : Bool = false
+    
     
     init(title: String, category: CategoryModel, room: RoomModel? = nil, info: String, estimatedTime: TimeInterval) {
         self.title      = title

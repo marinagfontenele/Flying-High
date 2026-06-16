@@ -15,7 +15,7 @@ class ScheduleModel {
     @Attribute(.unique) var id = UUID()
     
     var title: String
-    var tasks: [TaskModel]?
+    var tasks: [TaskModel]
     var totalTime: TimeInterval?
     var timePassed: TimeInterval?
     var timeRemaining: TimeInterval?
@@ -23,14 +23,14 @@ class ScheduleModel {
     var isActive: Bool = false
     
     
-    init(title: String, tasks: [TaskModel]? = nil, category: CategoryModel? = nil) {
+    init(title: String, tasks: [TaskModel] = [], category: CategoryModel? = nil) {
         self.title = title
         self.tasks = tasks
         self.category = category ?? CategoryModel.none
         
         var timeAux: TimeInterval = totalTime ?? 0
 
-        for task in tasks ?? [] {
+        for task in tasks {
             timeAux += task.estimatedTime
         }
         

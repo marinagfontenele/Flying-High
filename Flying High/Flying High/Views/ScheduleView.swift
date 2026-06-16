@@ -11,6 +11,8 @@ struct ScheduleView: View {
     
     var schedule: ScheduleModel
     
+    var timer: TimeInterval = 0
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -22,7 +24,7 @@ struct ScheduleView: View {
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(schedule.tasks!){ task in
+                        ForEach(schedule.tasks){ task in
                             CardTaskView(task: task)
                                 .padding(.top, 10)
                         }
@@ -32,7 +34,7 @@ struct ScheduleView: View {
                     
                     Spacer(minLength: 0)
                     
-                    NavigationLink(destination: TimerView(task: schedule.tasks!.first!)) {
+                    NavigationLink(destination: TimerView(schedule: schedule)) {
                         Label("Iniciar Bloco", systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                             .padding(16)
