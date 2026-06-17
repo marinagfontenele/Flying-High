@@ -12,9 +12,9 @@ struct TimerCardView: View {
     
     var onForwardPressed: () -> Void
     var nextTaskExists: Bool
+    @Binding var isRunning: Bool
     
     @State private var displayText: String = "00:00:00"
-    @Binding var isRunning: Bool
     @State var isEnabledForward: Bool = false
     
     var body: some View {
@@ -42,7 +42,10 @@ struct TimerCardView: View {
                 
                 if nextTaskExists{
                     Button {
-                        resetTimer()
+                        if engine.isRunning {
+                            engine.pause()
+                            isRunning = false
+                        }
                         onForwardPressed()
                     } label: {
                         Circle()

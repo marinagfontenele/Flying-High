@@ -74,17 +74,20 @@ struct TimerView: View {
                     nextTaskExists: nextTaskExists,
                     isRunning: $isRunning
                 )
+                .id(currentTaskIndex)
                 
                 Spacer(minLength: 0)
                 
-                Button {
+                Button { //TODO: AJEITAR BUG DO botao
+                    isRunning = false
                     activeAlert = .optionsMenu(onFinishAll: {
                         dismiss()
                         dismiss()
                     }, onNextTask: {
                         goToNextTask()
                     })
-                    isAlertPresented.toggle()
+                    isAlertPresented = true
+                    
                 } label: {
                     Label("Finalizar Tarefa", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
