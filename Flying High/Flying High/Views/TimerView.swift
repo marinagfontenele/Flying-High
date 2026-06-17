@@ -65,13 +65,24 @@ struct TimerView: View {
                 }
                 
                 // TODO: ajeitar o timer quebrando quando a sheet abre
-                TimerCardView(onForwardPressed: {
-                    activeAlert = .directNext(onConfirm: {
-                        goToNextTask()
-                    })
-                    isAlertPresented = true
-                })
-                
+                if nextTaskExists{
+                    TimerCardView(onForwardPressed: {
+                        activeAlert = .directNext(onConfirm: {
+                            goToNextTask()
+                        })
+                        isAlertPresented = true
+                    },
+                    nextTaskExists: nextTaskExists)
+                } else{
+                    TimerCardView(onForwardPressed: {
+                        activeAlert = .directNext(onConfirm: {
+                            goToNextTask()
+                        })
+                        isAlertPresented = true
+                    },
+                    nextTaskExists: nextTaskExists)
+
+                }
                 Spacer(minLength: 0)
                 
                 Button {

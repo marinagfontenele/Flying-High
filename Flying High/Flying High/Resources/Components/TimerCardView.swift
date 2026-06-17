@@ -11,6 +11,7 @@ struct TimerCardView: View {
     private let engine = TimerEngine()
     
     var onForwardPressed: () -> Void
+    @State var nextTaskExists: Bool
     
     @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false
@@ -38,27 +39,44 @@ struct TimerCardView: View {
                     
                 }
                 .tint(Color(.main))
-                
-                Button {
-                    resetTimer()
-                    onForwardPressed()
-                } label: {
-                    Circle()
-                        .frame(maxWidth: 90, maxHeight:80)
-                        .overlay(alignment: .center) {
-                            Image(systemName: "forward.end.fill")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .padding(5)
-                                .font(.system(size: 34))
-                        }
+                if nextTaskExists{
+                    Button {
+                        resetTimer()
+                        onForwardPressed()
+                    } label: {
+                        Circle()
+                            .frame(maxWidth: 90, maxHeight:80)
+                            .overlay(alignment: .center) {
+                                Image(systemName: "forward.end.fill")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.white)
+                                    .padding(5)
+                                    .font(.system(size: 34))
+                            }
+                    }
+                    .tint(Color(.main))
+                } else{
+                    Button {
+                        resetTimer()
+                        onForwardPressed()
+                    } label: {
+                        Circle()
+                            .frame(maxWidth: 90, maxHeight:80)
+                            .overlay(alignment: .center) {
+                                Image(systemName: "square.fill")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.white)
+                                    .padding(5)
+                                    .font(.system(size: 34))
+                            }
+                    }
+                    .tint(Color(.main))
+
                 }
-                .tint(Color(.main))
+            
             }
         }
     }
-    
-    
     
     private func toggleTimer() {
         if engine.isRunning {
@@ -75,10 +93,14 @@ struct TimerCardView: View {
     func resetTimer() {
         engine.reset()
         isRunning = false
-        displayText = engine.totalElapsedTime.formatTime() //"00:00.00"
+        displayText = engine.totalElapsedTime.formatTime() //"00:00:00"
     }
 }
 
 #Preview {
-//    TimerCardView()
+    TimerCardView(onForwardPressed: {
+        print("Botão avançar clicado no Preview!")
+    },
+    nextTaskExists: true
+    )
 }
