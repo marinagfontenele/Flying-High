@@ -10,6 +10,8 @@ import SwiftUI
 struct TimerCardView: View {
     private let engine = TimerEngine()
     
+    var onForwardPressed: () -> Void
+    
     @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false
     @State var isEnabledForward: Bool = false
@@ -21,7 +23,7 @@ struct TimerCardView: View {
                 .padding(16)
             
             HStack{
-                Button{
+                Button{ // Botão de play/pause
                     toggleTimer()
                 } label: {
                     Circle()
@@ -39,7 +41,7 @@ struct TimerCardView: View {
                 
                 Button {
                     resetTimer()
-                    isEnabledForward.toggle()
+                    onForwardPressed()
                 } label: {
                     Circle()
                         .frame(maxWidth: 90, maxHeight:80)
@@ -52,28 +54,11 @@ struct TimerCardView: View {
                         }
                 }
                 .tint(Color(.main))
-                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabledForward, actions: {
-                    HStack {
-                        Button("Cancelar", role: .cancel) {
-                        //    dismiss()
-                        }
-                        .tint(.black)
-                        .foregroundStyle(Color(.systemGray2))
-                        
-                        NavigationLink (destination: EmptyView()){
-                            Button("Finalizar") {
-                                
-                            }
-                            .buttonStyle(.glassProminent)
-                            .tint(.main)
-                        }
-                    }
-                }, message: {
-                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
-                })
             }
         }
     }
+    
+    
     
     private func toggleTimer() {
         if engine.isRunning {
@@ -87,7 +72,7 @@ struct TimerCardView: View {
         }
     }
     
-    private func resetTimer() {
+    func resetTimer() {
         engine.reset()
         isRunning = false
         displayText = engine.totalElapsedTime.formatTime() //"00:00.00"
@@ -95,5 +80,5 @@ struct TimerCardView: View {
 }
 
 #Preview {
-    TimerCardView()
+//    TimerCardView()
 }
