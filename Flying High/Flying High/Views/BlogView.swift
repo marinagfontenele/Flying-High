@@ -139,7 +139,7 @@ struct TelaCheiaPostView: View{
                     }
                     .padding(24)
                 }
-                .background(Color(.systemBackground))
+//                .background(.whiteCard)
                 .ignoresSafeArea(edges: .top)
                 
                 .toolbar{
