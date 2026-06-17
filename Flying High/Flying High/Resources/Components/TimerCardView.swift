@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TimerCardView: View {
-    private let engine = TimerEngine()
+    @State private var engine = TimerEngine()
     
     var onForwardPressed: () -> Void
-    @State var nextTaskExists: Bool
+    var nextTaskExists: Bool
     
     @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false

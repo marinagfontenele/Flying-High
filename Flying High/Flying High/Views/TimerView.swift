@@ -141,40 +141,6 @@ struct TimerView: View {
             .presentationBackgroundInteraction(.enabled)
         }
         .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
-        //        .toolbar{
-        //            ToolbarItem(placement: .navigationBarLeading){
-        //                Button{
-        //                    isEnabled2.toggle()
-        //                    activeAlert = .directNext(onConfirm: {goToNextTask()})
-        //                } label: {
-        //                    Image(systemName: "chevron.backward")
-        //                        .fontWeight(.semibold)
-        //                        .foregroundColor(.black)
-        //                }
-        //                .tint(.white)
-        //
-        //            }
-        //
-        //            ToolbarItem(placement: .navigationBarTrailing){
-        //                Button{
-        //                    isPresented.toggle()
-        //                } label: {
-        //                    Image(systemName: "info")
-        //                        .fontWeight(.semibold)
-        //                }
-        //                .buttonStyle(.glassProminent)
-        //                .tint(.main)
-        //                .sheet(isPresented: $isPresented){
-        //                    NavigationStack {
-        //                        SheetTimerView()
-        //                    }
-        //                    .presentationDetents([.medium])
-        //                    .presentationBackground(Color(.systemBackground))
-        //                    .presentationBackgroundInteraction(.enabled)
-        //                }
-        //            }
-        //        }
-        //        .navigationBarBackButtonHidden(true)
     }
     
     private func goToNextTask() {
