@@ -41,17 +41,17 @@ struct BlogCardView: View {
                     Text(title)
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.text)
                     
                     Text(subtitle)
                         .font(.body)
                         .fontWeight(.regular)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.text)
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 16)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.white)
+                .background(.whiteCard)
                 
             }
         }

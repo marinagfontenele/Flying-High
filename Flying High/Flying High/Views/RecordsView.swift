@@ -72,7 +72,7 @@ struct RecordsView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
                         .padding(.horizontal, 16)
-                        .background(.white)
+                        .background(.whiteCard)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     }
                     
@@ -95,9 +95,10 @@ struct RecordsView: View {
                                 .foregroundStyle(Color(.systemGray))
                         }
                         .frame(maxWidth: .infinity)
+                        
                         .padding(.vertical, 14)
                         .padding(.horizontal, 16)
-                        .background(.white)
+                        .background(.whiteCard)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     }
                     
