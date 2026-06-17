@@ -11,7 +11,7 @@ struct TimerView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    var schedule: ScheduleModel
+    @State var schedule: ScheduleModel
     @State private var currentTaskIndex: Int = 0
     
     var currentTask: TaskModel {
@@ -26,7 +26,7 @@ struct TimerView: View {
     
     @State private var isAlertPresented: Bool = false
     
-    @State private var isPaused: Bool = false
+    @State private var isRunning: Bool = false
     @State private var isPresented: Bool = false
     @State private var isEnabled: Bool = false
     @State private var isEnabled2: Bool = false
@@ -64,25 +64,17 @@ struct TimerView: View {
                     Spacer(minLength: 0)
                 }
                 
-                // TODO: ajeitar o timer quebrando quando a sheet abre
-                if nextTaskExists{
-                    TimerCardView(onForwardPressed: {
+                TimerCardView(
+                    onForwardPressed: {
                         activeAlert = .directNext(onConfirm: {
                             goToNextTask()
                         })
                         isAlertPresented = true
                     },
-                    nextTaskExists: nextTaskExists)
-                } else{
-                    TimerCardView(onForwardPressed: {
-                        activeAlert = .directNext(onConfirm: {
-                            goToNextTask()
-                        })
-                        isAlertPresented = true
-                    },
-                    nextTaskExists: nextTaskExists)
-
-                }
+                    nextTaskExists: nextTaskExists,
+                    isRunning: $isRunning
+                )
+                
                 Spacer(minLength: 0)
                 
                 Button {
@@ -132,6 +124,10 @@ struct TimerView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
+        .onChange(of: isRunning) { oldValue, newValue in
+            schedule.tasks[currentTaskIndex].isActive = newValue
+            print("Status '\(oldValue) da tarefa alterado para: \(newValue)")
+        }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
                 SheetTimerView()
@@ -145,6 +141,7 @@ struct TimerView: View {
     
     private func goToNextTask() {
         if nextTaskExists {
+            isRunning = false
             currentTask.isFinished = true
             withAnimation{
                 currentTaskIndex += 1

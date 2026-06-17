@@ -14,7 +14,7 @@ struct TimerCardView: View {
     var nextTaskExists: Bool
     
     @State private var displayText: String = "00:00:00"
-    @State private var isRunning: Bool = false
+    @Binding var isRunning: Bool
     @State var isEnabledForward: Bool = false
     
     var body: some View {
@@ -81,9 +81,9 @@ struct TimerCardView: View {
 }
 
 #Preview {
-    TimerCardView(onForwardPressed: {
-        print("Botão avançar clicado no Preview!")
-    },
-                  nextTaskExists: false
+    TimerCardView(
+        onForwardPressed: {},
+        nextTaskExists: true,
+        isRunning: .constant(false)
     )
 }
