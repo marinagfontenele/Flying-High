@@ -24,6 +24,7 @@ struct TimerCardView: View {
                 .padding(16)
             
             HStack{
+                
                 Button{ // Botão de play/pause
                     toggleTimer()
                 } label: {
@@ -36,9 +37,9 @@ struct TimerCardView: View {
                                 .padding(5)
                                 .font(.system(size: 34))
                         }
-                    
                 }
                 .tint(Color(.main))
+                
                 if nextTaskExists{
                     Button {
                         resetTimer()
@@ -55,25 +56,7 @@ struct TimerCardView: View {
                             }
                     }
                     .tint(Color(.main))
-                } else{
-                    Button {
-                        resetTimer()
-                        onForwardPressed()
-                    } label: {
-                        Circle()
-                            .frame(maxWidth: 90, maxHeight:80)
-                            .overlay(alignment: .center) {
-                                Image(systemName: "square.fill")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .padding(5)
-                                    .font(.system(size: 34))
-                            }
-                    }
-                    .tint(Color(.main))
-
                 }
-            
             }
         }
     }
@@ -101,6 +84,6 @@ struct TimerCardView: View {
     TimerCardView(onForwardPressed: {
         print("Botão avançar clicado no Preview!")
     },
-    nextTaskExists: true
+                  nextTaskExists: false
     )
 }
