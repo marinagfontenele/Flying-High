@@ -65,8 +65,24 @@ struct TimerView: View {
                 }
                 
                 // TODO: ajeitar o timer quebrando quando a sheet abre
-                TimerCardView()
-                
+                if nextTaskExists{
+                    TimerCardView(onForwardPressed: {
+                        activeAlert = .directNext(onConfirm: {
+                            goToNextTask()
+                        })
+                        isAlertPresented = true
+                    },
+                    nextTaskExists: nextTaskExists)
+                } else{
+                    TimerCardView(onForwardPressed: {
+                        activeAlert = .directNext(onConfirm: {
+                            goToNextTask()
+                        })
+                        isAlertPresented = true
+                    },
+                    nextTaskExists: nextTaskExists)
+
+                }
                 Spacer(minLength: 0)
                 
                 Button {
@@ -125,44 +141,11 @@ struct TimerView: View {
             .presentationBackgroundInteraction(.enabled)
         }
         .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
-        //        .toolbar{
-        //            ToolbarItem(placement: .navigationBarLeading){
-        //                Button{
-        //                    isEnabled2.toggle()
-        //                    activeAlert = .directNext(onConfirm: {goToNextTask()})
-        //                } label: {
-        //                    Image(systemName: "chevron.backward")
-        //                        .fontWeight(.semibold)
-        //                        .foregroundColor(.black)
-        //                }
-        //                .tint(.white)
-        //
-        //            }
-        //
-        //            ToolbarItem(placement: .navigationBarTrailing){
-        //                Button{
-        //                    isPresented.toggle()
-        //                } label: {
-        //                    Image(systemName: "info")
-        //                        .fontWeight(.semibold)
-        //                }
-        //                .buttonStyle(.glassProminent)
-        //                .tint(.main)
-        //                .sheet(isPresented: $isPresented){
-        //                    NavigationStack {
-        //                        SheetTimerView()
-        //                    }
-        //                    .presentationDetents([.medium])
-        //                    .presentationBackground(Color(.systemBackground))
-        //                    .presentationBackgroundInteraction(.enabled)
-        //                }
-        //            }
-        //        }
-        //        .navigationBarBackButtonHidden(true)
     }
     
     private func goToNextTask() {
         if nextTaskExists {
+            currentTask.isFinished = true
             withAnimation{
                 currentTaskIndex += 1
             }
@@ -173,40 +156,40 @@ struct TimerView: View {
 }
 
 #Preview {
-//    var mockedTasks: [TaskModel] = [
-//        TaskModel(
-//            title: "Lavar a louça",
-//            category: .cleaning,
-//            room: nil,
-//            info: "Lavar e secar toda a louça do almoço.",
-//            estimatedTime: 900
-//        ),
-//        TaskModel(
-//            title: "Organizar guarda-roupa",
-//            category: .organization,
-//            room: nil,
-//            info: "Separar roupas para doação e dobrar o restante.",
-//            estimatedTime: 3600
-//        ),
-//        TaskModel(
-//            title: "Trocar lâmpada queimada",
-//            category: .repair,
-//            room: nil,
-//            info: "Substituir por uma lâmpada LED de 9W.",
-//            estimatedTime: 1800
-//        ),
-//        TaskModel(
-//            title: "Limpar janelas",
-//            category: .cleaning,
-//            room: nil,
-//            info: "Usar limpa-vidros e pano de microfibra.",
-//            estimatedTime: 1800
-//        )
-//    ]
-//    var schedule = ScheduleModel(
-//        title: "Faxina Pesada de Sábado",
-//        tasks: mockedTasks,
-//        category: .cleaning
-//    )
-//    TimerView(schedule: schedule)
+    var mockedTasks: [TaskModel] = [
+        TaskModel(
+            title: "Lavar a louça",
+            category: .cleaning,
+            room: nil,
+            info: "Lavar e secar toda a louça do almoço.",
+            estimatedTime: 900
+        ),
+        TaskModel(
+            title: "Organizar guarda-roupa",
+            category: .organization,
+            room: nil,
+            info: "Separar roupas para doação e dobrar o restante.",
+            estimatedTime: 3600
+        ),
+        TaskModel(
+            title: "Trocar lâmpada queimada",
+            category: .repair,
+            room: nil,
+            info: "Substituir por uma lâmpada LED de 9W.",
+            estimatedTime: 1800
+        ),
+        TaskModel(
+            title: "Limpar janelas",
+            category: .cleaning,
+            room: nil,
+            info: "Usar limpa-vidros e pano de microfibra.",
+            estimatedTime: 1800
+        )
+    ]
+    var schedule = ScheduleModel(
+        title: "Faxina Pesada de Sábado",
+        tasks: mockedTasks,
+        category: .cleaning
+    )
+    TimerView(schedule: schedule)
 }

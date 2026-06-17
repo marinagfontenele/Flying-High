@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct TimerCardView: View {
-    private let engine = TimerEngine()
+    @State private var engine = TimerEngine()
+    
+    var onForwardPressed: () -> Void
+    var nextTaskExists: Bool
     
     @State private var displayText: String = "00:00:00"
     @State private var isRunning: Bool = false
@@ -21,7 +24,8 @@ struct TimerCardView: View {
                 .padding(16)
             
             HStack{
-                Button{
+                
+                Button{ // Botão de play/pause
                     toggleTimer()
                 } label: {
                     Circle()
@@ -33,44 +37,26 @@ struct TimerCardView: View {
                                 .padding(5)
                                 .font(.system(size: 34))
                         }
-                    
                 }
                 .tint(Color(.main))
                 
-                Button {
-                    resetTimer()
-                    isEnabledForward.toggle()
-                } label: {
-                    Circle()
-                        .frame(maxWidth: 90, maxHeight:80)
-                        .overlay(alignment: .center) {
-                            Image(systemName: "forward.end.fill")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .padding(5)
-                                .font(.system(size: 34))
-                        }
-                }
-                .tint(Color(.main))
-                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabledForward, actions: {
-                    HStack {
-                        Button("Cancelar", role: .cancel) {
-                        //    dismiss()
-                        }
-                        .tint(.black)
-                        .foregroundStyle(Color(.systemGray2))
-                        
-                        NavigationLink (destination: EmptyView()){
-                            Button("Finalizar") {
-                                
+                if nextTaskExists{
+                    Button {
+                        resetTimer()
+                        onForwardPressed()
+                    } label: {
+                        Circle()
+                            .frame(maxWidth: 90, maxHeight:80)
+                            .overlay(alignment: .center) {
+                                Image(systemName: "forward.end.fill")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.white)
+                                    .padding(5)
+                                    .font(.system(size: 34))
                             }
-                            .buttonStyle(.glassProminent)
-                            .tint(.main)
-                        }
                     }
-                }, message: {
-                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
-                })
+                    .tint(Color(.main))
+                }
             }
         }
     }
@@ -87,13 +73,17 @@ struct TimerCardView: View {
         }
     }
     
-    private func resetTimer() {
+    func resetTimer() {
         engine.reset()
         isRunning = false
-        displayText = engine.totalElapsedTime.formatTime() //"00:00.00"
+        displayText = engine.totalElapsedTime.formatTime() //"00:00:00"
     }
 }
 
 #Preview {
-    TimerCardView()
+    TimerCardView(onForwardPressed: {
+        print("Botão avançar clicado no Preview!")
+    },
+                  nextTaskExists: false
+    )
 }
