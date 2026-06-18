@@ -25,7 +25,7 @@ struct ScheduleView: View {
                     
                     ScrollView(.vertical, showsIndicators: false) {
                         ForEach(schedule.tasks){ task in
-                            CardTaskView(task: task)
+                            TaskCardView(task: task)
                                 .padding(.top, 10)
                         }
                         .padding(.bottom,100)

@@ -13,11 +13,12 @@ struct TimerView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var schedule: ScheduleModel
-    @State private var currentTaskIndex: Int = 0
     
     var currentTask: TaskModel {
-        schedule.tasks[currentTaskIndex]
+        schedule.tasks.first(where: { $0.isFinished == false })!
     }
+    
+    @State private var currentTaskIndex: Int = 0
     
     var nextTaskExists: Bool {
         currentTaskIndex + 1 < schedule.tasks.count

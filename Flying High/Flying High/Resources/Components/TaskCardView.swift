@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct CardTaskView: View {
+struct TaskCardView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isEnabled = false
     
@@ -115,5 +115,5 @@ struct CardTaskView: View {
         estimatedTime: 4800
     )
     
-    CardTaskView(task: taskTest)
+    TaskCardView(task: taskTest)
 }
