@@ -10,6 +10,7 @@ import SwiftUI
 enum TaskAlertType: Identifiable {
     case optionsMenu(onFinishAll: () -> Void, onNextTask: () -> Void)
     case directNext(onConfirm: () -> Void)
+    case lastTask(onFinishAll: () -> Void)
     
     var id: String {
         switch self {
@@ -17,6 +18,8 @@ enum TaskAlertType: Identifiable {
             return "optionsMenu"
         case .directNext:
             return "directNext"
+        case .lastTask:
+            return "lastTask"
         }
     }
 }
@@ -46,11 +49,11 @@ struct TaskAlertModifier: ViewModifier {
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
             
-            Button("Finalizar e voltar para a tela inicial", action: onFinishAll)
+            Button("Terminar e ir para a tela inicial", action: onFinishAll)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
-            Button("Finalizar e passar para a próxima tarefa", action: onNextTask)
+            Button("Terminar e ir para a próxima tarefa", action: onNextTask)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
@@ -60,6 +63,15 @@ struct TaskAlertModifier: ViewModifier {
                 .foregroundStyle(Color(.systemGray2))
             
             Button("Finalizar", action: onConfirm)
+                .buttonStyle(.glassProminent)
+                .tint(.main)
+            
+        case .lastTask(let onFinishAll):
+            Button("Cancelar", role: .cancel) { }
+                .tint(.black)
+                .foregroundStyle(Color(.systemGray2))
+            
+            Button("Finalizar cronograma", action: onFinishAll)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             

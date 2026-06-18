@@ -78,27 +78,49 @@ struct TimerView: View {
                 
                 Spacer(minLength: 0)
                 
-                Button { //TODO: AJEITAR BUG DO botao
-                    isRunning = false
-                    activeAlert = .optionsMenu(onFinishAll: {
-                        dismiss()
-                        dismiss()
-                    }, onNextTask: {
-                        goToNextTask()
-                    })
-                    isAlertPresented = true
-                    
-                } label: {
-                    Label("Finalizar Tarefa", systemImage: "checkmark")
-                        .frame(maxWidth: .infinity)
-                        .padding(16)
-                        .font(.title2)
-                        .foregroundStyle(.white)
-                        .fontWeight(.bold)
+                if nextTaskExists {
+                    Button { //TODO: AJEITAR BUG DO botao
+                        isRunning = false
+                        activeAlert = .optionsMenu(onFinishAll: {
+                            dismiss()
+                            dismiss()
+                        }, onNextTask: {
+                            goToNextTask()
+                        })
+                        isAlertPresented = true
+                        
+                    } label: {
+                        Label("Finalizar Tarefa", systemImage: "checkmark")
+                            .frame(maxWidth: .infinity)
+                            .padding(16)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+                    .padding(.horizontal, 16)
+                } else {
+                    Button { //TODO: AJEITAR BUG DO botao
+                        isRunning = false
+                        activeAlert = .lastTask(onFinishAll: {
+                            dismiss()
+                            dismiss()
+                        })
+                        isAlertPresented = true
+                        
+                    } label: {
+                        Label("Finalizar Tarefa", systemImage: "checkmark")
+                            .frame(maxWidth: .infinity)
+                            .padding(16)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+                    .padding(.horizontal, 16)
                 }
-                .buttonStyle(.glassProminent)
-                .tint(.main)
-                .padding(.horizontal, 16)
             }
             .animation(.default, value: isPresented)
             .background(Color.background
