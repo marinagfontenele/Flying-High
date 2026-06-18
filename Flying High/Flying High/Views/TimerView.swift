@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TimerView: View {
     
@@ -23,6 +24,7 @@ struct TimerView: View {
     }
     
     @State private var currentTaskTime: TimeInterval = 0
+    @State private var currentTaskDate: Date = Date()
     
     @State private var activeAlert: TaskAlertType?
     
@@ -85,7 +87,7 @@ struct TimerView: View {
                     isRunning = false
                     let finishAllAction = {
                         currentTask.isFinished = true
-                        currentTask.lastDuration.append(currentTaskTime)
+                        currentTask.durations.append(currentTaskTime)
                         dismiss()
                         dismiss()
                     }
@@ -155,8 +157,13 @@ struct TimerView: View {
         if nextTaskExists {
             isRunning = false
             currentTask.isFinished = true
-            currentTask.lastDuration.append(currentTaskTime)
-            print("ultimo tempo de \(currentTask.title): \(currentTask.lastDuration)")
+            currentTask.durations.append(currentTaskTime)
+            currentTask.dates.append(currentTaskDate)
+            
+            let completedTask = schedule.tasks[currentTaskIndex]
+            
+            print("Tarefa \(completedTask.title) concluída em \(completedTask.dates.last.formatDateString())")
+            print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
             withAnimation{
                 currentTaskIndex += 1
             }
