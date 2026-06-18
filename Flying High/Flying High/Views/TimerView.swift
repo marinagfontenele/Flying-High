@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TimerView: View {
     
@@ -22,6 +23,9 @@ struct TimerView: View {
         currentTaskIndex + 1 < schedule.tasks.count
     }
     
+    @State private var currentTaskTime: TimeInterval = 0
+    @State private var currentTaskDate: Date = Date()
+    
     @State private var activeAlert: TaskAlertType?
     
     @State private var isAlertPresented: Bool = false
@@ -36,7 +40,7 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: currentTask.title, progress: false)
+                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: currentTaskIndex, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
                 
                 if !isPresented {
@@ -72,20 +76,26 @@ struct TimerView: View {
                         isAlertPresented = true
                     },
                     nextTaskExists: nextTaskExists,
-                    isRunning: $isRunning
+                    isRunning: $isRunning,
+                    elapsedTaskTime: $currentTaskTime
                 )
                 .id(currentTaskIndex)
                 
                 Spacer(minLength: 0)
                 
-                Button { //TODO: AJEITAR BUG DO botao
+                Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
                     isRunning = false
-                    activeAlert = .optionsMenu(onFinishAll: {
+                    let finishAllAction = {
+                        currentTask.isFinished = true
+                        currentTask.durations.append(currentTaskTime)
                         dismiss()
                         dismiss()
-                    }, onNextTask: {
-                        goToNextTask()
-                    })
+                    }
+                    if nextTaskExists {
+                        activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
+                    } else {
+                        activeAlert = .lastTask(onFinishAll: finishAllAction)
+                    }
                     isAlertPresented = true
                     
                 } label: {
@@ -99,6 +109,7 @@ struct TimerView: View {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
                 .padding(.horizontal, 16)
+                
             }
             .animation(.default, value: isPresented)
             .background(Color.background
@@ -129,7 +140,7 @@ struct TimerView: View {
         }
         .onChange(of: isRunning) { oldValue, newValue in
             schedule.tasks[currentTaskIndex].isActive = newValue
-            print("Status '\(oldValue) da tarefa alterado para: \(newValue)")
+            print("Status '\(oldValue)' da tarefa alterado para: \(newValue)")
         }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
@@ -146,6 +157,13 @@ struct TimerView: View {
         if nextTaskExists {
             isRunning = false
             currentTask.isFinished = true
+            currentTask.durations.append(currentTaskTime)
+            currentTask.dates.append(currentTaskDate)
+            
+            let completedTask = schedule.tasks[currentTaskIndex]
+            
+            print("Tarefa \(completedTask.title) concluída em \(completedTask.dates.last.formatDateString())")
+            print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
             withAnimation{
                 currentTaskIndex += 1
             }

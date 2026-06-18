@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CardTaskView: View {
     @Environment(\.dismiss) var dismiss
@@ -81,7 +82,7 @@ struct CardTaskView: View {
                         .fontWeight(.semibold)
                     
                     if (task.isFinished == false) {
-                        Label("Meta: \(task.estimatedTimeString())", systemImage: "timer")
+                        Label("Meta: \(task.estimatedTime.formatToAbbreviated())", systemImage: "timer")
                             .font(.body)
                             .fontWeight(.semibold)
                     } else {

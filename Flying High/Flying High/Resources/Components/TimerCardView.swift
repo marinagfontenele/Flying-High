@@ -13,6 +13,7 @@ struct TimerCardView: View {
     var onForwardPressed: () -> Void
     var nextTaskExists: Bool
     @Binding var isRunning: Bool
+    @Binding var elapsedTaskTime: TimeInterval
     
     @State private var displayText: String = "00:00:00"
     @State var isEnabledForward: Bool = false
@@ -24,7 +25,6 @@ struct TimerCardView: View {
                 .padding(16)
             
             HStack{
-                
                 Button{ // Botão de play/pause
                     toggleTimer()
                 } label: {
@@ -72,6 +72,7 @@ struct TimerCardView: View {
             isRunning = true
             engine.start {
                 self.displayText = engine.totalElapsedTime.formatTime()
+                self.elapsedTaskTime = engine.totalElapsedTime
             }
         }
     }
@@ -84,9 +85,10 @@ struct TimerCardView: View {
 }
 
 #Preview {
-    TimerCardView(
-        onForwardPressed: {},
-        nextTaskExists: true,
-        isRunning: .constant(false)
-    )
+//    TimerCardView(
+//        onForwardPressed: {},
+//        nextTaskExists: true,
+//        isRunning: .constant(false)
+//        
+//    )
 }
