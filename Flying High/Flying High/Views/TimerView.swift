@@ -40,7 +40,7 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: currentTask.title, progress: false)
+                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: currentTaskIndex, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
                 
                 if !isPresented {
