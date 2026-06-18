@@ -18,7 +18,7 @@ class TaskModel {
     var room            : RoomModel?
     var info            : String?
     var estimatedTime   : TimeInterval
-    var lastDuration    : [TimeInterval]?
+    var lastDuration    : [TimeInterval]
     var isActive        : Bool = false
     var isFinished      : Bool = false
     
@@ -28,6 +28,7 @@ class TaskModel {
         self.category   = category
         self.room       = room
         self.estimatedTime = estimatedTime
+        self.lastDuration = []
     }
     
     func estimatedTimeString() -> String {        

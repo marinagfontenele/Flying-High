@@ -22,6 +22,8 @@ struct TimerView: View {
         currentTaskIndex + 1 < schedule.tasks.count
     }
     
+    @State private var currentTaskTime: TimeInterval = 0
+    
     @State private var activeAlert: TaskAlertType?
     
     @State private var isAlertPresented: Bool = false
@@ -72,26 +74,28 @@ struct TimerView: View {
                         isAlertPresented = true
                     },
                     nextTaskExists: nextTaskExists,
-                    isRunning: $isRunning
+                    isRunning: $isRunning,
+                    elapsedTaskTime: $currentTaskTime
                 )
                 .id(currentTaskIndex)
                 
                 Spacer(minLength: 0)
                 
-                Button { //TODO: AJEITAR BUG DO botao
+                Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
                     isRunning = false
                     let finishAllAction = {
                         currentTask.isFinished = true
+                        currentTask.lastDuration.append(currentTaskTime)
                         dismiss()
                         dismiss()
                     }
-                    
                     if nextTaskExists {
                         activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
                     } else {
                         activeAlert = .lastTask(onFinishAll: finishAllAction)
                     }
                     isAlertPresented = true
+                    
                 } label: {
                     Label("Finalizar Tarefa", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
@@ -134,7 +138,7 @@ struct TimerView: View {
         }
         .onChange(of: isRunning) { oldValue, newValue in
             schedule.tasks[currentTaskIndex].isActive = newValue
-            print("Status '\(oldValue) da tarefa alterado para: \(newValue)")
+            print("Status '\(oldValue)' da tarefa alterado para: \(newValue)")
         }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
@@ -151,6 +155,8 @@ struct TimerView: View {
         if nextTaskExists {
             isRunning = false
             currentTask.isFinished = true
+            currentTask.lastDuration.append(currentTaskTime)
+            print("ultimo tempo de \(currentTask.title): \(currentTask.lastDuration)")
             withAnimation{
                 currentTaskIndex += 1
             }
