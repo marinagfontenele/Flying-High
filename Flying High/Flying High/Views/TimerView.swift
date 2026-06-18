@@ -78,49 +78,32 @@ struct TimerView: View {
                 
                 Spacer(minLength: 0)
                 
-                if nextTaskExists {
-                    Button { //TODO: AJEITAR BUG DO botao
-                        isRunning = false
-                        activeAlert = .optionsMenu(onFinishAll: {
-                            dismiss()
-                            dismiss()
-                        }, onNextTask: {
-                            goToNextTask()
-                        })
-                        isAlertPresented = true
-                        
-                    } label: {
-                        Label("Finalizar Tarefa", systemImage: "checkmark")
-                            .frame(maxWidth: .infinity)
-                            .padding(16)
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .fontWeight(.bold)
+                Button { //TODO: AJEITAR BUG DO botao
+                    isRunning = false
+                    let finishAllAction = {
+                        currentTask.isFinished = true
+                        dismiss()
+                        dismiss()
                     }
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
-                    .padding(.horizontal, 16)
-                } else {
-                    Button { //TODO: AJEITAR BUG DO botao
-                        isRunning = false
-                        activeAlert = .lastTask(onFinishAll: {
-                            dismiss()
-                            dismiss()
-                        })
-                        isAlertPresented = true
-                        
-                    } label: {
-                        Label("Finalizar Tarefa", systemImage: "checkmark")
-                            .frame(maxWidth: .infinity)
-                            .padding(16)
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .fontWeight(.bold)
+                    
+                    if nextTaskExists {
+                        activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
+                    } else {
+                        activeAlert = .lastTask(onFinishAll: finishAllAction)
                     }
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
-                    .padding(.horizontal, 16)
+                    isAlertPresented = true
+                } label: {
+                    Label("Finalizar Tarefa", systemImage: "checkmark")
+                        .frame(maxWidth: .infinity)
+                        .padding(16)
+                        .font(.title2)
+                        .foregroundStyle(.white)
+                        .fontWeight(.bold)
                 }
+                .buttonStyle(.glassProminent)
+                .tint(.main)
+                .padding(.horizontal, 16)
+                
             }
             .animation(.default, value: isPresented)
             .background(Color.background
