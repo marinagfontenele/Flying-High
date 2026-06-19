@@ -51,4 +51,14 @@ enum CategoryModel: String, CaseIterable, Codable{
         }
     }
     
+    var tagMarker: Image {
+        switch self{
+        case .none: return Image(systemName: "xmark.circle")
+        case .cleaning: return Image(.cleaningMarker)
+        case .repair: return Image(.repairMarker)
+        case .organization: return Image(.organizationMarker)
+        case .other: return Image("questionmark.circle")
+        }
+    }
+    
 }

@@ -12,18 +12,17 @@ import SwiftData
 class ArticleModel {
     
     @Attribute(.unique) var id = UUID()
-//    TODO: colocar imagem
     var title: String
     var subtitle: String
     var text: String
-    var imageName: String
-    var colorName: String
+    var imageName: String?
+    var category: CategoryModel
     
-    init(title: String, subtitle: String, text: String, imageName: String, colorName: String) {
+    init(title: String, subtitle: String, text: String, imageName: String? = nil, category: CategoryModel) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
         self.imageName = imageName
-        self.colorName = colorName
+        self.category = category
     }
 }

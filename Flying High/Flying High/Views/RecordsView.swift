@@ -104,7 +104,7 @@ struct RecordsView: View {
                     
                     VStack {
                         HStack (spacing: 30){
-                            Image(.bucket)
+
                             
                             VStack (alignment: .leading){
                                 Text("As tarefas que")
