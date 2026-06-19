@@ -60,13 +60,6 @@ extension TimeInterval {
         let minutes = (totalSeconds / 60) % 60
         let hours = minutes>59 ? (totalSeconds / 3600) : 0
         
-        
-        let centiSeconds = Int((self.truncatingRemainder(dividingBy: 1)) * 100)
-        
-//        if minutes == 0 {
-//            return String(format: "%02d:%02d.%02d", minutes, seconds, centiSeconds)
-//        }
-        
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }

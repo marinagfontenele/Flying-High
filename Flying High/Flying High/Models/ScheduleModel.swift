@@ -42,7 +42,7 @@ class ScheduleModel {
     }
     
     var remainingTimeString: String {
-        return remainingTime.formatToAbbreviated()
+        return remainingTime.formatToFriendly()
     }
     
 }

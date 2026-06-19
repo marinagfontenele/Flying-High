@@ -80,7 +80,7 @@ struct ScheduleView: View {
             category: .repair,
             room: nil,
             info: "Substituir por uma lâmpada LED de 9W.",
-            estimatedTime: 1800
+            estimatedTime: 1860
         ),
         TaskModel(
             title: "Limpar janelas",

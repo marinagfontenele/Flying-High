@@ -28,6 +28,10 @@ struct TaskAlertModifier: ViewModifier {
     @Binding var isAlertPresented: Bool
     let alertType: TaskAlertType?
     
+    private var alertTitle: String {
+        "Tem certeza de que deseja finalizar essa tarefa?"
+    }
+    
     func body(content: Content) -> some View {
         content
             .disabled(isAlertPresented)
@@ -36,10 +40,6 @@ struct TaskAlertModifier: ViewModifier {
             } message: {
                 Text("Após finalizada, a tarefa não poderá mais ser retomada.")
             }
-    }
-    
-    private var alertTitle: String {
-        "Tem certeza de que deseja finalizar essa tarefa?"
     }
     
     @ViewBuilder
@@ -79,7 +79,6 @@ struct TaskAlertModifier: ViewModifier {
             EmptyView()
         }
     }
-    
 }
 
 extension View {

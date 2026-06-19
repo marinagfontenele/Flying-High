@@ -46,6 +46,33 @@ extension TimeInterval {
         
         return formatter.string(from: self) ?? "00:00:00"
     }
+    
+    func formatToFriendly() -> String {
+        let totalSeconds = Int(self)
+        let minutes = (totalSeconds / 60) % 60
+        let hours = totalSeconds / 3600
+        
+        var resultMinutes: String
+        var resultHours: String
+        
+        if hours == 0 {
+            return "\(minutes) minutos"
+        }
+        if minutes == 0 {
+            return "\(hours) horas"
+        }
+        if minutes == 1 {
+            resultMinutes = "1 minuto"
+        }
+        if hours == 1 {
+            resultHours = "1 hora"
+        }
+        
+        resultMinutes = minutes == 1 ? "1 minuto" : "\(minutes) minutos"
+        resultHours = hours == 1 ? "1 hora" : "\(hours) horas"
+        
+        return "\(resultHours) \(resultMinutes)"
+    }
         
     func formatToAbbreviated() -> String {
         let totalSeconds = Int(self)
@@ -53,7 +80,7 @@ extension TimeInterval {
         let hours = totalSeconds / 3600
         
         if hours == 0 {
-            return "\(minutes) min"
+            return "\(minutes)min"
         }
         if minutes == 0 {
             return "\(hours)h"

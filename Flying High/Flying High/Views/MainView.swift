@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     var schedules : [ScheduleModel]
     
@@ -86,5 +86,5 @@ struct ContentView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-    ContentView(schedules: mockSchedules)
+    MainView(schedules: mockSchedules)
 }
