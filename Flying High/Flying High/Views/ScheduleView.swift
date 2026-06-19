@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ScheduleView: View {
     
-    var schedule: ScheduleModel
+    @Bindable var schedule: ScheduleModel
+    
+    var tasksFinished: Int {
+        schedule.tasks.count(where: { $0.isFinished })
+    }
     
     var timer: TimeInterval = 0
     
     var body: some View {
         NavigationStack {
             VStack {
-                // TODO: melhorar a lógica do tempo restante
-                ProgressCardView()
+                ProgressCardView(info:schedule.remainingTimeString ,doneTasks: tasksFinished)
+                    .id(tasksFinished)
                     .padding(.vertical, 16)
                 
                 ZStack (alignment: .bottom){
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(schedule.tasks){ task in
+                        ForEach($schedule.tasks){ $task in
                             TaskCardView(task: task)
                                 .padding(.top, 10)
                         }
@@ -88,7 +92,7 @@ struct ScheduleView: View {
     ]
     var schedule = ScheduleModel(
         title: "Faxina Pesada de Sábado",
-        tasks: [mockedTasks[0], mockedTasks[3]], // Lavar a louça e Limpar janelas
+        tasks: [mockedTasks[0], mockedTasks[1], mockedTasks[2], mockedTasks[3]], // Lavar a louça e Limpar janelas
         category: .cleaning
     )
     ScheduleView(schedule: schedule)

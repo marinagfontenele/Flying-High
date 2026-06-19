@@ -9,70 +9,31 @@ import SwiftUI
 import SwiftData
 
 struct TaskCardView: View {
-    @Environment(\.dismiss) var dismiss
-    @State private var isEnabled = false
-    
-    var task: TaskModel
+    @State private var isAlertPresented: Bool = false
+    @State private var activeAlert: TaskAlertType?
+    @Bindable var task: TaskModel
     
     var body: some View {
         HStack {
             
             VStack (spacing: 8){
-//                Button {
-//                    
-//                } label: {
-//                    Image(systemName: "chevron.up")
-//                        .font(.title3)
-//                        .fontWeight(.semibold)
-//                        .foregroundStyle(.main)
-//                }
-                
-                
                 Button {
-                    isEnabled.toggle()
+                    activeAlert = .directNext(onConfirm: {
+                        withAnimation(.easeOut) {
+                            task.isFinished = true
+                        }
+                    })
+                    isAlertPresented = true
+                    
                 } label: {
-                    if (task.isFinished) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.main)
-                    } else {
-                        Image(systemName: "circle")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.main)
-                    }
+                    Image(systemName: task.isFinished ? "checkmark.circle.fill" : "circle")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.main)
                 }
                 .disabled(task.isFinished)
                 .padding(5)
-                .alert("Tem certeza de que deseja finalizar essa tarefa?", isPresented: $isEnabled, actions: {
-                    HStack {
-                        Button("Cancelar", role: .cancel) {
-                            
-                        }
-                        .tint(.black)
-                        
-                        Button("Finalizar") {
-                            task.isFinished.toggle()
-                        }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                    }
-                }, message: {
-                    Text("Após finalizada, a tarefa não poderá mais ser retomada.")
-                })
-                
-//                Button {
-//                    
-//                } label: {
-//                    Image(systemName: "chevron.down")
-//                        .font(.title3)
-//                        .fontWeight(.semibold)
-//                        .foregroundStyle(.main)
-//                    
-//                }
             }
-            
             Spacer(minLength: 0)
             
             HStack {
@@ -90,19 +51,16 @@ struct TaskCardView: View {
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             // Apenas para teste por enquanto
-                        
                     }
-                    
-                    
                 }
                 Spacer(minLength: 0)
-                
-                
             }
             .padding(20)
             .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
         }
+        .opacity(task.isFinished ? 0.5 : 1)
         .padding(.horizontal, 16)
+        .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
     }
 }
 

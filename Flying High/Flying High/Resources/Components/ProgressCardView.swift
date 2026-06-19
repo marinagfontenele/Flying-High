@@ -11,10 +11,9 @@ struct ProgressCardView: View {
     @State private var isEnabled = false
     @State var title: String = "Tempo Restante"
     var info: String = "30 minutos"
-    @State var doneTasks: Int = 0
+    var doneTasks: Int
     @State var totalTasks: Int = 4
     @State var progress: Bool = true
-  //  @State var image: Bool = true
     
     var body: some View {
         HStack {
@@ -55,5 +54,5 @@ struct ProgressCardView: View {
 }
 
 #Preview {
-    ProgressCardView()
+    ProgressCardView(doneTasks: 1)
 }

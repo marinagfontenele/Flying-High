@@ -18,10 +18,20 @@ struct TimerView: View {
         schedule.tasks.first(where: { $0.isFinished == false })!
     }
     
-    @State private var currentTaskIndex: Int = 0
+    var currentTaskIndex: Int {
+        schedule.tasks.firstIndex(where: { $0.id == currentTask.id }) ?? 0
+    }
     
     var nextTaskExists: Bool {
-        currentTaskIndex + 1 < schedule.tasks.count
+        currentTaskIndex < schedule.tasks.count - 1
+    }
+    
+    var nextTaskIndex: Int {
+        schedule.tasks.firstIndex(where: { $0.isFinished == false && $0.id > currentTask.id}) ?? 0
+    }
+    
+    var tasksFinished: Int {
+        schedule.tasks.count(where: { $0.isFinished })
     }
     
     @State private var currentTaskTime: TimeInterval = 0
@@ -41,21 +51,19 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: currentTaskIndex, totalTasks: schedule.tasks.count, progress: true)
+                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
                 
                 if !isPresented {
                     HStack {
                         if nextTaskExists {
-                            Text("Próxima Tarefa: \(schedule.tasks[currentTaskIndex + 1].title)")
+                            Text("Próxima Tarefa: \(schedule.tasks[nextTaskIndex].title)")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                        }
-                        else {
+                        } else {
                             Text("Última Tarefa!")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                            
                         }
                         Spacer(minLength: 0)
                     }
@@ -157,16 +165,16 @@ struct TimerView: View {
     private func goToNextTask() {
         if nextTaskExists {
             isRunning = false
-            currentTask.isFinished = true
-            currentTask.durations.append(currentTaskTime)
-            currentTask.dates.append(currentTaskDate)
+            schedule.tasks[currentTaskIndex].isFinished = true
+            schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+            schedule.tasks[currentTaskIndex].dates.append(currentTaskDate)
             
             let completedTask = schedule.tasks[currentTaskIndex]
             
             print("Tarefa \(completedTask.title) concluída em \(completedTask.dates.last.formatDateString())")
             print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
             withAnimation{
-                currentTaskIndex += 1
+                currentTaskTime = 0
             }
         } else {
             dismiss()
