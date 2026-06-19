@@ -32,20 +32,12 @@
 			);
 			target = EE9F95602FC86B310027294B /* Flying High */;
 		};
-		F1D8BD562FDC74D3009A4538 /* Exceptions for "ViewModels" folder in "Flying High" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				ScheduleModelView.swift,
-				TaskModelView.swift,
-			);
-			target = EE9F95602FC86B310027294B /* Flying High */;
-		};
 		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				BlogView.swift,
 				ChartView.swift,
-				ContentView.swift,
+				MainView.swift,
 				RecordsView.swift,
 				ScheduleListView.swift,
 				ScheduleView.swift,
@@ -72,9 +64,6 @@
 		};
 		F1D8BD3B2FDC74D2009A4538 /* ViewModels */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F1D8BD562FDC74D3009A4538 /* Exceptions for "ViewModels" folder in "Flying High" target */,
-			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
