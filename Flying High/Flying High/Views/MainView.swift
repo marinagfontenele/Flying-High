@@ -19,8 +19,8 @@ struct MainView: View {
             Tab("Relatórios", systemImage: "chart.bar.xaxis") {
                 RecordsView()
             }
-            Tab("Blog", systemImage: "info.circle") {
-                BlogView()
+            Tab("Dicas", systemImage: "lightbulb.max") {
+                TipsView()
             }
         }
         .tint(.main)

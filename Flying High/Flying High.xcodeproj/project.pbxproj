@@ -35,7 +35,7 @@
 		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				BlogView.swift,
+				ArticleSheetView.swift,
 				ChartView.swift,
 				MainView.swift,
 				RecordsView.swift,
@@ -43,6 +43,7 @@
 				ScheduleView.swift,
 				SheetTimerView.swift,
 				TimerView.swift,
+				TipsView.swift,
 			);
 			target = EE9F95602FC86B310027294B /* Flying High */;
 		};
