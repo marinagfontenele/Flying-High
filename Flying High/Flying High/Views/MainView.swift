@@ -62,7 +62,7 @@ struct MainView: View {
     let mockSchedules: [ScheduleModel] = [
         ScheduleModel(
             title: "Faxina Pesada de Sábado",
-            tasks: [localTasks[0], localTasks[3]], // Lavar a louça e Limpar janelas
+            tasks: [localTasks[0], localTasks[3], localTasks[2], localTasks[1]], // Lavar a louça e Limpar janelas
             category: .cleaning
         ),
         ScheduleModel(
