@@ -35,20 +35,29 @@ enum CategoryModel: String, CaseIterable, Codable{
         switch self{
             case .none: return .gray
             case .cleaning: return .blueTag
-            case .repair: return .redTag
+            case .repair: return .repairTag
             case .other: return .gray
-            case .organization: return .orangeTag
+            case .organization: return .organizationTag
         }
     }
     
     var iconSymbol: String {
         switch self{
         case .none: return "xmark.circle"
-        case .cleaning: return "trash"
-        case .repair: return "hammer"
+        case .cleaning: return "bubbles.and.sparkles.fill"
+        case .repair: return "wrench.and.screwdriver.fill"
         case .other: return "questionmark.circle"
-        case .organization: return "folder.circle"
+        case .organization: return "books.vertical.fill"
         }
     }
     
+    var medal: Image {
+        switch self{
+        case .none: return Image(.cleaningMedal)
+        case .cleaning: return Image(.cleaningMedal)
+        case .repair: return Image(.repairMedal)
+        case .other: return Image(.cleaningMedal)
+        case .organization: return Image(.organizationMedal)
+        }
+    }
 }
