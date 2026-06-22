@@ -19,7 +19,7 @@ struct CategoryTagView: View {
             .padding(.horizontal, 16)
             .background(category.iconColor)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .accessibilityLabel(Text("Categoria do cronograma"))
+            .accessibilityLabel(Text("Categoria do cronograma: \(category.title)"))
     }
 }
 
