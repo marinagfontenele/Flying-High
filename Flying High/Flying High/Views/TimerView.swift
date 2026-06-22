@@ -53,24 +53,30 @@ struct TimerView: View {
             VStack {
                 ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
-                
+//                
+//                Divider()
+//                    .background(Color(.separator))
+//                    .padding(.horizontal, 30)
+//                
                 if !isPresented {
                     HStack {
                         if nextTaskExists {
                             Text("Próxima Tarefa: \(schedule.tasks[nextTaskIndex].title)")
                                 .font(.body)
                                 .fontWeight(.semibold)
+                                .accessibilityLabel(Text("Próxima tarefa: \(schedule.tasks[nextTaskIndex].title)"))
                         } else {
                             Text("Última Tarefa!")
                                 .font(.body)
                                 .fontWeight(.semibold)
+                                .accessibilityLabel(Text("Última tarefa restante"))
                         }
                         Spacer(minLength: 0)
                     }
                     .padding(15)
-                    .background(Color(.violet), in: RoundedRectangle(cornerRadius: 15))
+                    .background(Color(.white), in: RoundedRectangle(cornerRadius: 15))
                     .padding(.horizontal, 16)
-                    
+//                    .shadow(color: .shadow, radius: 6, x: 2, y: 2)
                 }
                 
                 if !isPresented {
@@ -89,6 +95,7 @@ struct TimerView: View {
                     elapsedTaskTime: $currentTaskTime
                 )
                 .id(currentTaskIndex)
+                .accessibilityLabel(Text("Temporizador"))
                 
                 Spacer(minLength: 0)
                 

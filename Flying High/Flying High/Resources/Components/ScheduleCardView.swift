@@ -20,13 +20,13 @@ struct ScheduleCardView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityLabel(Text("Título do cronograma"))
+                        .accessibilityLabel(Text(schedule.title))
                     
                     Label(schedule.totalTime.formatToAbbreviated(), systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityLabel(Text("Duração do cronograma"))
+                        .accessibilityValue(Text(schedule.totalTime.formatToAbbreviated()))
                     
                     CategoryTagView(category: schedule.category!)
                 }

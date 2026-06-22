@@ -64,11 +64,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F1D8BD3B2FDC74D2009A4538 /* ViewModels */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		F1D8BD412FDC74D2009A4538 /* Views */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -120,7 +115,6 @@
 				F13E20582FE0201300A9AEE6 /* Extensions */,
 				F1D8BD302FDC74D2009A4538 /* Models */,
 				F1D8BD382FDC74D2009A4538 /* Resources */,
-				F1D8BD3B2FDC74D2009A4538 /* ViewModels */,
 				F1D8BD412FDC74D2009A4538 /* Views */,
 				F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */,
 				53ED7BFA2FE1A4CB00626097 /* LogoHomeTic.icon */,
@@ -169,11 +163,12 @@
 				};
 			};
 			buildConfigurationList = EE9F955C2FC86B310027294B /* Build configuration list for PBXProject "Flying High" */;
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = EE9F95582FC86B310027294B;
 			minimizedProjectReferenceProxies = 1;

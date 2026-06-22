@@ -17,10 +17,12 @@ struct TipCardView: View {
                             .font(.title2)
                             .foregroundStyle(.text)
                             .fontWeight(.bold)
+                            .accessibilityLabel(Text("Título da dica: \(article.title)"))
                         
                         Text(article.subtitle)
                             .font(.title3)
                             .foregroundStyle(.text)
+                            .accessibilityLabel(Text("Subtítulo da dica: \(article.subtitle)"))
                     }
                     .frame(width: 267, alignment: .leading)
                     
@@ -39,6 +41,7 @@ struct TipCardView: View {
                     article.category.tagMarker
                         .offset(x: -30, y: -4)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 1)
+                        .accessibilityLabel(Text("Categoria da dica: \(article.category.title)"))
                 }
             }
     }

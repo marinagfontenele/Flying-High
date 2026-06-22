@@ -19,9 +19,11 @@ struct MainView: View {
             Tab("Conquistas", systemImage: "rosette") {
                 AchievementsView()
             }
+            .accessibilityLabel(Text("Tela de conquistas"))
             Tab("Dicas", systemImage: "lightbulb.max") {
                 TipsView()
             }
+            .accessibilityLabel(Text("Tela de dicas"))
         }
         .tint(.main)
     }
