@@ -20,7 +20,7 @@ struct ScheduleView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ProgressCardView(info:schedule.remainingTimeString ,doneTasks: tasksFinished)
+                ProgressCardView(info:schedule.remainingTimeString ,doneTasks: tasksFinished, totalTasks: schedule.tasks.count)
                     .id(tasksFinished)
                     .padding(.vertical, 16)
                 
@@ -28,7 +28,7 @@ struct ScheduleView: View {
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach($schedule.tasks){ $task in
+                        ForEach(schedule.tasks){ task in
                             TaskCardView(task: task)
                                 .padding(.top, 10)
                         }
@@ -38,17 +38,35 @@ struct ScheduleView: View {
                     
                     Spacer(minLength: 0)
                     
-                    NavigationLink(destination: TimerView(schedule: schedule)) {
-                        Label("Iniciar Cronograma", systemImage: "play.fill")
-                            .frame(maxWidth: .infinity)
-                            .padding(16)
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .fontWeight(.bold)
+                    if schedule.isFinished{
+                        Button{
+                            withAnimation{
+                                schedule.resetTasks()
+                            }
+                        } label: {
+                            Label("Habilitar Bloco", systemImage: "arrow.clockwise")
+                                .frame(maxWidth: .infinity)
+                                .padding(16)
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                        .padding(.horizontal, 16)
+                    } else {
+                        NavigationLink(destination: TimerView(schedule: schedule)) {
+                            Label("Iniciar Cronograma", systemImage: "play.fill")
+                                .frame(maxWidth: .infinity)
+                                .padding(16)
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                        .padding(.horizontal, 16)
                     }
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
-                    .padding(.horizontal, 16)
                 }
             }
             .background(Color.background
