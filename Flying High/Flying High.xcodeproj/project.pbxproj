@@ -37,9 +37,7 @@
 			membershipExceptions = (
 				AchievementsView.swift,
 				ArticleSheetView.swift,
-				ChartView.swift,
 				MainView.swift,
-				RecordsView.swift,
 				ScheduleListView.swift,
 				ScheduleView.swift,
 				SheetTimerView.swift,
