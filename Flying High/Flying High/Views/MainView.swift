@@ -16,12 +16,14 @@ struct MainView: View {
             Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
                 ScheduleListView(schedules: schedules)
             }
-            Tab("Relatórios", systemImage: "chart.bar.xaxis") {
-                RecordsView()
+            Tab("Conquistas", systemImage: "rosette") {
+                AchievementsView()
             }
+            .accessibilityLabel(Text("Tela de conquistas"))
             Tab("Dicas", systemImage: "lightbulb.max") {
                 TipsView()
             }
+            .accessibilityLabel(Text("Tela de dicas"))
         }
         .tint(.main)
     }

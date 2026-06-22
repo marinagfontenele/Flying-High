@@ -15,7 +15,6 @@ struct TaskCardView: View {
     
     var body: some View {
         HStack {
-            
             VStack (spacing: 8){
                 Button {
                     activeAlert = .directNext(onConfirm: {
@@ -41,15 +40,21 @@ struct TaskCardView: View {
                     Text(task.title)
                         .font(.title3)
                         .fontWeight(.semibold)
-                    
+                        .accessibilityLabel(Text("Título da tarefa: \(task.title)"))
+                        
                     if (task.isFinished == false) {
-                        Label("Meta: \(task.estimatedTime.formatToAbbreviated())", systemImage: "timer")
+                        Label("Estimativa: \(task.estimatedTime.formatToAbbreviated())", systemImage: "timer")
                             .font(.body)
                             .fontWeight(.semibold)
+                            .accessibilityValue(Text("Estimativa de tempo"))
+                            .accessibilityValue(task.estimatedTime.formatToAbbreviated())
                     } else {
                         Text("Concluída")
                             .font(.subheadline)
                             .fontWeight(.semibold)
+                            .accessibilityLabel(Text("Status"))
+                            .accessibilityValue(Text("Tarefa concluída"))
+                        
                             // Apenas para teste por enquanto
                     }
                 }

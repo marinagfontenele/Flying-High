@@ -35,10 +35,9 @@
 		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AchievementsView.swift,
 				ArticleSheetView.swift,
-				ChartView.swift,
 				MainView.swift,
-				RecordsView.swift,
 				ScheduleListView.swift,
 				ScheduleView.swift,
 				SheetTimerView.swift,
@@ -61,11 +60,6 @@
 		F1D8BD382FDC74D2009A4538 /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F1D8BD3B2FDC74D2009A4538 /* ViewModels */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F1D8BD412FDC74D2009A4538 /* Views */ = {
@@ -119,7 +113,6 @@
 				F13E20582FE0201300A9AEE6 /* Extensions */,
 				F1D8BD302FDC74D2009A4538 /* Models */,
 				F1D8BD382FDC74D2009A4538 /* Resources */,
-				F1D8BD3B2FDC74D2009A4538 /* ViewModels */,
 				F1D8BD412FDC74D2009A4538 /* Views */,
 				F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */,
 				53ED7BFA2FE1A4CB00626097 /* LogoHomeTic.icon */,
@@ -168,11 +161,12 @@
 				};
 			};
 			buildConfigurationList = EE9F955C2FC86B310027294B /* Build configuration list for PBXProject "Flying High" */;
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = EE9F95582FC86B310027294B;
 			minimizedProjectReferenceProxies = 1;
@@ -339,7 +333,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = MQG7QNYQ5V;
+				DEVELOPMENT_TEAM = Y953PP465H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HomeTic;
@@ -378,7 +372,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = MQG7QNYQ5V;
+				DEVELOPMENT_TEAM = Y953PP465H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HomeTic;

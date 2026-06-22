@@ -23,18 +23,6 @@ struct ScheduleListView: View {
                     .padding(.top, 10)
                 }
                 .padding(.top, 10)
-                //                .toolbar{
-                //                    ToolbarItem(placement: .navigationBarTrailing){
-                //                        Button{
-                //
-                //                        } label: {
-                //                            Image(systemName: "plus")
-                //                                .fontWeight(.semibold)
-                //                        }
-                //                        .buttonStyle(.glassProminent)
-                //                        .tint(.main)
-                //                    }
-                //                }
             }
             .background(Color.background
                 .ignoresSafeArea())
