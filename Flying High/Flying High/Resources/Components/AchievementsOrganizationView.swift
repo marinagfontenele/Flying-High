@@ -40,7 +40,7 @@ struct AchievementsOrganizationView: View {
                 Spacer(minLength: 0)
             }
         }
-        .frame(maxWidth: 150, maxHeight: 285)
+        .frame(maxWidth: 150, maxHeight: .infinity)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
