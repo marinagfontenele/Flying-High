@@ -14,23 +14,23 @@ class TaskModel {
     @Attribute(.unique) var id = UUID()
     
     var title           : String
-    var category        : CategoryModel
-    var room            : RoomModel?
-    var info            : String?
-    var estimatedTime   : TimeInterval
-    var durations       : [TimeInterval]
     var finishedDates   : [Date]
+    var info            : String?
+    var room            : RoomModel?
     var isActive        : Bool = false
     var isFinished      : Bool = false
+    var estimatedTime   : TimeInterval
+    var category        : CategoryModel
+    var durations       : [TimeInterval]
     
     
     init(title: String, category: CategoryModel, room: RoomModel? = nil, info: String, estimatedTime: TimeInterval) {
+        self.durations      = []
+        self.finishedDates  = []
+        self.room           = room
         self.title          = title
         self.category       = category
-        self.room           = room
         self.estimatedTime  = estimatedTime
-        self.durations      = []
-        self.finishedDates          = []
     }
     
     func estimatedTimeString() -> String {        

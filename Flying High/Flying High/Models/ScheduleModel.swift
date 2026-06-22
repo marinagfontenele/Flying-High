@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-
 @Model
 class ScheduleModel {
     
@@ -16,24 +15,23 @@ class ScheduleModel {
     
     var title: String
     var tasks: [TaskModel]
-    var totalTime: TimeInterval?
-    var timePassed: TimeInterval?
-    var category: CategoryModel?
     var isActive: Bool = false
+    var category: CategoryModel?
+    var timePassed: TimeInterval?
     
     
     init(title: String, tasks: [TaskModel] = [], category: CategoryModel? = nil) {
         self.title = title
         self.tasks = tasks
         self.category = category ?? CategoryModel.none
-        
-        var timeAux: TimeInterval = totalTime ?? 0
-
-        for task in tasks {
-            timeAux += task.estimatedTime
-        }
-        
-        self.totalTime = timeAux
+    }
+    
+    var totalTime: TimeInterval{
+        tasks.reduce(0) { $0 + $1.estimatedTime }
+    }
+    
+    var isFinished: Bool {
+        !tasks.isEmpty && tasks.allSatisfy{ $0.isFinished }
     }
     
     var remainingTime: TimeInterval {
@@ -45,4 +43,9 @@ class ScheduleModel {
         return remainingTime.formatToFriendly()
     }
     
+    func resetTasks() {
+        for task in tasks {
+            task.isFinished = false
+        }
+    }
 }

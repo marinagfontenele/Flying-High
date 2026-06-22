@@ -44,7 +44,7 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished, totalTasks: schedule.tasks.count, progress: true)
+                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished + 1, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
                 
                 if !isPresented {
@@ -90,6 +90,8 @@ struct TimerView: View {
                         isRunning = false
                         currentTask.isFinished = true
                         currentTask.durations.append(currentTaskTime)
+                        currentTask.finishedDates.append(Date())
+                        
                         dismiss()
                         dismiss()
                     }
@@ -120,6 +122,7 @@ struct TimerView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         activeAlert = .directNext(onConfirm: { goToNextTask() })
+                        isAlertPresented = true
                     } label: {
                         Image(systemName: "chevron.backward")
                             .fontWeight(.semibold)
@@ -156,8 +159,8 @@ struct TimerView: View {
     }
     
     private func goToNextTask() {
-        if nextTaskExists {
-            isRunning = false
+        isRunning = false
+
             schedule.tasks[currentTaskIndex].isFinished = true
             schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
             schedule.tasks[currentTaskIndex].finishedDates.append(Date())
@@ -166,6 +169,8 @@ struct TimerView: View {
             
             print("Tarefa \(completedTask.title) concluída em \(completedTask.finishedDates.last.formatDateString())")
             print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
+        
+        if nextTaskExists {
             withAnimation{
                 currentTaskTime = 0
             }
