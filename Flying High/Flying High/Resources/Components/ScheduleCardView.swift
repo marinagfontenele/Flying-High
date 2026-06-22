@@ -40,10 +40,6 @@ struct ScheduleCardView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .accessibilityLabel(Text("Cronograma"))
-        .accessibilityAction {
-            <#code#>
-        }
-        
     }
 }
 
