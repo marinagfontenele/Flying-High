@@ -74,9 +74,9 @@ struct TimerView: View {
                         Spacer(minLength: 0)
                     }
                     .padding(15)
-                    .background(Color(.white), in: RoundedRectangle(cornerRadius: 15))
+                    .background(Color(.whiteCard), in: RoundedRectangle(cornerRadius: 15))
                     .padding(.horizontal, 16)
-//                    .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+                    .shadow(color: .shadow, radius: 6, x: 2, y: 2)
                 }
                 
                 if !isPresented {

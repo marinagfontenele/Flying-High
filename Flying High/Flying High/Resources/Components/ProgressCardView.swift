@@ -49,10 +49,10 @@ struct ProgressCardView: View {
                 Spacer(minLength: 0)
             }
             .padding(20)
-            .background(Color(.white), in: RoundedRectangle(cornerRadius: 15))
+            .background(Color(.whiteCard), in: RoundedRectangle(cornerRadius: 15))
         }
         .padding(.horizontal, 16)
-//        .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .shadow(color: .shadow, radius: 6, x: 2, y: 2)
         .accessibilityLabel(Text("Progresso de conclusão de tarefas"))
     }
 }

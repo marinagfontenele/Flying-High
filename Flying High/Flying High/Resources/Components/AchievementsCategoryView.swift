@@ -41,7 +41,7 @@ struct AchievementsCategoryView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: 130)
-        .background(.white)
+        .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
     }

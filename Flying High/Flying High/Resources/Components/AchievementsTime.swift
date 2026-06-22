@@ -37,7 +37,7 @@ struct AchievementsTime: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: 150)
-        .background(.white)
+        .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
     }
