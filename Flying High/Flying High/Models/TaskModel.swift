@@ -19,7 +19,7 @@ class TaskModel {
     var info            : String?
     var estimatedTime   : TimeInterval
     var durations       : [TimeInterval]
-    var dates           : [Date]
+    var finishedDates   : [Date]
     var isActive        : Bool = false
     var isFinished      : Bool = false
     
@@ -30,7 +30,7 @@ class TaskModel {
         self.room           = room
         self.estimatedTime  = estimatedTime
         self.durations      = []
-        self.dates          = []
+        self.finishedDates          = []
     }
     
     func estimatedTimeString() -> String {        

@@ -11,42 +11,35 @@ import SwiftData
 struct TimerView: View {
     
     @Environment(\.dismiss) var dismiss
-    
     @State var schedule: ScheduleModel
     
+    @State private var currentTaskTime: TimeInterval = 0
+    @State private var activeAlert: TaskAlertType?
+    @State private var isAlertPresented: Bool = false
+    @State private var isRunning: Bool = false
+    @State private var isPresented: Bool = false
+    
     var currentTask: TaskModel {
-        schedule.tasks.first(where: { $0.isFinished == false })!
+        schedule.tasks.first(where: { $0.isFinished == false }) ?? TaskModel(title: "Nenhuma", category: .cleaning, info: "", estimatedTime: 0)
     }
     
     var currentTaskIndex: Int {
         schedule.tasks.firstIndex(where: { $0.id == currentTask.id }) ?? 0
     }
     
-    var nextTaskExists: Bool {
-        currentTaskIndex < schedule.tasks.count - 1
+    var nextTaskIndex: Int {
+        schedule.tasks.enumerated().first { index, task in
+            index > currentTaskIndex && !task.isFinished
+        }?.offset ?? -1
     }
     
-    var nextTaskIndex: Int {
-        schedule.tasks.firstIndex(where: { $0.isFinished == false && $0.id > currentTask.id}) ?? 0
+    var nextTaskExists: Bool {
+        nextTaskIndex != -1
     }
     
     var tasksFinished: Int {
         schedule.tasks.count(where: { $0.isFinished })
     }
-    
-    @State private var currentTaskTime: TimeInterval = 0
-    @State private var currentTaskDate: Date = Date()
-    
-    @State private var activeAlert: TaskAlertType?
-    
-    @State private var isAlertPresented: Bool = false
-    
-    @State private var isRunning: Bool = false
-    @State private var isPresented: Bool = false
-    @State private var isEnabled: Bool = false
-    @State private var isEnabled2: Bool = false
-    @State private var navigation: Bool = false
-    @State private var navigateToNextTask = false
     
     var body: some View {
         NavigationStack{
@@ -93,8 +86,8 @@ struct TimerView: View {
                 Spacer(minLength: 0)
                 
                 Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
-                    isRunning = false
                     let finishAllAction = {
+                        isRunning = false
                         currentTask.isFinished = true
                         currentTask.durations.append(currentTaskTime)
                         dismiss()
@@ -167,11 +160,11 @@ struct TimerView: View {
             isRunning = false
             schedule.tasks[currentTaskIndex].isFinished = true
             schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
-            schedule.tasks[currentTaskIndex].dates.append(currentTaskDate)
+            schedule.tasks[currentTaskIndex].finishedDates.append(Date())
             
             let completedTask = schedule.tasks[currentTaskIndex]
             
-            print("Tarefa \(completedTask.title) concluída em \(completedTask.dates.last.formatDateString())")
+            print("Tarefa \(completedTask.title) concluída em \(completedTask.finishedDates.last.formatDateString())")
             print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
             withAnimation{
                 currentTaskTime = 0

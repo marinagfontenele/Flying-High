@@ -20,7 +20,7 @@ struct ScheduleView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ProgressCardView(info:schedule.remainingTimeString ,doneTasks: tasksFinished)
+                ProgressCardView(info:schedule.remainingTimeString ,doneTasks: tasksFinished, totalTasks: schedule.tasks.count)
                     .id(tasksFinished)
                     .padding(.vertical, 16)
                 
@@ -28,7 +28,7 @@ struct ScheduleView: View {
                     Spacer(minLength: 0)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach($schedule.tasks){ $task in
+                        ForEach(schedule.tasks){ task in
                             TaskCardView(task: task)
                                 .padding(.top, 10)
                         }

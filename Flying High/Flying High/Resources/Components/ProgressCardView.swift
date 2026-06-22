@@ -12,7 +12,7 @@ struct ProgressCardView: View {
     @State var title: String = "Tempo Restante"
     var info: String = "30 minutos"
     var doneTasks: Int
-    @State var totalTasks: Int = 4
+    var totalTasks: Int = 4
     @State var progress: Bool = true
     
     var body: some View {
