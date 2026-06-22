@@ -21,38 +21,35 @@ struct ProgressCardView: View {
                 VStack (alignment: .leading, spacing: 15) {
                     HStack {
                         Text(title)
-                            .font(.body)
+                            .font(.headline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.text)
                             .accessibilityHidden(true)
                         
                         Spacer(minLength: 0)
                         
                         if progress {
                             Text("\(doneTasks) / \(totalTasks)")
-                                .font(.body)
+                                .font(.headline)
                                 .fontWeight(.semibold)
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.text)
                                 .accessibilityLabel(Text("\(doneTasks) concluídas de \(totalTasks) no total"))
                         }
                     }
                     
                     Text(info)
-                        .font(.title2)
+                        .font(.title)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.text)
                         .accessibilityLabel(Text("Tempo restante: \(info)"))
                 }
                 Spacer(minLength: 0)
-//
-//                if image {
-//                    Image(systemName: "timer")
-//                }
             }
             .padding(20)
-            .background(Color(.purple), in: RoundedRectangle(cornerRadius: 15))
+            .background(Color(.white), in: RoundedRectangle(cornerRadius: 15))
         }
         .padding(.horizontal, 16)
+//        .shadow(color: .shadow, radius: 6, x: 2, y: 2)
         .accessibilityLabel(Text("Card de progresso"))
     }
 }
