@@ -39,13 +39,12 @@ struct ScheduleView: View {
                     Spacer(minLength: 0)
                     
                     NavigationLink(destination: TimerView(schedule: schedule)) {
-                        Label("Iniciar Bloco", systemImage: "play.fill")
+                        Label("Iniciar Cronograma", systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                             .padding(16)
                             .font(.title2)
                             .foregroundStyle(.white)
                             .fontWeight(.bold)
-                            
                     }
                     .buttonStyle(.glassProminent)
                     .tint(.main)
