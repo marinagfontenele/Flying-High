@@ -16,9 +16,8 @@ struct MainView: View {
             Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
                 ScheduleListView(schedules: schedules)
             }
-            .accessibilityLabel(Text("Tela de cronogramas"))
-            Tab("Relatórios", systemImage: "chart.bar.xaxis") {
-                RecordsView()
+            Tab("Conquistas", systemImage: "rosette") {
+                AchievementsView()
             }
             .accessibilityLabel(Text("Tela de conquistas"))
             Tab("Dicas", systemImage: "lightbulb.max") {
