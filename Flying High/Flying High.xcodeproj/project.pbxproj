@@ -35,7 +35,12 @@
 		F1D8BD572FDC74D3009A4538 /* Exceptions for "Views" folder in "Flying High" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+<<<<<<< HEAD
+				AchievementsView.swift,
+				BlogView.swift,
+=======
 				ArticleSheetView.swift,
+>>>>>>> develop
 				ChartView.swift,
 				MainView.swift,
 				RecordsView.swift,
@@ -339,7 +344,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = MQG7QNYQ5V;
+				DEVELOPMENT_TEAM = Y953PP465H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HomeTic;
@@ -378,7 +383,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = MQG7QNYQ5V;
+				DEVELOPMENT_TEAM = Y953PP465H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HomeTic;

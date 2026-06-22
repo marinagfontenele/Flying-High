@@ -16,8 +16,8 @@ struct MainView: View {
             Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
                 ScheduleListView(schedules: schedules)
             }
-            Tab("Relatórios", systemImage: "chart.bar.xaxis") {
-                RecordsView()
+            Tab("Conquistas", systemImage: "rosette") {
+                AchievementsView()
             }
             Tab("Dicas", systemImage: "lightbulb.max") {
                 TipsView()
