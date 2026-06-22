@@ -18,30 +18,22 @@ class TaskModel {
     var room            : RoomModel?
     var info            : String?
     var estimatedTime   : TimeInterval
-    var lastDuration    : [TimeInterval]?
+    var durations       : [TimeInterval]
+    var dates           : [Date]
     var isActive        : Bool = false
     var isFinished      : Bool = false
     
     
     init(title: String, category: CategoryModel, room: RoomModel? = nil, info: String, estimatedTime: TimeInterval) {
-        self.title      = title
-        self.category   = category
-        self.room       = room
-        self.estimatedTime = estimatedTime
+        self.title          = title
+        self.category       = category
+        self.room           = room
+        self.estimatedTime  = estimatedTime
+        self.durations      = []
+        self.dates          = []
     }
     
     func estimatedTimeString() -> String {        
-        let totalSeconds = Int(self.estimatedTime)
-        let minutes = (totalSeconds / 60) % 60
-        let hours = totalSeconds / 3600
-        
-        if hours == 0 {
-            return "\(minutes) min"
-        }
-        if minutes == 0 {
-            return "\(hours)h"
-        }
-        
-        return "\(hours)h \(minutes)min"
+        return estimatedTime.formatToAbbreviated()
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 enum TaskAlertType: Identifiable {
     case optionsMenu(onFinishAll: () -> Void, onNextTask: () -> Void)
     case directNext(onConfirm: () -> Void)
+    case lastTask(onFinishAll: () -> Void)
     
     var id: String {
         switch self {
@@ -17,6 +18,8 @@ enum TaskAlertType: Identifiable {
             return "optionsMenu"
         case .directNext:
             return "directNext"
+        case .lastTask:
+            return "lastTask"
         }
     }
 }
@@ -24,6 +27,10 @@ enum TaskAlertType: Identifiable {
 struct TaskAlertModifier: ViewModifier {
     @Binding var isAlertPresented: Bool
     let alertType: TaskAlertType?
+    
+    private var alertTitle: String {
+        "Tem certeza de que deseja finalizar essa tarefa?"
+    }
     
     func body(content: Content) -> some View {
         content
@@ -35,10 +42,6 @@ struct TaskAlertModifier: ViewModifier {
             }
     }
     
-    private var alertTitle: String {
-        "Tem certeza de que deseja finalizar essa tarefa?"
-    }
-    
     @ViewBuilder
     private var alertButtons: some View {
         switch alertType {
@@ -46,11 +49,11 @@ struct TaskAlertModifier: ViewModifier {
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
             
-            Button("Finalizar e voltar para a tela inicial", action: onFinishAll)
+            Button("Terminar e ir para a tela inicial", action: onFinishAll)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
-            Button("Finalizar e passar para a próxima tarefa", action: onNextTask)
+            Button("Terminar e ir para a próxima tarefa", action: onNextTask)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
@@ -63,11 +66,19 @@ struct TaskAlertModifier: ViewModifier {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
+        case .lastTask(let onFinishAll):
+            Button("Cancelar", role: .cancel) { }
+                .tint(.black)
+                .foregroundStyle(Color(.systemGray2))
+            
+            Button("Finalizar cronograma", action: onFinishAll)
+                .buttonStyle(.glassProminent)
+                .tint(.main)
+            
         case .none:
             EmptyView()
         }
     }
-    
 }
 
 extension View {

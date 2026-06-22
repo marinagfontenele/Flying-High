@@ -22,7 +22,7 @@ struct ScheduleCardView: View {
                         .foregroundStyle(.text)
                         .accessibilityLabel(Text("Título do cronograma"))
                     
-                    Label(schedule.totalTime.formatTimeStringExtended(), systemImage: "timer")
+                    Label(schedule.totalTime.formatToAbbreviated(), systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)

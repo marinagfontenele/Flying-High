@@ -193,7 +193,7 @@ struct Flying_HighApp: App {
 //                     category: nil // Seu init vai transformar automaticamente em .none
 //                 )
 //             ]
-            ContentView(schedules: schedules)
+            MainView(schedules: schedules)
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     var schedules : [ScheduleModel]
     
@@ -19,8 +19,8 @@ struct ContentView: View {
             Tab("Conquistas", systemImage: "rosette") {
                 AchievementsView()
             }
-            Tab("Blog", systemImage: "info.circle") {
-                BlogView()
+            Tab("Dicas", systemImage: "lightbulb.max") {
+                TipsView()
             }
         }
         .tint(.main)
@@ -62,7 +62,7 @@ struct ContentView: View {
     let mockSchedules: [ScheduleModel] = [
         ScheduleModel(
             title: "Faxina Pesada de Sábado",
-            tasks: [localTasks[0], localTasks[3]], // Lavar a louça e Limpar janelas
+            tasks: [localTasks[0], localTasks[3], localTasks[2], localTasks[1]], // Lavar a louça e Limpar janelas
             category: .cleaning
         ),
         ScheduleModel(
@@ -86,5 +86,5 @@ struct ContentView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-    ContentView(schedules: mockSchedules)
+    MainView(schedules: mockSchedules)
 }

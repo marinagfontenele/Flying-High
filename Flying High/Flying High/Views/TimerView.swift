@@ -6,27 +6,42 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TimerView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    var schedule: ScheduleModel
-    @State private var currentTaskIndex: Int = 0
+    @State var schedule: ScheduleModel
     
     var currentTask: TaskModel {
-        schedule.tasks[currentTaskIndex]
+        schedule.tasks.first(where: { $0.isFinished == false })!
+    }
+    
+    var currentTaskIndex: Int {
+        schedule.tasks.firstIndex(where: { $0.id == currentTask.id }) ?? 0
     }
     
     var nextTaskExists: Bool {
-        currentTaskIndex + 1 < schedule.tasks.count
+        currentTaskIndex < schedule.tasks.count - 1
     }
+    
+    var nextTaskIndex: Int {
+        schedule.tasks.firstIndex(where: { $0.isFinished == false && $0.id > currentTask.id}) ?? 0
+    }
+    
+    var tasksFinished: Int {
+        schedule.tasks.count(where: { $0.isFinished })
+    }
+    
+    @State private var currentTaskTime: TimeInterval = 0
+    @State private var currentTaskDate: Date = Date()
     
     @State private var activeAlert: TaskAlertType?
     
     @State private var isAlertPresented: Bool = false
     
-    @State private var isPaused: Bool = false
+    @State private var isRunning: Bool = false
     @State private var isPresented: Bool = false
     @State private var isEnabled: Bool = false
     @State private var isEnabled2: Bool = false
@@ -36,21 +51,19 @@ struct TimerView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                CardProgressView(title: "Em Progresso", info: currentTask.title, progress: false)
+                ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
                 
                 if !isPresented {
                     HStack {
                         if nextTaskExists {
-                            Text("Próxima Tarefa: \(schedule.tasks[currentTaskIndex + 1].title)")
+                            Text("Próxima Tarefa: \(schedule.tasks[nextTaskIndex].title)")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                        }
-                        else {
+                        } else {
                             Text("Última Tarefa!")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                            
                         }
                         Spacer(minLength: 0)
                     }
@@ -64,35 +77,36 @@ struct TimerView: View {
                     Spacer(minLength: 0)
                 }
                 
-                // TODO: ajeitar o timer quebrando quando a sheet abre
-                if nextTaskExists{
-                    TimerCardView(onForwardPressed: {
+                TimerCardView(
+                    onForwardPressed: {
                         activeAlert = .directNext(onConfirm: {
                             goToNextTask()
                         })
                         isAlertPresented = true
                     },
-                    nextTaskExists: nextTaskExists)
-                } else{
-                    TimerCardView(onForwardPressed: {
-                        activeAlert = .directNext(onConfirm: {
-                            goToNextTask()
-                        })
-                        isAlertPresented = true
-                    },
-                    nextTaskExists: nextTaskExists)
-
-                }
+                    nextTaskExists: nextTaskExists,
+                    isRunning: $isRunning,
+                    elapsedTaskTime: $currentTaskTime
+                )
+                .id(currentTaskIndex)
+                
                 Spacer(minLength: 0)
                 
-                Button {
-                    activeAlert = .optionsMenu(onFinishAll: {
+                Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
+                    isRunning = false
+                    let finishAllAction = {
+                        currentTask.isFinished = true
+                        currentTask.durations.append(currentTaskTime)
                         dismiss()
                         dismiss()
-                    }, onNextTask: {
-                        goToNextTask()
-                    })
-                    isAlertPresented.toggle()
+                    }
+                    if nextTaskExists {
+                        activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
+                    } else {
+                        activeAlert = .lastTask(onFinishAll: finishAllAction)
+                    }
+                    isAlertPresented = true
+                    
                 } label: {
                     Label("Finalizar Tarefa", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
@@ -104,6 +118,7 @@ struct TimerView: View {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
                 .padding(.horizontal, 16)
+                
             }
             .animation(.default, value: isPresented)
             .background(Color.background
@@ -132,6 +147,10 @@ struct TimerView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
+        .onChange(of: isRunning) { oldValue, newValue in
+            schedule.tasks[currentTaskIndex].isActive = newValue
+            print("Status '\(oldValue)' da tarefa alterado para: \(newValue)")
+        }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
                 SheetTimerView()
@@ -145,9 +164,17 @@ struct TimerView: View {
     
     private func goToNextTask() {
         if nextTaskExists {
-            currentTask.isFinished = true
+            isRunning = false
+            schedule.tasks[currentTaskIndex].isFinished = true
+            schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+            schedule.tasks[currentTaskIndex].dates.append(currentTaskDate)
+            
+            let completedTask = schedule.tasks[currentTaskIndex]
+            
+            print("Tarefa \(completedTask.title) concluída em \(completedTask.dates.last.formatDateString())")
+            print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
             withAnimation{
-                currentTaskIndex += 1
+                currentTaskTime = 0
             }
         } else {
             dismiss()
