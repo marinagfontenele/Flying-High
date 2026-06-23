@@ -9,7 +9,7 @@ import SwiftUI
 import _SwiftData_SwiftUI
 
 struct AchievementsTime: View {
-    @Query var taskList: [TaskModel]
+    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
