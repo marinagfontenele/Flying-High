@@ -39,7 +39,6 @@ struct ScheduleCardView: View {
             .background(.violet)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .opacity(schedule.isFinished ? 0.6 : 1.0)
     }
 }
 
