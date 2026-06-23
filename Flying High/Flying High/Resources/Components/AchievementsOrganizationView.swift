@@ -6,38 +6,35 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct AchievementsOrganizationView: View {
-    var category: CategoryModel
-    @State var numberTasks: Int = 10
+    @State var category: CategoryModel = CategoryModel.organization
+    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
     
     var body: some View {
         VStack {
+            Spacer()
             
             Image(systemName: category.iconSymbol)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 70, height: 70)
-                .padding(16)
+                .frame(width: 95, height: 95)
+                .padding(.horizontal, 16)
                 .foregroundStyle(category.iconColor)
             
-            HStack{
-                Text ("\(category.title)")
-                    .padding(.top, 18)
-                    .padding(.horizontal, 16)
-                    .font(.body)
-                    .fontWeight(.semibold)
-                
-                Spacer(minLength: 0)
-            }
-            
             HStack {
-                Text("\(numberTasks)")
-                    .padding(16)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-                Spacer(minLength: 0)
+                VStack (alignment: .leading, spacing: 6){
+                    Text ("\(category.title)")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    Text("\(getNumberTasks())")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 16)
+                Spacer()
             }
         }
         .frame(maxWidth: 150, maxHeight: 285)
@@ -45,8 +42,18 @@ struct AchievementsOrganizationView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
     }
+    
+    func getNumberTasks() -> Int {
+        var organizationTasks: [TaskModel] = []
+        for task in taskList {
+            if task.category == category {
+                organizationTasks.append(task)
+            }
+        }
+        return organizationTasks.count
+    }
 }
 
 #Preview {
-    AchievementsOrganizationView(category: CategoryModel.organization)
+//    AchievementsOrganizationView(category: CategoryModel.organization)
 }
