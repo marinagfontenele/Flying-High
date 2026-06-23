@@ -39,8 +39,7 @@ struct TipCardView: View {
                 .padding(.horizontal, 16)
                 .overlay (alignment: .topTrailing){
                     article.category.tagMarker
-                        .offset(x: -30, y: -4)
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 1)
+                        .offset(x: -30, y: 0)
                         .accessibilityLabel(Text("Categoria da dica: \(article.category.title)"))
                 }
             }

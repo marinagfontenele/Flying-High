@@ -6,36 +6,35 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct AchievementsCategoryView: View {
     var category: CategoryModel
-    @State var numberTasks: Int = 10
+    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
     
     var body: some View {
-        VStack (alignment: .leading) {
-            HStack {
+        HStack {
+            VStack (alignment: .leading, spacing: 6){
                 Text ("\(category.title)")
                     .padding(.top, 18)
                     .padding(.horizontal, 16)
                     .font(.body)
                     .fontWeight(.semibold)
                 
-                Spacer(minLength: 0)
-            }
-            Spacer(minLength: 0)
-            
-            HStack {
-                Text("\(numberTasks)")
+                Text("\(getNumberTasks())")
                     .padding(16)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                
-                Spacer(minLength: 0)
-                
+            }
+            
+            Spacer()
+
+            VStack {
+                Spacer()
                 Image(systemName: category.iconSymbol)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 60, height: 60)
                     .padding(16)
                     .foregroundStyle(category.iconColor)
             }
@@ -44,6 +43,16 @@ struct AchievementsCategoryView: View {
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+    }
+    
+    func getNumberTasks() -> Int {
+        var categoryTasks: [TaskModel] = []
+        for task in taskList {
+            if task.category == category {
+                categoryTasks.append(task)
+            }
+        }
+        return categoryTasks.count
     }
 }
 

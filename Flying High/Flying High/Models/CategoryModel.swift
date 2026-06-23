@@ -53,10 +53,10 @@ enum CategoryModel: String, CaseIterable, Codable{
     
     var medal: Image {
         switch self{
-        case .none: return Image(.cleaningMedal)
+        case .none: return Image(.noneMedal)
         case .cleaning: return Image(.cleaningMedal)
         case .repair: return Image(.repairMedal)
-        case .other: return Image(.cleaningMedal)
+        case .other: return Image(.noneMedal)
         case .organization: return Image(.organizationMedal)
         }
     }

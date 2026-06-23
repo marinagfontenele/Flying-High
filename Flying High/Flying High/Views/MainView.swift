@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
-    
-    var schedules : [ScheduleModel]
-    
     var body: some View {
         TabView {
             Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
-                ScheduleListView(schedules: schedules)
+                ScheduleListView()
             }
             Tab("Conquistas", systemImage: "rosette") {
                 AchievementsView()
@@ -88,5 +86,5 @@ struct MainView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-    MainView(schedules: mockSchedules)
+    MainView()
 }
