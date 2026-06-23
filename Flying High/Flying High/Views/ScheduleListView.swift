@@ -9,7 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct ScheduleListView: View {
-    var schedules: [ScheduleModel]
+    @Query var tasks : [TaskModel]
+    @Query var schedules : [ScheduleModel]
+    @Environment(\.modelContext) private var modelContext
+    
+    @AppStorage("hasLaunchedBefore") var hasLaunchedBefore = false
+    
     
     var body: some View {
         NavigationStack{
@@ -26,8 +31,133 @@ struct ScheduleListView: View {
             }
             .background(Color.background
                 .ignoresSafeArea())
+            .onAppear {
+                
+                checkFirstLaunch()
+                print(tasks)
+                
+            }
         }
     }
+    
+    func checkFirstLaunch() {
+        if !hasLaunchedBefore {
+            let tasksCleaning: [TaskModel] =
+            [TaskModel(
+                title: "Espanar",
+                category: .cleaning,
+                room: nil,
+                info: "Espane todas as partes, atras dos moveis e nos cantos",
+                estimatedTime: 1200
+            ),
+             TaskModel(
+                title: "Tirar os panos sujos do sofá",
+                category: .cleaning,
+                room: nil,
+                info: "Não esqueça de depois de juntar tudo, colocar para lavar, separe as coloridas",
+                estimatedTime: 120
+             ),
+             TaskModel(
+                title: "Varrer ou aspirar o chão",
+                category: .repair,
+                room: nil,
+                info: "Não esqueça de varrer em baixo de todos os moveis, dos tapetes, e no canteiros",
+                estimatedTime: 600
+             ),
+             TaskModel(
+                title: "Passar pano molhado no chão",
+                category: .cleaning,
+                room: nil,
+                info: "Lembre-se de usar um desinfetante que goste, use um pano limpo, e um balde de agua",
+                estimatedTime: 600
+             ),
+             TaskModel(
+                title: "Lustrar moveis",
+                category: .cleaning,
+                room: nil,
+                info: "Antes de lustrar os móveis, passe um pano seco para evitar manchas ou arranhões.\nCaso não tenha um lustra móveis em casa, você pode fazer um caseiro diluindo uma colher de sopa de amaciante em meio litro de água.",
+                estimatedTime: 300
+             ),
+             TaskModel(
+                title: "Colocar panos novos",
+                category: .cleaning,
+                room: nil,
+                info: "Separe um conjunto novo da roupa de sofá e seja feliz",
+                estimatedTime: 300
+             ),
+             TaskModel(
+                title: "Passar aromatizador de ambiente",
+                category: .cleaning,
+                room: nil,
+                info: "",
+                estimatedTime: 180
+             )]
+            
+            let tasksOrganization: [TaskModel] = [
+                    TaskModel(
+                        title: "Conferir dispensa",
+                        category: .organization,
+                        room: nil,
+                        info: "Anote tudo que tem e deixe num lugar fácil, e anote o que falta.",
+                        estimatedTime: 300),
+                    TaskModel(
+                        title: "Tirar o lixo",
+                        category: .organization,
+                        room: nil,
+                        info: "",
+                        estimatedTime: 300),
+                    TaskModel(
+                        title: "Guardar as roupas limpas",
+                        category: .organization,
+                        room: nil,
+                        info: "De preferência, separe as roupas por categoria para facilitar na hora de organizar e procurar elas nas gavetas.",
+                        estimatedTime: 1200),]
+            
+            let tasksRepair: [TaskModel] = [
+                TaskModel(
+                    title: "Ajeitar torneira da cozinha",
+                    category: .repair,
+                    room: nil,
+                    info: "",
+                    estimatedTime: 2400),
+                TaskModel(
+                    title: "Trocar a fechadura do banheio",
+                    category: .repair,
+                    room: nil,
+                    info: "",
+                    estimatedTime: 1800),
+                TaskModel(
+                    title: "Trocar lâmpadas",
+                    category: .repair,
+                    room: nil,
+                    info: "",
+                    estimatedTime: 1200),]
+            
+            let schedules: [ScheduleModel] = [ScheduleModel(title: "Limpeza da sala",
+                                                            tasks: tasksCleaning,
+                                                            category: .cleaning),
+                                              
+                                              ScheduleModel(title: "Organização",
+                                                            tasks: tasksOrganization,
+                                                            category: .organization),
+                                              ScheduleModel(title: "Reparos",
+                                                            tasks: tasksRepair,
+                                                            category: .repair)
+            ]
+            for schedule in schedules {
+                modelContext.insert(schedule)
+            }
+            
+            do {
+                try modelContext.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            hasLaunchedBefore = true
+        }
+    }
+    
 }
 //
 //#Preview {
@@ -61,7 +191,7 @@ struct ScheduleListView: View {
 //            estimatedTime: 1800
 //        )
 //    ]
-//    
+//
 //    let mockSchedules: [ScheduleModel] = [
 //        ScheduleModel(
 //            title: "Faxina Pesada de Sábado",
@@ -89,7 +219,7 @@ struct ScheduleListView: View {
 //            category: nil // Seu init vai transformar automaticamente em .none
 //        )
 //    ]
-//    
+//
 ////    ScheduleListView(schedules: mockSchedules)
-//    
+//
 //}
