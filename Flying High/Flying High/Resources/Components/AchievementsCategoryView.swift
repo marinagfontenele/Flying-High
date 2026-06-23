@@ -39,7 +39,7 @@ struct AchievementsCategoryView: View {
                     .foregroundStyle(category.iconColor)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 130)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
