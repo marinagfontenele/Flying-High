@@ -128,7 +128,20 @@ struct TimerView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        activeAlert = .directNext(onConfirm: { goToNextTask() })
+                        activeAlert = .goBack(
+                            onSave: {
+                                isRunning = false
+                                schedule.tasks[currentTaskIndex].isFinished = true
+                                schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+                                schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                                
+                                dismiss()
+                            },
+                            skipSave: {
+                                isRunning = false
+                                dismiss()
+                            }
+                        )
                         isAlertPresented = true
                     } label: {
                         Image(systemName: "chevron.backward")
