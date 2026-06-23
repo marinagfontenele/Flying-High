@@ -74,19 +74,14 @@ struct AchievementsWinnerView: View {
         
         switch winnerAmount {
         case 0:
-            print("oi4")
             return .none
         case cleaningTasks.count:
-            print("oii1")
             return .cleaning
         case repairTasks.count:
-            print("oii2")
             return .repair
         case organizationTasks.count:
-            print("oi3")
             return .organization
         default:
-            print("oi5")
             return .none
         }
     }
