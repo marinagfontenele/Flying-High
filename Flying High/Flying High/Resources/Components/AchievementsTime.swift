@@ -9,7 +9,7 @@ import SwiftUI
 import _SwiftData_SwiftUI
 
 struct AchievementsTime: View {
-    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
+    @Query var taskList: [TaskModel]
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
@@ -45,7 +45,7 @@ struct AchievementsTime: View {
     
     func getTimeSpent () -> TimeInterval {
         var timeSpent: TimeInterval = 0
-        
+
         for task in taskList {
             for taskDuration in task.durations {
                 timeSpent += taskDuration
