@@ -95,9 +95,9 @@ struct TimerView: View {
                 Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
                     let finishAllAction = {
                         isRunning = false
-                        currentTask.isFinished = true
-                        currentTask.durations.append(currentTaskTime)
-                        currentTask.finishedDates.append(Date())
+                        schedule.tasks[currentTaskIndex].isFinished = true
+                        schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+                        schedule.tasks[currentTaskIndex].finishedDates.append(Date())
                         
                         dismiss()
                         dismiss()
@@ -128,7 +128,20 @@ struct TimerView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        activeAlert = .directNext(onConfirm: { goToNextTask() })
+                        activeAlert = .goBack(
+                            onSave: {
+                                isRunning = false
+                                schedule.tasks[currentTaskIndex].isFinished = true
+                                schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+                                schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                                
+                                dismiss()
+                            },
+                            skipSave: {
+                                isRunning = false
+                                dismiss()
+                            }
+                        )
                         isAlertPresented = true
                     } label: {
                         Image(systemName: "chevron.backward")
@@ -167,17 +180,19 @@ struct TimerView: View {
     
     private func goToNextTask() {
         isRunning = false
-
-            schedule.tasks[currentTaskIndex].isFinished = true
-            schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
-            schedule.tasks[currentTaskIndex].finishedDates.append(Date())
-            
-            let completedTask = schedule.tasks[currentTaskIndex]
-            
-            print("Tarefa \(completedTask.title) concluída em \(completedTask.finishedDates.last.formatDateString())")
-            print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
         
-        if nextTaskExists {
+        let hasNextTask = nextTaskExists
+        
+        schedule.tasks[currentTaskIndex].isFinished = true
+        schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+        schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+        
+        let completedTask = schedule.tasks[currentTaskIndex]
+        
+        print("Tarefa \(completedTask.title) concluída em \(completedTask.finishedDates.last.formatDateString())")
+        print("Último tempo de \(completedTask.title): \(completedTask.durations.last.formatToAbbreviated())")
+        
+        if hasNextTask {
             withAnimation{
                 currentTaskTime = 0
             }

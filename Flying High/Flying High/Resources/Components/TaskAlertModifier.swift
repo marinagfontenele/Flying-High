@@ -8,12 +8,15 @@
 import SwiftUI
 
 enum TaskAlertType: Identifiable {
+    case goBack(onSave: () -> Void, skipSave: () -> Void)
     case optionsMenu(onFinishAll: () -> Void, onNextTask: () -> Void)
     case directNext(onConfirm: () -> Void)
     case lastTask(onFinishAll: () -> Void)
     
     var id: String {
         switch self {
+        case .goBack:
+            return "goBack"
         case .optionsMenu:
             return "optionsMenu"
         case .directNext:
@@ -29,7 +32,21 @@ struct TaskAlertModifier: ViewModifier {
     let alertType: TaskAlertType?
     
     private var alertTitle: String {
-        "Tem certeza de que deseja finalizar essa tarefa?"
+        switch alertType {
+            case .goBack:
+                return "Deseja sair da tarefa?"
+            default :
+                return "Tem certeza de que deseja finalizar essa tarefa?"
+        }
+    }
+    
+    private var alertMessage: String {
+        switch alertType {
+        case .goBack:
+            return "Você pode salvar o tempo atual ou descartar a tarefa."
+        default :
+            return "Após finalizar, a tarefa não poderá mais ser retomada."
+        }
     }
     
     func body(content: Content) -> some View {
@@ -38,13 +55,23 @@ struct TaskAlertModifier: ViewModifier {
             .alert(alertTitle, isPresented: $isAlertPresented) {
                 alertButtons
             } message: {
-                Text("Após finalizada, a tarefa não poderá mais ser retomada.")
+                Text(alertMessage)
             }
     }
     
     @ViewBuilder
     private var alertButtons: some View {
         switch alertType {
+        case .goBack(let onSave, let skipSave):
+            Button("Cancelar", role: .cancel) { }
+                .tint(.black)
+            
+            Button("Salvar e sair", action: onSave)
+                .buttonStyle(.glassProminent)
+                .tint(.main)
+                
+            Button("Sair sem salvar", role: .destructive, action: skipSave)
+
         case .optionsMenu(let onFinishAll, let onNextTask):
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
