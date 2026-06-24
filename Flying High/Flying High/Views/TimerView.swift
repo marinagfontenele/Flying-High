@@ -169,11 +169,15 @@ struct TimerView: View {
         }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
-                SheetTimerView()
+                SheetTimerView(info: currentTask.info ?? "Nenhuma informação adicional foi dada")
             }
             .presentationDetents([.medium])
             .presentationBackground(Color(.systemBackground))
             .presentationBackgroundInteraction(.enabled)
+            .onAppear() {
+                print(currentTask)
+                print(currentTask.info)
+            }
         }
         .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
     }

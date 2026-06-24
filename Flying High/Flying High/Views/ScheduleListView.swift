@@ -34,7 +34,6 @@ struct ScheduleListView: View {
             .onAppear {
                 
                 checkFirstLaunch()
-                print(tasks)
                 
             }
         }
@@ -81,38 +80,38 @@ struct ScheduleListView: View {
              )]
             
             let tasksOrganizationLiving: [TaskModel] = [
-                    TaskModel(
-                        title: "Reorganizar itens",
-                        category: .organization,
-                        room: nil,
-                        info: "- Cheque se há itens fora do lugar e devolva-os aos seus devidos lugares",
-                        estimatedTime: 1200),
-                    TaskModel(
-                        title: "Verifique armários e gavetas",
-                        category: .organization,
-                        room: nil,
-                        info: "- Organize os armários por categoria para facilitar o dia a dia\n- Jogue itens fora, caso ache necessário",
-                        estimatedTime: 1200),]
+                TaskModel(
+                    title: "Reorganizar itens",
+                    category: .organization,
+                    room: nil,
+                    info: "- Cheque se há itens fora do lugar e devolva-os aos seus devidos lugares",
+                    estimatedTime: 1200),
+                TaskModel(
+                    title: "Verifique armários e gavetas",
+                    category: .organization,
+                    room: nil,
+                    info: "- Organize os armários por categoria para facilitar o dia a dia\n- Jogue itens fora, caso ache necessário",
+                    estimatedTime: 1200),]
             
             let tasksOrganization: [TaskModel] = [
-                    TaskModel(
-                        title: "Conferir dispensa",
-                        category: .organization,
-                        room: nil,
-                        info: "- Anote tudo que tem e deixe num lugar fácil, e anote o que falta.",
-                        estimatedTime: 300),
-                    TaskModel(
-                        title: "Tirar o lixo",
-                        category: .organization,
-                        room: nil,
-                        info: "",
-                        estimatedTime: 300),
-                    TaskModel(
-                        title: "Guardar as roupas limpas",
-                        category: .organization,
-                        room: nil,
-                        info: "- De preferência, separe as roupas por categoria para facilitar na hora de organizar e procurar elas nas gavetas.",
-                        estimatedTime: 1200),]
+                TaskModel(
+                    title: "Conferir dispensa",
+                    category: .organization,
+                    room: nil,
+                    info: "- Anote tudo que tem e deixe num lugar fácil, e anote o que falta.",
+                    estimatedTime: 300),
+                TaskModel(
+                    title: "Tirar o lixo",
+                    category: .organization,
+                    room: nil,
+                    info: "",
+                    estimatedTime: 300),
+                TaskModel(
+                    title: "Guardar as roupas limpas",
+                    category: .organization,
+                    room: nil,
+                    info: "- De preferência, separe as roupas por categoria para facilitar na hora de organizar e procurar elas nas gavetas.",
+                    estimatedTime: 1200),]
             
             let tasksRepair: [TaskModel] = [
                 TaskModel(
