@@ -121,7 +121,7 @@ struct ScheduleListView: View {
                     info: "",
                     estimatedTime: 2400),
                 TaskModel(
-                    title: "Trocar a fechadura do banheio",
+                    title: "Trocar a fechadura do banheiro",
                     category: .repair,
                     room: nil,
                     info: "",

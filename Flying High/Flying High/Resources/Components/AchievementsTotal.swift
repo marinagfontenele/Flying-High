@@ -17,6 +17,7 @@ struct AchievementsTotal: View {
                 Text ("Total")
                     .font(.body)
                     .fontWeight(.semibold)
+                    .accessibilityLabel(Text("Total de tarefas concluídas"))
                 
                 Text("\(getTotalTasksDone()) ao todo!")
                     .font(.largeTitle)
@@ -32,12 +33,14 @@ struct AchievementsTotal: View {
                 .frame(width: 100, height: 100)
                 .foregroundStyle(.iconPurple)
                 .padding(.vertical, 15)
+                .accessibilityHidden(true)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
     }
     
     func getTotalTasksDone() -> Int {

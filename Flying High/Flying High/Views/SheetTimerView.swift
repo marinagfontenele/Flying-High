@@ -42,9 +42,16 @@ struct SheetTimerView: View {
                     .padding(.bottom, 12)
                     .padding(.horizontal, 16)
                     
-                    Text(info)
-                        .padding(.bottom, 16)
-                        .padding(.horizontal, 16)
+                    if info == "" {
+                        Text("Nenhuma informação adicionada")
+                            .padding(.bottom, 16)
+                            .padding(.horizontal, 16)
+                    } else {
+                        Text(info)
+                            .padding(.bottom, 16)
+                            .padding(.horizontal, 16)
+                    }
+                    
                 }
                 
                 Spacer(minLength: 0)
@@ -60,6 +67,7 @@ struct SheetTimerView: View {
                 }
             }
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -24,6 +24,7 @@ struct AchievementsView: View {
                             .fontWeight(.bold)
                             .padding(.top, 16)
                             .padding(.horizontal, 16)
+                            .accessibilityLabel(Text("Informações sobre conclusão de tarefas"))
                         
                         Spacer(minLength: 0)
                     }

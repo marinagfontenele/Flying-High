@@ -24,6 +24,7 @@ struct ProgressCardView: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundStyle(.text)
+                            .accessibilityHidden(true)
                         
                         Spacer(minLength: 0)
                         
@@ -32,15 +33,15 @@ struct ProgressCardView: View {
                                 .font(.headline)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.text)
-                                .accessibilityLabel(Text("Tarefas concluídas"))
-                                .accessibilityValue(Text("\(doneTasks) concluídas de \(totalTasks) no total"))
+                                .accessibilityLabel(Text("Tarefas concluídas: \(doneTasks) concluídas de \(totalTasks) no total"))
                         }
                     }
-                    
+            
                     Text(info)
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
+                        .accessibilityLabel(Text(getLabelString()))
                 }
                 Spacer(minLength: 0)
             }
@@ -49,6 +50,19 @@ struct ProgressCardView: View {
         }
         .padding(.horizontal, 16)
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
+    }
+    
+    func getLabelString () -> String {
+        var labelString: String
+        
+        if progress {
+            labelString = "Tarefa atual: \(info)"
+        } else {
+            labelString = "Tempo restante: \(info)"
+        }
+        
+        return labelString
     }
 }
 

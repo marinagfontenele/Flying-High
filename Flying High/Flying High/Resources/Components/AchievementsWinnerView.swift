@@ -38,6 +38,7 @@ struct AchievementsWinnerView: View {
                     .frame(width: 110, height: 110)
                     .fontWeight(.bold)
                     .padding(.leading, 16)
+                    .accessibilityHidden(true)
             }
         }
         .frame(maxWidth: .infinity)
@@ -45,6 +46,7 @@ struct AchievementsWinnerView: View {
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
     }
     
     func getWinnerCategory () -> CategoryModel {

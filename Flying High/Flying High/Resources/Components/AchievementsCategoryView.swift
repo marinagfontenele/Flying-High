@@ -20,11 +20,13 @@ struct AchievementsCategoryView: View {
                     .padding(.horizontal, 16)
                     .font(.body)
                     .fontWeight(.semibold)
+                    .accessibilityLabel(Text("Categoria: \(category.title)"))
                 
                 Text("\(getNumberTasks())")
                     .padding(16)
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .accessibilityLabel(Text("Quantidade de Tarefas concluídas: \(getNumberTasks())"))
             }
             
             Spacer()
@@ -37,12 +39,14 @@ struct AchievementsCategoryView: View {
                     .frame(width: 60, height: 60)
                     .padding(16)
                     .foregroundStyle(category.iconColor)
+                    .accessibilityHidden(true)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
     }
     
     func getNumberTasks() -> Int {

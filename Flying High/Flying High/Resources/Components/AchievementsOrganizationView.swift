@@ -22,15 +22,18 @@ struct AchievementsOrganizationView: View {
                 .frame(width: 95, height: 95)
                 .padding(.horizontal, 16)
                 .foregroundStyle(category.iconColor)
+                .accessibilityHidden(true)
             
             HStack {
                 VStack (alignment: .leading, spacing: 6){
                     Text ("\(category.title)")
                         .font(.body)
                         .fontWeight(.semibold)
+                        .accessibilityLabel(Text("Categoria: \(category.title)"))
                     Text("\(getNumberTasks())")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .accessibilityLabel(Text("Quantidade de Tarefas concluídas: \(getNumberTasks())"))
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 16)
@@ -41,6 +44,7 @@ struct AchievementsOrganizationView: View {
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
     }
     
     func getNumberTasks() -> Int {

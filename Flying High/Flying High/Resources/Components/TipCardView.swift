@@ -17,6 +17,7 @@ struct TipCardView: View {
                             .font(.title2)
                             .foregroundStyle(.text)
                             .fontWeight(.bold)
+                            .accessibilityLabel(Text("Artigo: \(article.title)"))
                         
                         Text(article.subtitle)
                             .font(.title3)
@@ -28,6 +29,7 @@ struct TipCardView: View {
                     
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.main)
+                        .accessibilityHidden(true)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 30)
@@ -40,6 +42,8 @@ struct TipCardView: View {
                         .offset(x: -30, y: 0)
                 }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityHint(Text("Clique para ler o artigo"))
     }
 }
 

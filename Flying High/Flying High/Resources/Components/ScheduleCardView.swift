@@ -20,6 +20,7 @@ struct ScheduleCardView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
+                        .accessibilityLabel(Text("Cronograma: \(schedule.title)"))
                     
                     Label(schedule.totalTime.formatToAbbreviated(), systemImage: "timer")
                         .font(.body)
@@ -40,6 +41,7 @@ struct ScheduleCardView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .accessibilityHint(Text("Clique para visualizar as tarefas do cronograma"))
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -23,6 +23,7 @@ struct TimerCardView: View {
             Text(displayText)
                 .font(Font.largeTitle.bold())
                 .padding(16)
+                .accessibilityLabel(Text("Cronômetro: \(displayText)"))
             
             HStack{
                 Button{ // Botão de play/pause
@@ -36,9 +37,11 @@ struct TimerCardView: View {
                                 .foregroundStyle(.white)
                                 .padding(5)
                                 .font(.system(size: 34))
+                                .accessibilityHidden(true)
                         }
                 }
                 .tint(Color(.main))
+                .accessibilityLabel(Text(isRunning ? "Iniciar cronômetro" : "Pausar cronômetro"))
                 
                 if nextTaskExists{
                     Button {
@@ -59,9 +62,11 @@ struct TimerCardView: View {
                             }
                     }
                     .tint(Color(.main))
+                    .accessibilityLabel(Text("Passar para a próxima tarefa"))
                 }
             }
         }
+//        .accessibilityElement(children: .combine)
     }
     
     private func toggleTimer() {

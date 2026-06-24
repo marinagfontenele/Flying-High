@@ -13,7 +13,7 @@ struct AchievementsTime: View {
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
-                Text ("Tempo realizando tarefas")
+                Text("Tempo realizando tarefas")
                     .padding(.top, 16)
                     .padding(.bottom, 8)
                     .padding(.horizontal, 16)
@@ -35,12 +35,13 @@ struct AchievementsTime: View {
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.iconPurple)
                 .padding(20)
-            
+                .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
     }
     
     func getTimeSpent () -> TimeInterval {
