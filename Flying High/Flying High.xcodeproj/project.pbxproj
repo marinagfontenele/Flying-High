@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		535BCB4D2FEAD6D9009FCBC1 /* LogoHomeTic.icon in Resources */ = {isa = PBXBuildFile; fileRef = 535BCB4C2FEAD6D9009FCBC1 /* LogoHomeTic.icon */; };
+		531B0A252FEC131C00097461 /* LogoHomeTic.icon in Resources */ = {isa = PBXBuildFile; fileRef = 531B0A232FEC12CD00097461 /* LogoHomeTic.icon */; };
 		F13E20572FE01F1500A9AEE6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E20562FE01F1000A9AEE6 /* Extensions.swift */; };
 		F1D8BD282FDC74B8009A4538 /* Flying_HighApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		535BCB4C2FEAD6D9009FCBC1 /* LogoHomeTic.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = LogoHomeTic.icon; sourceTree = "<group>"; };
+		531B0A232FEC12CD00097461 /* LogoHomeTic.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = LogoHomeTic.icon; sourceTree = "<group>"; };
 		EE9F95612FC86B310027294B /* Flying High.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying High.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13E20562FE01F1000A9AEE6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flying_HighApp.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				F1D8BD382FDC74D2009A4538 /* Resources */,
 				F1D8BD412FDC74D2009A4538 /* Views */,
 				F1D8BD152FDC74B8009A4538 /* Flying_HighApp.swift */,
-				535BCB4C2FEAD6D9009FCBC1 /* LogoHomeTic.icon */,
+				531B0A232FEC12CD00097461 /* LogoHomeTic.icon */,
 			);
 			path = "Flying High";
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				535BCB4D2FEAD6D9009FCBC1 /* LogoHomeTic.icon in Resources */,
+				531B0A252FEC131C00097461 /* LogoHomeTic.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
