@@ -11,7 +11,7 @@ import SwiftData
 struct MainView: View {
     var body: some View {
         TabView {
-            Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
+            Tab("Cronograma", systemImage: "list.bullet.clipboard") {
                 ScheduleListView()
             }
             Tab("Conquistas", systemImage: "rosette") {
