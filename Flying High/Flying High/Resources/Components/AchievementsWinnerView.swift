@@ -9,7 +9,7 @@ import SwiftUI
 import _SwiftData_SwiftUI
 
 struct AchievementsWinnerView: View {
-    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
+    @Query var taskList: [TaskModel]
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -48,18 +48,18 @@ struct AchievementsWinnerView: View {
     }
     
     func getWinnerCategory () -> CategoryModel {
-        var organizationTasks: [TaskModel] = []
-        var cleaningTasks: [TaskModel] = []
-        var repairTasks: [TaskModel] = []
+        var organizationTasks: Int = 0
+        var cleaningTasks: Int = 0
+        var repairTasks: Int = 0
         
         for task in taskList {
             switch task.category {
             case .cleaning:
-                cleaningTasks.append(task)
+                cleaningTasks += task.timesDone
             case .repair:
-                repairTasks.append(task)
+                repairTasks += task.timesDone
             case .organization:
-                organizationTasks.append(task)
+                organizationTasks += task.timesDone
             case .none:
                 return .none
             case .other:
@@ -67,19 +67,16 @@ struct AchievementsWinnerView: View {
             }
         }
         
-        print(cleaningTasks.count)
-        
-        let winnerAmount: Int = [cleaningTasks.count, repairTasks.count, organizationTasks.count].max() ?? 0
-        
+        let winnerAmount: Int = [cleaningTasks, repairTasks, organizationTasks].max() ?? 0
         
         switch winnerAmount {
         case 0:
             return .none
-        case cleaningTasks.count:
+        case cleaningTasks:
             return .cleaning
-        case repairTasks.count:
+        case repairTasks:
             return .repair
-        case organizationTasks.count:
+        case organizationTasks:
             return .organization
         default:
             return .none

@@ -34,7 +34,6 @@ struct ScheduleListView: View {
             .onAppear {
                 
                 checkFirstLaunch()
-                print(tasks)
                 
             }
         }

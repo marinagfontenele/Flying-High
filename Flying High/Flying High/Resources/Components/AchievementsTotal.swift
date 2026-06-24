@@ -41,7 +41,12 @@ struct AchievementsTotal: View {
     }
     
     func getTotalTasksDone() -> Int {
-        return taskList.filter(\.self.isFinished).count
+        var timesDone: Int = 0
+        for task in taskList {
+            timesDone += task.timesDone
+        }
+        
+        return timesDone
     }
 }
 

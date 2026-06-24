@@ -10,7 +10,7 @@ import _SwiftData_SwiftUI
 
 struct AchievementsCategoryView: View {
     var category: CategoryModel
-    @Query(filter: #Predicate<TaskModel> {$0.isFinished == true}) var taskList: [TaskModel]
+    @Query var taskList: [TaskModel]
     
     var body: some View {
         HStack {
@@ -46,13 +46,14 @@ struct AchievementsCategoryView: View {
     }
     
     func getNumberTasks() -> Int {
-        var categoryTasks: [TaskModel] = []
+        var timesDone: Int = 0
         for task in taskList {
             if task.category == category {
-                categoryTasks.append(task)
+                timesDone += task.timesDone
             }
         }
-        return categoryTasks.count
+        
+        return timesDone
     }
 }
 

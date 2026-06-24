@@ -44,7 +44,7 @@ struct ScheduleView: View {
                                 schedule.resetTasks()
                             }
                         } label: {
-                            Label("Habilitar Bloco", systemImage: "arrow.clockwise")
+                            Label("Reiniciar Cronograma", systemImage: "arrow.clockwise")
                                 .frame(maxWidth: .infinity)
                                 .padding(16)
                                 .font(.title2)

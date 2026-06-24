@@ -29,7 +29,7 @@ struct TipCardView: View {
                     Spacer()
                     
                     Image(systemName: "chevron.right")
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.main)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 30)
