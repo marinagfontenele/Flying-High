@@ -20,6 +20,7 @@ struct TaskCardView: View {
                     activeAlert = .directNext(onConfirm: {
                         withAnimation(.easeOut) {
                             task.isFinished = true
+                            task.timesDone += 1
                         }
                     })
                     isAlertPresented = true

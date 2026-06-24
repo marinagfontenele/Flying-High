@@ -98,6 +98,7 @@ struct TimerView: View {
                         schedule.tasks[currentTaskIndex].isFinished = true
                         schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
                         schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                        schedule.tasks[currentTaskIndex].timesDone += 1
                         
                         dismiss()
                         dismiss()
@@ -134,6 +135,7 @@ struct TimerView: View {
                                 schedule.tasks[currentTaskIndex].isFinished = true
                                 schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
                                 schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                                schedule.tasks[currentTaskIndex].timesDone += 1
                                 
                                 dismiss()
                             },
@@ -174,10 +176,6 @@ struct TimerView: View {
             .presentationDetents([.medium])
             .presentationBackground(Color(.systemBackground))
             .presentationBackgroundInteraction(.enabled)
-            .onAppear() {
-                print(currentTask)
-                print(currentTask.info)
-            }
         }
         .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
     }
@@ -190,6 +188,7 @@ struct TimerView: View {
         schedule.tasks[currentTaskIndex].isFinished = true
         schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
         schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+        schedule.tasks[currentTaskIndex].timesDone += 1
         
         let completedTask = schedule.tasks[currentTaskIndex]
         

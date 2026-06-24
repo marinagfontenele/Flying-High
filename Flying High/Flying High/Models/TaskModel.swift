@@ -22,9 +22,10 @@ class TaskModel {
     var estimatedTime   : TimeInterval
     var category        : CategoryModel
     var durations       : [TimeInterval]
+    var timesDone       : Int
     
     
-    init(title: String, category: CategoryModel, room: RoomModel? = nil, info: String? = nil, estimatedTime: TimeInterval) {
+    init(title: String, category: CategoryModel, room: RoomModel? = nil, info: String? = nil, estimatedTime: TimeInterval, timesDone: Int = 0) {
         self.durations      = []
         self.finishedDates  = []
         self.room           = room
@@ -32,6 +33,7 @@ class TaskModel {
         self.category       = category
         self.estimatedTime  = estimatedTime
         self.info           = info
+        self.timesDone      = timesDone
     }
     
     func estimatedTimeString() -> String {        
