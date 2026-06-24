@@ -31,10 +31,10 @@ struct AchievementsTotal: View {
                 .scaledToFit()
                 .frame(width: 100, height: 100)
                 .foregroundStyle(.iconPurple)
-                .padding(.top, 30)
+                .padding(.vertical, 15)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: 110)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
