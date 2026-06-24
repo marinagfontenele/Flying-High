@@ -24,8 +24,6 @@ struct ProgressCardView: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundStyle(.text)
-                            .accessibilityLabel(Text("Título da tarefa"))
-                            .accessibilityValue(Text(title))
                         
                         Spacer(minLength: 0)
                         
@@ -43,8 +41,6 @@ struct ProgressCardView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityLabel(Text("Tempo restante"))
-                        .accessibilityValue(Text(info))
                 }
                 Spacer(minLength: 0)
             }
@@ -53,7 +49,6 @@ struct ProgressCardView: View {
         }
         .padding(.horizontal, 16)
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
-        .accessibilityLabel(Text("Progresso de conclusão de tarefas"))
     }
 }
 

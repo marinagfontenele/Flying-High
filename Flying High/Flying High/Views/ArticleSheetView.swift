@@ -32,20 +32,17 @@ struct ArticleSheetView: View{
                             .font(.title)
                             .bold()
                             .foregroundColor(.primary)
-                            .accessibilityLabel(Text("Título: \(content.title)"))
                         
                         Text(content.subtitle)
                             .font(.title3)
                             .foregroundColor(.primary)
                             .padding(.bottom, 12)
-                            .accessibilityLabel(Text("Subtítulo: \(content.subtitle)"))
                         
                         Text (hightlighTitles(content.text))
                             .font(.body)
                             .fontWeight(.regular)
                             .foregroundColor(.primary)
                             .lineSpacing(6)
-                            .accessibilityLabel(Text("Artigo: \(content.text)"))
                     }
                     .padding(24)
                 }
@@ -63,7 +60,6 @@ struct ArticleSheetView: View{
                         }
                         .buttonStyle(.glassProminent)
                         .tint(.main)
-                        .accessibilityLabel(Text("Fechar"))
                     }
                 }
             }

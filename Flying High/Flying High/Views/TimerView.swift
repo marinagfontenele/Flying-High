@@ -57,12 +57,10 @@ struct TimerView: View {
                             Text("Próxima Tarefa: \(schedule.tasks[nextTaskIndex].title)")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                                .accessibilityLabel(Text("Próxima tarefa: \(schedule.tasks[nextTaskIndex].title)"))
                         } else {
                             Text("Última Tarefa!")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                                .accessibilityLabel(Text("Última tarefa restante"))
                         }
                         Spacer(minLength: 0)
                     }
@@ -88,7 +86,6 @@ struct TimerView: View {
                     elapsedTaskTime: $currentTaskTime
                 )
                 .id(currentTaskIndex)
-                .accessibilityLabel(Text("Temporizador"))
                 
                 Spacer(minLength: 0)
                 

@@ -30,6 +30,7 @@ struct TaskCardView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.main)
+                        .accessibilityLabel("Marcar como concluído")
                 }
                 .disabled(task.isFinished)
                 .padding(5)
@@ -41,22 +42,15 @@ struct TaskCardView: View {
                     Text(task.title)
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .accessibilityLabel(Text("Título da tarefa: \(task.title)"))
                         
                     if (task.isFinished == false) {
                         Label("Estimativa: \(task.estimatedTime.formatToAbbreviated())", systemImage: "timer")
                             .font(.body)
                             .fontWeight(.semibold)
-                            .accessibilityValue(Text("Estimativa de tempo"))
-                            .accessibilityValue(task.estimatedTime.formatToAbbreviated())
                     } else {
                         Text("Concluída")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .accessibilityLabel(Text("Status"))
-                            .accessibilityValue(Text("Tarefa concluída"))
-                        
-                            // Apenas para teste por enquanto
                     }
                 }
                 Spacer(minLength: 0)

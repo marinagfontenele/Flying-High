@@ -39,7 +39,6 @@ struct TimerCardView: View {
                         }
                 }
                 .tint(Color(.main))
-                .accessibilityLabel(Text("Pausar temporizador"))
                 
                 if nextTaskExists{
                     Button {
@@ -60,7 +59,6 @@ struct TimerCardView: View {
                             }
                     }
                     .tint(Color(.main))
-                    .accessibilityLabel(Text("Passar para a próxima tarefa"))
                 }
             }
         }

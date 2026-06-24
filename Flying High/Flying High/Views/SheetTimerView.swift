@@ -24,14 +24,10 @@ struct SheetTimerView: View {
                             .fontWeight(.semibold)
                         Text(room)
                             .font(.title3)
-                            .accessibilityLabel(Text("Cômodo"))
-                            .accessibilityValue(Text(room))
                         
                         Spacer(minLength: 0)
                         
                         CategoryTagView(category: category)
-                            .accessibilityLabel(Text("Categoria"))
-                            .accessibilityValue(Text(category.title))
                     }
                     
                     .padding(16)
