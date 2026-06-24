@@ -20,7 +20,7 @@ struct ScheduleListView: View {
         NavigationStack{
             ScrollView {
                 VStack {
-                    ForEach(schedules) { schedule in
+                    ForEach(schedules.sorted(using: KeyPathComparator(\.totalTime))) { schedule in
                         ScheduleCardView(schedule: schedule)
                     }
                     .navigationTitle("Cronogramas")
@@ -99,7 +99,7 @@ struct ScheduleListView: View {
                         title: "Conferir dispensa",
                         category: .organization,
                         room: nil,
-                        info: "- Anote tudo que tem e deixe num lugar fácil, e anote o que falta.",
+                        info: "- Anote o que falta para organizar a lista de compras.",
                         estimatedTime: 300),
                     TaskModel(
                         title: "Tirar o lixo",
@@ -108,7 +108,7 @@ struct ScheduleListView: View {
                         info: "",
                         estimatedTime: 300),
                     TaskModel(
-                        title: "Guardar as roupas limpas",
+                        title: "Lavar a louça",
                         category: .organization,
                         room: nil,
                         info: "- De preferência, separe as roupas por categoria para facilitar na hora de organizar e procurar elas nas gavetas.",
@@ -172,6 +172,27 @@ struct ScheduleListView: View {
                     info: "- Reorganize os objeto que você guardou no começo do cronograma",
                     estimatedTime: 300),]
             
+            let tasksOrganizationBathroom: [TaskModel] = [
+                TaskModel(
+                    title: "Arrumar a cama",
+                    category: .organization,
+                    room: nil,
+                    info: "- Retire lençóis, travesseiros e demais itens de cima da cama \n- Organize ou troque a colcha de cama se necessário \n- Dobre os lençóis e organize os travesseiros ",
+                    estimatedTime: 600),
+                TaskModel(
+                    title: "Guardar ou jogar roupas no roupeiro",
+                    category: .organization,
+                    room: nil,
+                    info: "- Junte as roupas espalhadas pelo quarto \n- Defina se elas devem ser jogadas no roupeiro para lavar ou se devem voltar para o armário",
+                    estimatedTime: 900),
+                TaskModel(
+                    title: "Organizar demais itens",
+                    category: .organization,
+                    room: nil,
+                    info: "- Junte os demais itens fora do local correto \n- Joguue no lixo o que for necessário e reposicione os demais em seus devidos locais",
+                    estimatedTime: 600),]
+            
+            
             let tasksCleaningRoom: [TaskModel] = [
                 TaskModel(
                     title: "Varrer o quarto",
@@ -212,25 +233,69 @@ struct ScheduleListView: View {
                     info: "- Para facilitar o seu dia a dia, deixe os que você usa com mais frequência em locais de fácil acesso \n- Reorganize também produtos do box se preferir",
                     estimatedTime: 900),]
             
-            let tasksOrganizationBathroom: [TaskModel] = [
+            let tasksCleaningKitchen: [TaskModel] = [
                 TaskModel(
-                    title: "Arrumar a cama",
-                    category: .organization,
+                    title: "Guardar os objetos",
+                    category: .cleaning,
                     room: nil,
-                    info: "- Retire lençóis, travesseiros e demais itens de cima da cama \n- Organize ou troque a colcha de cama se necessário \n- Dobre os lençóis e organize os travesseiros ",
-                    estimatedTime: 600),
-                TaskModel(
-                    title: "Guardar ou jogar roupas no roupeiro",
-                    category: .organization,
-                    room: nil,
-                    info: "- Junte as roupas espalhadas pelo quarto \n- Defina se elas devem ser jogadas no roupeiro para lavar ou se devem voltar para o armário",
+                    info: "- Guarde louças limpas e retire objetos de cima da bancada",
                     estimatedTime: 900),
                 TaskModel(
-                    title: "Organizar demais itens",
+                    title: "Varrer o chão",
+                    category: .cleaning,
+                    room: nil,
+                    info: " Retire os lixos maiores da cozinha e descarte-os \n- Varra a cozinha para retirar as sujeiras menores",
+                    estimatedTime: 900),
+                TaskModel(
+                    title: "Esvaziar lixeira",
+                    category: .cleaning,
+                    room: nil,
+                    info: "- Faça isso para evitar molhá-lo durante as demais etapas",
+                    estimatedTime: 300),
+                TaskModel(
+                    title: "Armários e Gavetas",
+                    category: .cleaning,
+                    room: nil,
+                    info: "- Retire os objetos de cada gaveta e armário e passe um pano úmido com detergente",
+                    estimatedTime: 2400),
+                TaskModel(
+                    title: "Limpar bancadas e pia",
+                    category: .cleaning,
+                    room: nil,
+                    info: "- Com uma esponja e detergente neutro, realize a limpeza das bancadas e da pia",
+                    estimatedTime: 1200),
+                TaskModel(
+                    title: "Limpar chão",
+                    category: .cleaning,
+                    room: nil,
+                    info: "- Aplique um produto apropriado para a limpeza, de preferência que não seja agressivo, e esfregue bem.",
+                    estimatedTime: 900),]
+            
+            let tasksOrganizationKitchen: [TaskModel] = [
+                TaskModel(
+                    title: "Esvaziar os armários",
                     category: .organization,
                     room: nil,
-                    info: "- Junte os demais itens fora do local correto \n- Joguue no lixo o que for necessário e reposicione os demais em seus devidos locais",
-                    estimatedTime: 600),]
+                    info: "- Para uma organização mais profunda, esvazie os armários para fazer uma limpeza geral",
+                    estimatedTime: 1200),
+                TaskModel(
+                    title: "Separar os itens",
+                    category: .organization,
+                    room: nil,
+                    info: "- Separe os itens por categoria e por frequência de uso",
+                    estimatedTime: 1200),
+                TaskModel(
+                    title: "Organizar as tampas",
+                    category: .organization,
+                    room: nil,
+                    info: "- Mantenha tampas juntas aos seus respectivos potes ou panelas",
+                    estimatedTime: 1200),
+                TaskModel(
+                    title: "Reorganizar",
+                    category: .organization,
+                    room: nil,
+                    info: "- Organize os itens deixando os itens mais utilizados em áreas de fácil acesso para facilitar no dia a dia \n- Lembre-se de deixar os temperos em um canto acessível e de organizar também os panos de prato",
+                    estimatedTime: 1200),]
             
             let tasksRepairWalls: [TaskModel] = [
                 TaskModel(
@@ -300,6 +365,14 @@ struct ScheduleListView: View {
                                               
                                               ScheduleModel(title: "Organização da Sala",
                                                             tasks: tasksOrganizationLiving,
+                                                            category: .organization),
+                                              
+                                              ScheduleModel(title: "Limpeza da Cozinha",
+                                                            tasks: tasksCleaningKitchen,
+                                                            category: .cleaning),
+                                              
+                                              ScheduleModel(title: "Organização da Cozinha",
+                                                            tasks: tasksOrganizationKitchen,
                                                             category: .organization),
                                               
                                               ScheduleModel(title: "Pintura e Revestimento",
