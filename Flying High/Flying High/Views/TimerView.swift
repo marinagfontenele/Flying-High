@@ -148,7 +148,7 @@ struct TimerView: View {
                     } label: {
                         Image(systemName: "chevron.backward")
                             .fontWeight(.semibold)
-                            .foregroundColor(.black)
+                            .foregroundStyle(.text)
                     }
                 }
                 
@@ -158,6 +158,7 @@ struct TimerView: View {
                     } label: {
                         Image(systemName: "info")
                             .fontWeight(.semibold)
+                            .foregroundStyle(.white)
                     }
                     .buttonStyle(.glassProminent)
                     .tint(.main)
