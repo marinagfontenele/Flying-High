@@ -171,7 +171,7 @@ struct ScheduleListView: View {
                     info: "- Reorganize os objeto que você guardou no começo do cronograma",
                     estimatedTime: 300),]
             
-            let tasksOrganizationBathroom: [TaskModel] = [
+            let tasksOrganizationBedroom: [TaskModel] = [
                 TaskModel(
                     title: "Arrumar a cama",
                     category: .organization,
@@ -188,7 +188,7 @@ struct ScheduleListView: View {
                     title: "Organizar demais itens",
                     category: .organization,
                     room: nil,
-                    info: "- Junte os demais itens fora do local correto \n- Joguue no lixo o que for necessário e reposicione os demais em seus devidos locais",
+                    info: "- Junte os demais itens fora do local correto \n- Jogue no lixo o que for necessário e reposicione os demais em seus devidos locais",
                     estimatedTime: 600),]
             
             
@@ -212,7 +212,7 @@ struct ScheduleListView: View {
                     info: "- Passe um pano de microfibra úmido nas demais superfícies do quarto \n- Limpe espelhos com limpadores específicos se necessário.",
                     estimatedTime: 900),]
             
-            let tasksOrganizationRoom: [TaskModel] = [
+            let tasksOrganizationItemsKitchen: [TaskModel] = [
                 TaskModel(
                     title: "Conferir produtos",
                     category: .organization,
@@ -346,16 +346,12 @@ struct ScheduleListView: View {
                                                             tasks: tasksCleaningBathroom,
                                                             category: .cleaning),
                                               
-                                              ScheduleModel(title: "Organização do Banheiro",
-                                                            tasks: tasksOrganizationBathroom,
-                                                            category: .organization),
-                                              
                                               ScheduleModel(title: "Limpeza do Quarto",
                                                             tasks: tasksCleaningRoom,
                                                             category: .cleaning),
                                               
-                                              ScheduleModel(title: "Organização do Quarto",
-                                                            tasks: tasksOrganizationRoom,
+                                              ScheduleModel(title: "Organizar compras na cozinha",
+                                                            tasks: tasksOrganizationItemsKitchen,
                                                             category: .organization),
                                               
                                               ScheduleModel(title: "Limpeza da Sala",

@@ -10,7 +10,7 @@ import SwiftUI
 struct SheetTimerView: View {
     @Environment(\.dismiss) var dismiss
     @State var room: String = "Banheiro"
-    @State var category: CategoryModel = CategoryModel.cleaning
+    @State var category: CategoryModel
     @State var info: String
     
     var body: some View {
@@ -60,10 +60,22 @@ struct SheetTimerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(role: .cancel) {
-                        dismiss()
+                    if #available(iOS 26.0, *) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                    } else {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                        .tint(.main)
                     }
-                    .tint(.main)
                 }
             }
         }

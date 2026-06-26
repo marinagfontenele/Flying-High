@@ -39,39 +39,71 @@ struct ScheduleView: View {
                     Spacer(minLength: 0)
                     
                     if schedule.isFinished{
-                        Button{
-                            withAnimation{
-                                schedule.resetTasks()
+                        if #available(iOS 26.0, *) {
+                            Button{
+                                withAnimation{
+                                    schedule.resetTasks()
+                                }
+                            } label: {
+                                Label("Reiniciar Cronograma", systemImage: "arrow.clockwise")
+                                    .frame(maxWidth: .infinity)
+                                    .padding(16)
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                                    .fontWeight(.bold)
                             }
-                        } label: {
-                            Label("Reiniciar Cronograma", systemImage: "arrow.clockwise")
-                                .frame(maxWidth: .infinity)
-                                .padding(16)
-                                .font(.title2)
-                                .foregroundStyle(.white)
-                                .fontWeight(.bold)
+                            .buttonStyle(.glassProminent)
+                            .tint(.main)
+                            .padding(.horizontal, 16)
+                        } else {
+                            Button{
+                                withAnimation{
+                                    schedule.resetTasks()
+                                }
+                            } label: {
+                                Label("Reiniciar Cronograma", systemImage: "arrow.clockwise")
+                                    .frame(maxWidth: .infinity)
+                                    .padding(16)
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                                    .fontWeight(.bold)
+                            }
+                            .tint(.main)
+                            .padding(.horizontal, 16)
                         }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                        .padding(.horizontal, 16)
                     } else {
-                        NavigationLink(destination: TimerView(schedule: schedule)) {
-                            Label("Iniciar Cronograma", systemImage: "play.fill")
-                                .frame(maxWidth: .infinity)
-                                .padding(16)
-                                .font(.title2)
-                                .foregroundStyle(.white)
-                                .fontWeight(.bold)
+                        if #available(iOS 26.0, *) {
+                            NavigationLink(destination: TimerView(schedule: schedule)) {
+                                Label("Iniciar Cronograma", systemImage: "play.fill")
+                                    .frame(maxWidth: .infinity)
+                                    .padding(16)
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                                    .fontWeight(.bold)
+                            }
+                            .buttonStyle(.glassProminent)
+                            .tint(.main)
+                            .padding(.horizontal, 16)
+                        } else {
+                            NavigationLink(destination: TimerView(schedule: schedule)) {
+                                Label("Iniciar Cronograma", systemImage: "play.fill")
+                                    .frame(maxWidth: .infinity)
+                                    .padding(16)
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                                    .fontWeight(.bold)
+                            }
+                            .tint(.main)
+                            .padding(.horizontal, 16)
                         }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                        .padding(.horizontal, 16)
                     }
                 }
             }
             .background(Color.background
             .ignoresSafeArea())
             .toolbarVisibility(.hidden, for: .tabBar)
+            .navigationTitle(schedule.title)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

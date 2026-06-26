@@ -52,17 +52,24 @@ struct ArticleSheetView: View{
                 .ignoresSafeArea(edges: .top)
                 .toolbar{
                     ToolbarItem(placement: .topBarTrailing){
-                        Button(action: {
-                            dismiss()
-                        }){
-                            Image(systemName: "xmark")
-                                .foregroundStyle(.white)
-//                            Text("OK")
-//                                .font(.headline)
-//                                .foregroundColor(.main)
+                        if #available(iOS 26.0, *) {
+                            Button(action: {
+                                dismiss()
+                            }){
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.white)
+                            }
+                            .buttonStyle(.glassProminent)
+                            .tint(.main)
+                        } else {
+                            Button(action: {
+                                dismiss()
+                            }){
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.white)
+                            }
+                            .tint(.main)
                         }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
                     }
                 }
             }
