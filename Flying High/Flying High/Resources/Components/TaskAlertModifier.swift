@@ -80,7 +80,7 @@ struct TaskAlertModifier: ViewModifier {
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
-            Button("Terminar e ir para a próxima tarefa", action: onNextTask)
+            Button("Terminar e ir para a próxima", action: onNextTask)
                 .buttonStyle(.glassProminent)
                 .tint(.main)
             
