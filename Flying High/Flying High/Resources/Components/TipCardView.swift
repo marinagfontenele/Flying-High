@@ -17,19 +17,19 @@ struct TipCardView: View {
                             .font(.title2)
                             .foregroundStyle(.text)
                             .fontWeight(.bold)
-                            .accessibilityLabel(Text("Título da dica: \(article.title)"))
+                            .accessibilityLabel(Text("Artigo: \(article.title)"))
                         
                         Text(article.subtitle)
                             .font(.title3)
                             .foregroundStyle(.text)
-                            .accessibilityLabel(Text("Subtítulo da dica: \(article.subtitle)"))
                     }
                     .frame(width: 267, alignment: .leading)
                     
                     Spacer()
                     
                     Image(systemName: "chevron.right")
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.main)
+                        .accessibilityHidden(true)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 30)
@@ -39,11 +39,11 @@ struct TipCardView: View {
                 .padding(.horizontal, 16)
                 .overlay (alignment: .topTrailing){
                     article.category.tagMarker
-                        .offset(x: -30, y: -4)
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 1)
-                        .accessibilityLabel(Text("Categoria da dica: \(article.category.title)"))
+                        .offset(x: -30, y: 0)
                 }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityHint(Text("Clique para ler o artigo"))
     }
 }
 

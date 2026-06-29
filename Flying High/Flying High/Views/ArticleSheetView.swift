@@ -38,32 +38,38 @@ struct ArticleSheetView: View{
                             .font(.title3)
                             .foregroundColor(.primary)
                             .padding(.bottom, 12)
-                            .accessibilityLabel(Text("Subtítulo: \(content.subtitle)"))
+                            .accessibilityLabel(Text("\(content.subtitle)"))
                         
                         Text (hightlighTitles(content.text))
                             .font(.body)
                             .fontWeight(.regular)
                             .foregroundColor(.primary)
                             .lineSpacing(6)
-                            .accessibilityLabel(Text("Artigo: \(content.text)"))
+                            .accessibilityLabel(Text("Conteúdo: \(content.text)"))
                     }
                     .padding(24)
                 }
                 .ignoresSafeArea(edges: .top)
                 .toolbar{
                     ToolbarItem(placement: .topBarTrailing){
-                        Button(action: {
-                            dismiss()
-                        }){
-                            Image(systemName: "xmark")
-                                .foregroundStyle(.white)
-//                            Text("OK")
-//                                .font(.headline)
-//                                .foregroundColor(.main)
+                        if #available(iOS 26.0, *) {
+                            Button(action: {
+                                dismiss()
+                            }){
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.white)
+                            }
+                            .buttonStyle(.glassProminent)
+                            .tint(.main)
+                        } else {
+                            Button(action: {
+                                dismiss()
+                            }){
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.white)
+                            }
+                            .tint(.main)
                         }
-                        .buttonStyle(.glassProminent)
-                        .tint(.main)
-                        .accessibilityLabel(Text("Fechar"))
                     }
                 }
             }

@@ -6,20 +6,21 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct AchievementsTime: View {
-    
+    @Query var taskList: [TaskModel]
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
-                Text ("Tempo realizando tarefas")
+                Text("Tempo realizando tarefas")
                     .padding(.top, 16)
                     .padding(.bottom, 8)
                     .padding(.horizontal, 16)
                     .font(.headline)
                     .fontWeight(.semibold)
                 
-                Text("3h 20min")
+                Text(getTimeSpent().formatToAbbreviated())
                     .padding(16)
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -34,16 +35,29 @@ struct AchievementsTime: View {
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.iconPurple)
                 .padding(20)
-            
+                .accessibilityHidden(true)
         }
-        .frame(maxWidth: .infinity, maxHeight: 150)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
+    }
+    
+    func getTimeSpent () -> TimeInterval {
+        var timeSpent: TimeInterval = 0
+
+        for task in taskList {
+            for taskDuration in task.durations {
+                timeSpent += taskDuration
+            }
+        }
+        
+        return timeSpent
     }
 }
 
 
 #Preview {
-    AchievementsTime()
+//    AchievementsTime()
 }

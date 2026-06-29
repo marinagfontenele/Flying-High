@@ -66,9 +66,14 @@ struct TaskAlertModifier: ViewModifier {
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
             
-            Button("Salvar e sair", action: onSave)
-                .buttonStyle(.glassProminent)
-                .tint(.main)
+            if #available(iOS 26.0, *) {
+                Button("Salvar e sair", action: onSave)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+            } else {
+                Button("Salvar e sair", action: onSave)
+                    .tint(.main)
+            }
                 
             Button("Sair sem salvar", role: .destructive, action: skipSave)
 
@@ -76,31 +81,51 @@ struct TaskAlertModifier: ViewModifier {
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
             
-            Button("Terminar e ir para a tela inicial", action: onFinishAll)
-                .buttonStyle(.glassProminent)
-                .tint(.main)
+            if #available(iOS 26.0, *) {
+                Button("Terminar e ir para a tela inicial", action: onFinishAll)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+            } else {
+                Button("Terminar e ir para a tela inicial", action: onFinishAll)
+                    .tint(.main)
+            }
             
-            Button("Terminar e ir para a próxima", action: onNextTask)
-                .buttonStyle(.glassProminent)
-                .tint(.main)
+            if #available(iOS 26.0, *) {
+                Button("Terminar e ir para a próxima tarefa", action: onNextTask)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+            } else {
+                Button("Terminar e ir para a próxima tarefa", action: onNextTask)
+                    .tint(.main)
+            }
             
         case .directNext(let onConfirm):
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
                 .foregroundStyle(Color(.systemGray2))
             
-            Button("Finalizar", action: onConfirm)
-                .buttonStyle(.glassProminent)
-                .tint(.main)
+            if #available(iOS 26.0, *) {
+                Button("Finalizar", action: onConfirm)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+            } else {
+                Button("Finalizar", action: onConfirm)
+                    .tint(.main)
+            }
             
         case .lastTask(let onFinishAll):
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
                 .foregroundStyle(Color(.systemGray2))
             
-            Button("Finalizar cronograma", action: onFinishAll)
-                .buttonStyle(.glassProminent)
-                .tint(.main)
+            if #available(iOS 26.0, *) {
+                Button("Finalizar cronograma", action: onFinishAll)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+            } else {
+                Button("Finalizar cronograma", action: onFinishAll)
+                    .tint(.main)
+            }
             
         case .none:
             EmptyView()

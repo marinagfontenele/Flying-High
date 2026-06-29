@@ -6,24 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
-    
-    var schedules : [ScheduleModel]
-    
     var body: some View {
         TabView {
-            Tab("Cronograma", systemImage: "list.bullet.clipboard.fill") {
-                ScheduleListView(schedules: schedules)
+            Tab("Cronograma", systemImage: "list.bullet.clipboard") {
+                ScheduleListView()
             }
             Tab("Conquistas", systemImage: "rosette") {
                 AchievementsView()
             }
-            .accessibilityLabel(Text("Tela de conquistas"))
             Tab("Dicas", systemImage: "lightbulb.max") {
                 TipsView()
             }
-            .accessibilityLabel(Text("Tela de dicas"))
         }
         .tint(.main)
     }
@@ -88,5 +84,5 @@ struct MainView: View {
             category: nil // Seu init vai transformar automaticamente em .none
         )
     ]
-    MainView(schedules: mockSchedules)
+    MainView()
 }

@@ -1,8 +1,8 @@
 {
   "fill" : {
     "linear-gradient" : [
-      "display-p3:0.67725,0.59229,0.88818,1.00000",
-      "display-p3:0.52344,0.35449,0.93506,1.00000"
+      "display-p3:0.71952,0.38962,1.00000,1.00000",
+      "display-p3:0.46508,0.16418,0.96783,1.00000"
     ],
     "orientation" : {
       "start" : {
@@ -19,10 +19,12 @@
     {
       "layers" : [
         {
-          "image-name" : "Group 7.svg",
-          "name" : "Group 7",
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Vector2.svg",
+          "name" : "Vector2",
           "position" : {
-            "scale" : 5,
+            "scale" : 1.5,
             "translation-in-points" : [
               0,
               0

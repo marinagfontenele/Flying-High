@@ -20,6 +20,7 @@ struct TaskCardView: View {
                     activeAlert = .directNext(onConfirm: {
                         withAnimation(.easeOut) {
                             task.isFinished = true
+                            task.timesDone += 1
                         }
                     })
                     isAlertPresented = true
@@ -29,6 +30,8 @@ struct TaskCardView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.main)
+                        .accessibilityLabel("Marcar \(task.title) como concluído")
+                        .accessibilitySortPriority(1)
                 }
                 .disabled(task.isFinished)
                 .padding(5)
@@ -40,22 +43,20 @@ struct TaskCardView: View {
                     Text(task.title)
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .accessibilityLabel(Text("Título da tarefa: \(task.title)"))
+                        .accessibilityLabel(Text("Tarefa: \(task.title)"))
+                        .accessibilitySortPriority(2)
                         
                     if (task.isFinished == false) {
                         Label("Estimativa: \(task.estimatedTime.formatToAbbreviated())", systemImage: "timer")
                             .font(.body)
                             .fontWeight(.semibold)
-                            .accessibilityValue(Text("Estimativa de tempo"))
-                            .accessibilityValue(task.estimatedTime.formatToAbbreviated())
+                            .accessibilitySortPriority(2)
                     } else {
                         Text("Concluída")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .accessibilityLabel(Text("Status"))
-                            .accessibilityValue(Text("Tarefa concluída"))
+                            .accessibilitySortPriority(2)
                         
-                            // Apenas para teste por enquanto
                     }
                 }
                 Spacer(minLength: 0)
@@ -66,6 +67,7 @@ struct TaskCardView: View {
         .opacity(task.isFinished ? 0.5 : 1)
         .padding(.horizontal, 16)
         .taskAlert(isAlertPresented: $isAlertPresented, type: activeAlert)
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -24,8 +24,7 @@ struct ProgressCardView: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundStyle(.text)
-                            .accessibilityLabel(Text("Título da tarefa"))
-                            .accessibilityValue(Text(title))
+                            .accessibilityHidden(true)
                         
                         Spacer(minLength: 0)
                         
@@ -34,17 +33,15 @@ struct ProgressCardView: View {
                                 .font(.headline)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.text)
-                                .accessibilityLabel(Text("Tarefas concluídas"))
-                                .accessibilityValue(Text("\(doneTasks) concluídas de \(totalTasks) no total"))
+                                .accessibilityLabel(Text("Tarefas concluídas: \(doneTasks) concluídas de \(totalTasks) no total"))
                         }
                     }
-                    
+            
                     Text(info)
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityLabel(Text("Tempo restante"))
-                        .accessibilityValue(Text(info))
+                        .accessibilityLabel(Text(getLabelString()))
                 }
                 Spacer(minLength: 0)
             }
@@ -53,7 +50,19 @@ struct ProgressCardView: View {
         }
         .padding(.horizontal, 16)
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
-        .accessibilityLabel(Text("Progresso de conclusão de tarefas"))
+        .accessibilityElement(children: .combine)
+    }
+    
+    func getLabelString () -> String {
+        var labelString: String
+        
+        if progress {
+            labelString = "Tarefa atual: \(info)"
+        } else {
+            labelString = "Tempo restante: \(info)"
+        }
+        
+        return labelString
     }
 }
 

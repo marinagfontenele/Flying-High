@@ -20,13 +20,13 @@ struct ScheduleCardView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityLabel(Text(schedule.title))
+                        .accessibilityLabel(Text("Cronograma: \(schedule.title)"))
                     
                     Label(schedule.totalTime.formatToAbbreviated(), systemImage: "timer")
                         .font(.body)
                         .fontWeight(.semibold)
                         .foregroundStyle(.text)
-                        .accessibilityValue(Text(schedule.totalTime.formatToAbbreviated()))
+                        .accessibilityLabel(Text("Tempo estimado: \(schedule.totalTime.formatToAbbreviated())"))
                     
                     CategoryTagView(category: schedule.category!)
                 }
@@ -34,12 +34,14 @@ struct ScheduleCardView: View {
                 Spacer(minLength: 0)
                 
                 Image(systemName: "chevron.right")
+                    .accessibilityHidden(true)
             }
             .padding(10)
             .background(.violet)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .opacity(schedule.isFinished ? 0.6 : 1.0)
+        .accessibilityHint(Text("Clique para visualizar as tarefas do cronograma"))
+        .accessibilityElement(children: .combine)
     }
 }
 

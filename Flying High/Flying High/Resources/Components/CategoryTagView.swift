@@ -14,13 +14,12 @@ struct CategoryTagView: View {
         Text(category.title)
             .font(.footnote)
             .fontWeight(.semibold)
-            .foregroundColor(.white)
+            .foregroundColor(.categoryText)
             .padding(.vertical, 1)
             .padding(.horizontal, 16)
             .background(category.iconColor)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .accessibilityLabel(Text("Categoria do cronograma"))
-            .accessibilityValue(Text(category.title))
+            .accessibilityLabel(Text("Categoria: \(category.title)"))
     }
 }
 

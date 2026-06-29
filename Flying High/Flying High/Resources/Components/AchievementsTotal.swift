@@ -6,26 +6,24 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct AchievementsTotal: View {
-    @State var numberTasks: Int = 10
+    @Query var taskList: [TaskModel]
     
     var body: some View {
         HStack {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 6) {
                 Text ("Total")
-                    .padding(.top, 16)
-                    .padding(.bottom, 8)
-                    .padding(.horizontal, 16)
                     .font(.body)
                     .fontWeight(.semibold)
+                    .accessibilityLabel(Text("Total de tarefas concluídas"))
                 
-                Text("\(numberTasks)")
-                    .padding(.bottom, 16)
-                    .padding(.horizontal, 16)
+                Text("\(getTotalTasksDone()) ao todo!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
+            .padding(.horizontal, 16)
             
             Spacer(minLength: 0)
             
@@ -34,14 +32,25 @@ struct AchievementsTotal: View {
                 .scaledToFit()
                 .frame(width: 100, height: 100)
                 .foregroundStyle(.iconPurple)
-                .padding(.top, 30)
+                .padding(.vertical, 15)
+                .accessibilityHidden(true)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: 110)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
-}
+        .accessibilityElement(children: .combine)
+    }
+    
+    func getTotalTasksDone() -> Int {
+        var timesDone: Int = 0
+        for task in taskList {
+            timesDone += task.timesDone
+        }
+        
+        return timesDone
+    }
 }
 
 

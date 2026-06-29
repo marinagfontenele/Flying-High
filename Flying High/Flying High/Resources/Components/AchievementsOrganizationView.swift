@@ -6,47 +6,59 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct AchievementsOrganizationView: View {
-    var category: CategoryModel
-    @State var numberTasks: Int = 10
+    @State var category: CategoryModel = CategoryModel.organization
+    @Query var taskList: [TaskModel]
     
     var body: some View {
         VStack {
+            Spacer()
             
             Image(systemName: category.iconSymbol)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 70, height: 70)
-                .padding(16)
+                .frame(width: 95, height: 95)
+                .padding(.horizontal, 16)
                 .foregroundStyle(category.iconColor)
-            
-            HStack{
-                Text ("\(category.title)")
-                    .padding(.top, 18)
-                    .padding(.horizontal, 16)
-                    .font(.body)
-                    .fontWeight(.semibold)
-                
-                Spacer(minLength: 0)
-            }
+                .accessibilityHidden(true)
             
             HStack {
-                Text("\(numberTasks)")
-                    .padding(16)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-                Spacer(minLength: 0)
+                VStack (alignment: .leading, spacing: 6){
+                    Text ("\(category.title)")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .accessibilityLabel(Text("Categoria: \(category.title)"))
+                    Text("\(getNumberTasks())")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .accessibilityLabel(Text("Quantidade de Tarefas concluídas: \(getNumberTasks())"))
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 16)
+                Spacer()
             }
         }
-        .frame(maxWidth: 150, maxHeight: 285)
+        .frame(maxWidth: 150, maxHeight: .infinity)
         .background(.whiteCard)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+        .accessibilityElement(children: .combine)
+    }
+    
+    func getNumberTasks() -> Int {
+        var timesDone: Int = 0
+        for task in taskList {
+            if task.category == category {
+                timesDone += task.timesDone
+            }
+        }
+        
+        return timesDone
     }
 }
 
 #Preview {
-    AchievementsOrganizationView(category: CategoryModel.organization)
+//    AchievementsOrganizationView(category: CategoryModel.organization)
 }

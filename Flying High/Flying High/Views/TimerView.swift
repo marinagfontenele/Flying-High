@@ -46,7 +46,8 @@ struct TimerView: View {
             VStack {
                 ProgressCardView(title: "Em Progresso", info: currentTask.title, doneTasks: tasksFinished + 1, totalTasks: schedule.tasks.count, progress: true)
                     .id(currentTaskIndex)
-//                
+                    .accessibilityHidden(isPresented)
+//
 //                Divider()
 //                    .background(Color(.separator))
 //                    .padding(.horizontal, 30)
@@ -57,12 +58,10 @@ struct TimerView: View {
                             Text("Próxima Tarefa: \(schedule.tasks[nextTaskIndex].title)")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                                .accessibilityLabel(Text("Próxima tarefa: \(schedule.tasks[nextTaskIndex].title)"))
                         } else {
                             Text("Última Tarefa!")
                                 .font(.body)
                                 .fontWeight(.semibold)
-                                .accessibilityLabel(Text("Última tarefa restante"))
                         }
                         Spacer(minLength: 0)
                     }
@@ -70,6 +69,7 @@ struct TimerView: View {
                     .background(Color(.whiteCard), in: RoundedRectangle(cornerRadius: 15))
                     .padding(.horizontal, 16)
                     .shadow(color: .shadow, radius: 6, x: 2, y: 2)
+                    .accessibilityHidden(isPresented)
                 }
                 
                 if !isPresented {
@@ -88,38 +88,72 @@ struct TimerView: View {
                     elapsedTaskTime: $currentTaskTime
                 )
                 .id(currentTaskIndex)
-                .accessibilityLabel(Text("Temporizador"))
+                .accessibilityHidden(isPresented)
                 
                 Spacer(minLength: 0)
                 
-                Button { //TODO: AJEITAR BUG DO botao - quando clica em finalizar o botão de play aparece ao inves do de pause 
-                    let finishAllAction = {
-                        isRunning = false
-                        schedule.tasks[currentTaskIndex].isFinished = true
-                        schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
-                        schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                if #available(iOS 26.0, *) {
+                    Button {
+                        let finishAllAction = {
+                            isRunning = false
+                            schedule.tasks[currentTaskIndex].isFinished = true
+                            schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+                            schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                            schedule.tasks[currentTaskIndex].timesDone += 1
+                            
+                            dismiss()
+                            dismiss()
+                        }
+                        if nextTaskExists {
+                            activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
+                        } else {
+                            activeAlert = .lastTask(onFinishAll: finishAllAction)
+                        }
+                        isAlertPresented = true
                         
-                        dismiss()
-                        dismiss()
+                    } label: {
+                        Label("Finalizar Tarefa", systemImage: "checkmark")
+                            .frame(maxWidth: .infinity)
+                            .padding(16)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
                     }
-                    if nextTaskExists {
-                        activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
-                    } else {
-                        activeAlert = .lastTask(onFinishAll: finishAllAction)
+                    .buttonStyle(.glassProminent)
+                    .tint(.main)
+                    .padding(.horizontal, 16)
+                    .accessibilityHidden(isPresented)
+                } else {
+                    Button {
+                        let finishAllAction = {
+                            isRunning = false
+                            schedule.tasks[currentTaskIndex].isFinished = true
+                            schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
+                            schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                            schedule.tasks[currentTaskIndex].timesDone += 1
+                            
+                            dismiss()
+                            dismiss()
+                        }
+                        if nextTaskExists {
+                            activeAlert = .optionsMenu(onFinishAll: finishAllAction,onNextTask: {goToNextTask() })
+                        } else {
+                            activeAlert = .lastTask(onFinishAll: finishAllAction)
+                        }
+                        isAlertPresented = true
+                        
+                    } label: {
+                        Label("Finalizar Tarefa", systemImage: "checkmark")
+                            .frame(maxWidth: .infinity)
+                            .padding(16)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
                     }
-                    isAlertPresented = true
-                    
-                } label: {
-                    Label("Finalizar Tarefa", systemImage: "checkmark")
-                        .frame(maxWidth: .infinity)
-                        .padding(16)
-                        .font(.title2)
-                        .foregroundStyle(.white)
-                        .fontWeight(.bold)
+                    .tint(.main)
+                    .padding(.horizontal, 16)
+                    .accessibilityHidden(isPresented)
                 }
-                .buttonStyle(.glassProminent)
-                .tint(.main)
-                .padding(.horizontal, 16)
                 
             }
             .animation(.default, value: isPresented)
@@ -134,6 +168,7 @@ struct TimerView: View {
                                 schedule.tasks[currentTaskIndex].isFinished = true
                                 schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
                                 schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+                                schedule.tasks[currentTaskIndex].timesDone += 1
                                 
                                 dismiss()
                             },
@@ -146,19 +181,31 @@ struct TimerView: View {
                     } label: {
                         Image(systemName: "chevron.backward")
                             .fontWeight(.semibold)
-                            .foregroundColor(.black)
+                            .foregroundStyle(.text)
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isPresented.toggle()
-                    } label: {
-                        Image(systemName: "info")
-                            .fontWeight(.semibold)
+                    if #available(iOS 26.0, *) {
+                        Button {
+                            isPresented.toggle()
+                        } label: {
+                            Image(systemName: "info")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.main)
+                    } else {
+                        Button {
+                            isPresented.toggle()
+                        } label: {
+                            Image(systemName: "info")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                        }
+                        .tint(.main)
                     }
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -169,7 +216,7 @@ struct TimerView: View {
         }
         .sheet(isPresented: $isPresented) {
             NavigationStack {
-                SheetTimerView()
+                SheetTimerView(category: schedule.tasks[currentTaskIndex].category, info: currentTask.info ?? "Nenhuma informação adicional foi dada")
             }
             .presentationDetents([.medium])
             .presentationBackground(Color(.systemBackground))
@@ -186,6 +233,7 @@ struct TimerView: View {
         schedule.tasks[currentTaskIndex].isFinished = true
         schedule.tasks[currentTaskIndex].durations.append(currentTaskTime)
         schedule.tasks[currentTaskIndex].finishedDates.append(Date())
+        schedule.tasks[currentTaskIndex].timesDone += 1
         
         let completedTask = schedule.tasks[currentTaskIndex]
         
