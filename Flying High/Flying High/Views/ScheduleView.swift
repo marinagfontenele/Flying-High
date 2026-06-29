@@ -93,6 +93,8 @@ struct ScheduleView: View {
                                     .foregroundStyle(.white)
                                     .fontWeight(.bold)
                             }
+                            .opacity(0.9)
+                            .buttonStyle(.glassProminent)
                             .tint(.main)
                             .padding(.horizontal, 16)
                         }
