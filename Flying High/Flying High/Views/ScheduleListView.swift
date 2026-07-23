@@ -46,7 +46,7 @@ struct ScheduleListView: View {
                 title: "Espanar",
                 category: .cleaning,
                 room: nil,
-                info: "- Espane todas as partes, atras dos moveis e nos cantos",
+                info: "- Espane todas as partes, incluindo atrás dos moveis e nos cantos.",
                 estimatedTime: 1200
             ),
              
@@ -54,14 +54,14 @@ struct ScheduleListView: View {
                 title: "Varrer ou aspirar o chão",
                 category: .repair,
                 room: nil,
-                info: "- Não esqueça de varrer em baixo de todos os moveis, dos tapetes, e no canteiros",
+                info: "- Não esqueça de varrer em baixo de todos os móveis, tapetes e canteiros.",
                 estimatedTime: 600
              ),
              TaskModel(
                 title: "Passar pano molhado no chão",
                 category: .cleaning,
                 room: nil,
-                info: "- Lembre-se de usar um desinfetante que goste, use um pano limpo, e um balde de agua",
+                info: "- Para isso, use um desinfetante, um pano limpo e um balde de agua.",
                 estimatedTime: 600
              ),
              TaskModel(
@@ -70,13 +70,6 @@ struct ScheduleListView: View {
                 room: nil,
                 info: "- Antes de lustrar os móveis, passe um pano seco para evitar manchas ou arranhões.\n- Caso não tenha um lustra móveis em casa, você pode fazer um caseiro diluindo uma colher de sopa de amaciante em meio litro de água.",
                 estimatedTime: 300
-             ),
-             TaskModel(
-                title: "Passar aromatizador de ambiente",
-                category: .cleaning,
-                room: nil,
-                info: "",
-                estimatedTime: 180
              )]
             
             let tasksOrganizationLiving: [TaskModel] = [
@@ -84,13 +77,13 @@ struct ScheduleListView: View {
                         title: "Reorganizar itens",
                         category: .organization,
                         room: nil,
-                        info: "- Cheque se há itens fora do lugar e devolva-os aos seus devidos lugares",
+                        info: "- Cheque se há itens fora do lugar e devolva-os aos seus devidos lugares.",
                         estimatedTime: 1200),
                     TaskModel(
                         title: "Verifique armários e gavetas",
                         category: .organization,
                         room: nil,
-                        info: "- Organize os armários por categoria para facilitar o dia a dia\n- Jogue itens fora, caso ache necessário",
+                        info: "- Organize os armários por categoria para facilitar o dia a dia.\n- Jogue itens fora, caso ache necessário.",
                         estimatedTime: 1200),]
             
             let tasksOrganization: [TaskModel] = [
@@ -108,7 +101,7 @@ struct ScheduleListView: View {
                         estimatedTime: 300),
                     TaskModel(
                         title: "Lavar a louça",
-                        category: .organization,
+                        category: .cleaning,
                         room: nil,
                         info: "- De preferência, separe as roupas por categoria para facilitar na hora de organizar e procurar elas nas gavetas.",
                         estimatedTime: 1200),]
@@ -136,39 +129,39 @@ struct ScheduleListView: View {
             let tasksCleaningBathroom: [TaskModel] = [
                 TaskModel(
                     title: "Guardar itens",
-                    category: .cleaning,
+                    category: .organization,
                     room: nil,
-                    info: "- Retire os itens de cima da pia ou das demais superfícies que você irá limpar ",
+                    info: "- Retire os itens de cima da pia ou das demais superfícies que você irá limpar.",
                     estimatedTime: 600),
                 TaskModel(
-                    title: "Trocar a fechadura do banheio",
+                    title: "Limpar a cuba da pia",
                     category: .cleaning,
                     room: nil,
-                    info: "- Lave a superfície com uma esponja macia e detergente neutro \n- Enxágue com água morna \n- Seque a pia com um pano limpo para evitar manchas d'água.",
+                    info: "- Lave a superfície com uma esponja macia e detergente neutro. \n- Enxágue com água morna. \n- Seque a pia com um pano limpo para evitar manchas d'água.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Limpar o box",
                     category: .cleaning,
                     room: nil,
-                    info: "- Borrife uma mistura de 1 xícara de vinagre branco, 1 xícara de álcool e 1 colher de detergente \n- Aplique no vidro e deixe agir por 5 minutos \n- Esfregue com a parte macia da esponja e enxague \n- Seque com um rodo de pia para evitar manchas",
+                    info: "- Borrife uma mistura de 1 xícara de vinagre branco, 1 xícara de álcool e 1 colher de detergente. \n- Aplique no vidro e deixe agir por 5 minutos. \n- Esfregue com a parte macia da esponja e enxague. \n- Seque com um rodo de pia para evitar manchas.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Limpar o chão",
                     category: .cleaning,
                     room: nil,
-                    info: "- Remova os resíduos sólidos \n- Aplique uma mistura de detergente neutro e vinagre de álcool (ou água sanitária para manchas mais fortes) \n- Deixe agir por 10 minutos \n- Esfregue com uma vassoura ou escova \n- Enxágue em seguida.",
+                    info: "- Remova os resíduos sólidos. \n- Aplique uma mistura de detergente neutro e vinagre de álcool (ou água sanitária para manchas mais fortes). \n- Deixe agir por 10 minutos. \n- Esfregue com uma vassoura ou escova. \n- Enxágue em seguida.",
                     estimatedTime: 2400),
                 TaskModel(
                     title: "Limpar o vaso sanitário",
                     category: .cleaning,
                     room: nil,
-                    info: "- De preferência, use luvas de borracha \n- Use um pano de microfibra seco para limpar todo o exterior do vaso sanitário \n- Aplique o limpador na parte interna do vaso, para deixá-lo agindo enquanto limpa a parte exterior \n- Aplique limpador de vaso sanitário em um pano de microfibra e limpe a parte superior e as laterais do tanque, incluindo a descarga \n- use esse mesmo pano par alimpar o assento, a base e as paredes do vaso \n- Por fim, use uma escova sanitária para esfregar a parte interna do vaso.",
+                    info: "- De preferência, use luvas de borracha. \n- Use um pano de microfibra seco para limpar todo o exterior do vaso sanitário. \n- Aplique o limpador na parte interna do vaso, para deixá-lo agindo enquanto limpa a parte exterior. \n- Aplique limpador de vaso sanitário em um pano de microfibra e limpe a parte superior e as laterais do tanque, incluindo a descarga. \n- Use esse mesmo pano para limpar o assento, a base e as paredes do vaso. \n- Por fim, use uma escova sanitária para esfregar a parte interna do vaso.",
                     estimatedTime: 900),
                 TaskModel(
                     title: "Reorganizar itens",
-                    category: .cleaning,
+                    category: .organization,
                     room: nil,
-                    info: "- Reorganize os objeto que você guardou no começo do cronograma",
+                    info: "- Reorganize os objetos que você guardou no começo do cronograma.",
                     estimatedTime: 300),]
             
             let tasksOrganizationBedroom: [TaskModel] = [
@@ -176,19 +169,19 @@ struct ScheduleListView: View {
                     title: "Arrumar a cama",
                     category: .organization,
                     room: nil,
-                    info: "- Retire lençóis, travesseiros e demais itens de cima da cama \n- Organize ou troque a colcha de cama se necessário \n- Dobre os lençóis e organize os travesseiros ",
+                    info: "- Retire lençóis, travesseiros e demais itens de cima da cama. \n- Organize ou troque a colcha de cama se necessário. \n- Dobre os lençóis e organize os travesseiros.",
                     estimatedTime: 600),
                 TaskModel(
-                    title: "Guardar ou jogar roupas no roupeiro",
+                    title: "Organizar roupas",
                     category: .organization,
                     room: nil,
-                    info: "- Junte as roupas espalhadas pelo quarto \n- Defina se elas devem ser jogadas no roupeiro para lavar ou se devem voltar para o armário",
+                    info: "- Junte roupas espalhadas pelo quarto. \n- Defina se elas devem ser jogadas no roupeiro para lavar ou se devem voltar para o armário.",
                     estimatedTime: 900),
                 TaskModel(
                     title: "Organizar demais itens",
                     category: .organization,
                     room: nil,
-                    info: "- Junte os demais itens fora do local correto \n- Jogue no lixo o que for necessário e reposicione os demais em seus devidos locais",
+                    info: "- Junte os itens que encontram-se fora do local correto. \n- Jogue no lixo o que for necessário e reposicione os demais em seus devidos locais.",
                     estimatedTime: 600),]
             
             
@@ -197,19 +190,19 @@ struct ScheduleListView: View {
                     title: "Varrer o quarto",
                     category: .cleaning,
                     room: nil,
-                    info: "- Retire os lixos maiores do quarto e descarte-os \n- Varra o quarto para retirar as sujeiras menores",
+                    info: "- Retire os lixos maiores do quarto e descarte-os. \n- Varra o quarto para retirar as sujeiras menores.",
                     estimatedTime: 900),
                 TaskModel(
                     title: "Passar o pano no chão",
                     category: .cleaning,
                     room: nil,
-                    info: "-Em um balde, dilua desinfetante ou limpador específico em água morna \n- Umedeça um pano (microfibra ou algodão) e torça bem para tirar o excesso \n- Passe no chão buscando limpar toda a superfície",
+                    info: "- Em um balde, dilua desinfetante ou limpador específico em água morna. \n- Umedeça um pano (microfibra ou algodão) e torça bem para tirar o excesso. \n- Passe no chão buscando limpar toda a superfície.",
                     estimatedTime: 900),
                 TaskModel(
                     title: "Limpar móveis e demais superfícies",
                     category: .cleaning,
                     room: nil,
-                    info: "- Passe um pano de microfibra úmido nas demais superfícies do quarto \n- Limpe espelhos com limpadores específicos se necessário.",
+                    info: "- Passe um pano de microfibra úmido nas demais superfícies do quarto. \n- Limpe espelhos com limpadores específicos se necessário.",
                     estimatedTime: 900),]
             
             let tasksOrganizationItemsKitchen: [TaskModel] = [
@@ -223,19 +216,19 @@ struct ScheduleListView: View {
                     title: "Agrupar itens por funcionalidade",
                     category: .organization,
                     room: nil,
-                    info: "- Separe os itens por categoria para facilitar na organização",
+                    info: "- Separe os itens por categoria para facilitar na organização.",
                     estimatedTime: 600),
                 TaskModel(
                     title: "Organizar itens",
                     category: .organization,
                     room: nil,
-                    info: "- Para facilitar o seu dia a dia, deixe os que você usa com mais frequência em locais de fácil acesso \n- Reorganize também produtos do box se preferir",
+                    info: "- Para facilitar o dia a dia, deixe os itens que você usa com mais frequência em locais de fácil acesso. \n- Reorganize também produtos do box se preferir.",
                     estimatedTime: 900),]
             
             let tasksCleaningKitchen: [TaskModel] = [
                 TaskModel(
                     title: "Guardar os objetos",
-                    category: .cleaning,
+                    category: .organization,
                     room: nil,
                     info: "- Guarde louças limpas e retire objetos de cima da bancada",
                     estimatedTime: 900),
@@ -243,25 +236,25 @@ struct ScheduleListView: View {
                     title: "Varrer o chão",
                     category: .cleaning,
                     room: nil,
-                    info: " Retire os lixos maiores da cozinha e descarte-os \n- Varra a cozinha para retirar as sujeiras menores",
+                    info: " Retire os lixos maiores da cozinha e descarte-os. \n- Varra a cozinha para retirar as sujeiras menores.",
                     estimatedTime: 900),
                 TaskModel(
                     title: "Esvaziar lixeira",
                     category: .cleaning,
                     room: nil,
-                    info: "- Faça isso para evitar molhá-lo durante as demais etapas",
+                    info: "- Faça isso para evitar molhá-la durante as demais etapas.",
                     estimatedTime: 300),
                 TaskModel(
-                    title: "Armários e Gavetas",
+                    title: "Limpar armários e gavetas",
                     category: .cleaning,
                     room: nil,
-                    info: "- Retire os objetos de cada gaveta e armário e passe um pano úmido com detergente",
+                    info: "- Retire os objetos de cada gaveta e armário e passe um pano úmido com detergente.",
                     estimatedTime: 2400),
                 TaskModel(
                     title: "Limpar bancadas e pia",
                     category: .cleaning,
                     room: nil,
-                    info: "- Com uma esponja e detergente neutro, realize a limpeza das bancadas e da pia",
+                    info: "- Com uma esponja e detergente neutro, realize a limpeza das bancadas e da pia.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Limpar chão",
@@ -275,25 +268,25 @@ struct ScheduleListView: View {
                     title: "Esvaziar os armários",
                     category: .organization,
                     room: nil,
-                    info: "- Para uma organização mais profunda, esvazie os armários para fazer uma limpeza geral",
+                    info: "- Para uma organização mais profunda, esvazie os armários para fazer uma limpeza geral.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Separar os itens",
                     category: .organization,
                     room: nil,
-                    info: "- Separe os itens por categoria e por frequência de uso",
+                    info: "- Separe os itens por categoria e por frequência de uso.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Organizar as tampas",
                     category: .organization,
                     room: nil,
-                    info: "- Mantenha tampas juntas aos seus respectivos potes ou panelas",
+                    info: "- Mantenha tampas juntas aos seus respectivos potes ou panelas.",
                     estimatedTime: 1200),
                 TaskModel(
                     title: "Reorganizar",
                     category: .organization,
                     room: nil,
-                    info: "- Organize os itens deixando os itens mais utilizados em áreas de fácil acesso para facilitar no dia a dia \n- Lembre-se de deixar os temperos em um canto acessível e de organizar também os panos de prato",
+                    info: "- Organize os itens deixando os mais utilizados em áreas de fácil acesso para facilitar o dia a dia. \n- Lembre-se de deixar os temperos em um local acessível e de organizar também os panos de prato.",
                     estimatedTime: 1200),]
             
             let tasksRepairWalls: [TaskModel] = [
@@ -311,7 +304,7 @@ struct ScheduleListView: View {
                     estimatedTime: 300),
                 TaskModel(
                     title: "Limpar com um pano úmido para remover o pó",
-                    category: .repair,
+                    category: .cleaning,
                     room: nil,
                     info: "",
                     estimatedTime: 300),

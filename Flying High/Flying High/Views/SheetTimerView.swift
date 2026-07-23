@@ -43,9 +43,11 @@ struct SheetTimerView: View {
                     .padding(.horizontal, 16)
                     
                     if info == "" {
-                        Text("Nenhuma informação adicionada")
+                        Text("Nenhuma informação adicionada.")
                             .padding(.bottom, 16)
                             .padding(.horizontal, 16)
+                        
+                        Spacer(minLength: 0)
                     } else {
                         Text(info)
                             .padding(.bottom, 16)
