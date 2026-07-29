@@ -65,15 +65,6 @@ struct TaskAlertModifier: ViewModifier {
         case .goBack(let onSave, let skipSave):
             Button("Cancelar", role: .cancel) { }
                 .tint(.black)
-            
-            if #available(iOS 26.0, *) {
-                Button("Salvar e sair", action: onSave)
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
-            } else {
-                Button("Salvar e sair", action: onSave)
-                    .tint(.main)
-            }
                 
             Button("Sair sem salvar", role: .destructive, action: skipSave)
 
@@ -82,20 +73,11 @@ struct TaskAlertModifier: ViewModifier {
                 .tint(.black)
             
             if #available(iOS 26.0, *) {
-                Button("Terminar e ir para a tela inicial", action: onFinishAll)
+                Button("Finalizar", action: onFinishAll)
                     .buttonStyle(.glassProminent)
                     .tint(.main)
             } else {
-                Button("Terminar e ir para a tela inicial", action: onFinishAll)
-                    .tint(.main)
-            }
-            
-            if #available(iOS 26.0, *) {
-                Button("Terminar e ir para a próxima tarefa", action: onNextTask)
-                    .buttonStyle(.glassProminent)
-                    .tint(.main)
-            } else {
-                Button("Terminar e ir para a próxima tarefa", action: onNextTask)
+                Button("Finalizar", action: onFinishAll)
                     .tint(.main)
             }
             
