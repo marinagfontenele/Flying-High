@@ -43,27 +43,27 @@ struct TimerCardView: View {
                 .tint(Color(.main))
                 .accessibilityLabel(Text(isRunning ? "Iniciar cronômetro" : "Pausar cronômetro"))
                 
-                if nextTaskExists{
-                    Button {
-                        if engine.isRunning {
-                            engine.pause()
-                            isRunning = false
-                        }
-                        onForwardPressed()
-                    } label: {
-                        Circle()
-                            .frame(maxWidth: 90, maxHeight:80)
-                            .overlay(alignment: .center) {
-                                Image(systemName: "forward.end.fill")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .padding(5)
-                                    .font(.system(size: 34))
-                            }
-                    }
-                    .tint(Color(.main))
-                    .accessibilityLabel(Text("Passar para a próxima tarefa"))
-                }
+//                if nextTaskExists{
+//                    Button {
+//                        if engine.isRunning {
+//                            engine.pause()
+//                            isRunning = false
+//                        }
+//                        onForwardPressed()
+//                    } label: {
+//                        Circle()
+//                            .frame(maxWidth: 90, maxHeight:80)
+//                            .overlay(alignment: .center) {
+//                                Image(systemName: "forward.end.fill")
+//                                    .fontWeight(.semibold)
+//                                    .foregroundStyle(.white)
+//                                    .padding(5)
+//                                    .font(.system(size: 34))
+//                            }
+//                    }
+//                    .tint(Color(.main))
+//                    .accessibilityLabel(Text("Passar para a próxima tarefa"))
+//                }
             }
         }
 //        .accessibilityElement(children: .combine)
