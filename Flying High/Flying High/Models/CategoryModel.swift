@@ -10,6 +10,7 @@ import SwiftData
 import SwiftUI
 
 enum CategoryModel: String, CaseIterable, Codable{
+    
     case none = "Não definido"
     case cleaning = "Limpeza"
     case repair = "Reparo"

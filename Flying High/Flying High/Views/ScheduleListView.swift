@@ -11,10 +11,11 @@ import SwiftData
 struct ScheduleListView: View {
     @Query var tasks : [TaskModel]
     @Query var schedules : [ScheduleModel]
-    @Environment(\.modelContext) private var modelContext
     
+    @Environment(\.modelContext) private var modelContext
     @AppStorage("hasLaunchedBefore") var hasLaunchedBefore = false
     
+    @State var presentScheduleSheet: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -27,6 +28,26 @@ struct ScheduleListView: View {
                     .padding(.horizontal, 16)
                     .padding(.top, 10)
                 }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button ("", systemImage: "plus") {
+                            presentScheduleSheet.toggle()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.main)
+                        .accessibilityLabel(Text("Adicionar tarefa"))
+                        .sheet(isPresented: $presentScheduleSheet) {
+                            NavigationStack {
+                                CreateScheduleView()
+                            }
+                            .presentationSizing(.page)
+                        }
+                    }
+                }
+                .background(Color.background
+                .ignoresSafeArea())
+                .toolbarVisibility(.hidden, for: .tabBar)
+                .navigationBarTitleDisplayMode(.inline)
                 .padding(.top, 10)
             }
             .background(Color.background
@@ -382,6 +403,11 @@ struct ScheduleListView: View {
     }
     
 }
+
+#Preview {
+    ScheduleListView()
+}
+
 //
 //#Preview {
 //    var localTasks: [TaskModel] = [

@@ -10,6 +10,9 @@ import SwiftUI
 struct ScheduleView: View {
     
     @Bindable var schedule: ScheduleModel
+    @State var presentTaskSheet: Bool = false
+    @State var isDeleting: Bool = false
+    @State var presentEditSheet: Bool = false
     
     var tasksFinished: Int {
         schedule.tasks.count(where: { $0.isFinished })
@@ -27,14 +30,47 @@ struct ScheduleView: View {
                 ZStack (alignment: .bottom){
                     Spacer(minLength: 0)
                     
-                    ScrollView(.vertical, showsIndicators: false) {
+                    List {
                         ForEach(schedule.tasks){ task in
                             TaskCardView(task: task)
                                 .padding(.top, 10)
+                                .listRowBackground(EmptyView())
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                                .swipeActions (edge: .trailing, allowsFullSwipe: false) {
+                                    Button("Excluir", systemImage: "trash") {
+                                        isDeleting.toggle()
+                                    }
+                                    .tint(Color.red)
+                                    
+                                    Button("Editar", systemImage: "pencil") {
+                                        presentEditSheet.toggle()
+                                    }
+                                    .tint(.main)
+                                }
+                            
+//                                .sheet(item: $presentEditSheet) { task in
+//                                    NavigationStack {
+//                                        EditRecipeView(recipe: recipe)
+//                                    }
+//                                    .presentationSizing(.page)
+//                                }
+                            
+                                .alert("Excluir receita", isPresented: $isDeleting, actions: {
+                                    HStack {
+                                        Button("Cancelar", role: .cancel) {
+                                        }
+                                        
+                                        Button("Excluir", role: .destructive) {
+                                        }
+                                    }
+                                }, message: {
+                                    Text("Tem certeza que deseja excluir essa receita?")
+                                })
                         }
-                        .padding(.bottom,100)
-                        
+                        .padding(.bottom, 10)
                     }
+                    .listStyle(.plain)
                     
                     Spacer(minLength: 0)
                     
@@ -97,6 +133,22 @@ struct ScheduleView: View {
                             .tint(.main)
                             .padding(.horizontal, 16)
                         }
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button ("", systemImage: "plus") {
+                        presentTaskSheet.toggle()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.main)
+                    .accessibilityLabel(Text("Adicionar tarefa"))
+                    .sheet(isPresented: $presentTaskSheet) {
+                        NavigationStack {
+                            CreateTaskView()
+                        }
+                        .presentationSizing(.page)
                     }
                 }
             }
