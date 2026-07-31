@@ -48,29 +48,35 @@ struct ScheduleView: View {
                                     }
                                     .tint(.main)
                                 }
-                            
+//                            
 //                                .sheet(item: $presentEditSheet) { task in
 //                                    NavigationStack {
-//                                        EditRecipeView(recipe: recipe)
+//                                    //    EditView(recipe: recipe)
 //                                    }
 //                                    .presentationSizing(.page)
 //                                }
                             
-                                .alert("Excluir receita", isPresented: $isDeleting, actions: {
-                                    HStack {
-                                        Button("Cancelar", role: .cancel) {
-                                        }
-                                        
-                                        Button("Excluir", role: .destructive) {
-                                        }
-                                    }
-                                }, message: {
-                                    Text("Tem certeza que deseja excluir essa receita?")
-                                })
+//                                .alert("Excluir receita", isPresented: $isDeleting, actions: {
+//                                    HStack {
+//                                        Button("Cancelar", role: .cancel) {
+//                                        }
+//                                        
+//                                        Button("Excluir", role: .destructive) {
+//                                        }
+//                                    }
+//                                }, message: {
+//                                    Text("Tem certeza que deseja excluir essa receita?")
+//                                })
                         }
+                        .onDelete { schedule.tasks.remove(atOffsets: $0) }
                         .padding(.bottom, 10)
+                        
                     }
                     .listStyle(.plain)
+                    .toolbar {
+                        EditButton()
+                            .tint(Color(.main))
+                    }
                     
                     Spacer(minLength: 0)
                     
