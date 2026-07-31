@@ -39,6 +39,7 @@
 				ArticleSheetView.swift,
 				CreateScheduleView.swift,
 				CreateTaskView.swift,
+				EditTaskView.swift,
 				MainView.swift,
 				ScheduleListView.swift,
 				ScheduleView.swift,

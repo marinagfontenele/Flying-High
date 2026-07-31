@@ -16,17 +16,36 @@ struct ScheduleListView: View {
     @AppStorage("hasLaunchedBefore") var hasLaunchedBefore = false
     
     @State var presentScheduleSheet: Bool = false
+    @State var isDeleting: Bool = false
+    @State var presentEditScheduleSheet: Bool = false
     
     var body: some View {
         NavigationStack{
-            ScrollView {
                 VStack {
-                    ForEach(schedules.sorted(using: KeyPathComparator(\.totalTime))) { schedule in
-                        ScheduleCardView(schedule: schedule)
+                    List{
+                        ForEach(schedules.sorted(using: KeyPathComparator(\.totalTime))) { schedule in
+                            ScheduleCardView(schedule: schedule)
+                        }
+                        .navigationTitle("Cronogramas")
+                        .padding(.horizontal, 16)
+                        .padding(.top, 10)
+                        .listRowBackground(EmptyView())
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .navigationLinkIndicatorVisibility(.hidden)
+                        .swipeActions (edge: .trailing, allowsFullSwipe: false) {
+                            Button("Excluir", systemImage: "trash") {
+                                isDeleting.toggle()
+                            }
+                            .tint(Color.red)
+                            
+                            Button("Editar", systemImage: "pencil") {
+                                presentEditScheduleSheet.toggle()
+                            }
+                            .tint(.main)
+                        }
                     }
-                    .navigationTitle("Cronogramas")
-                    .padding(.horizontal, 16)
-                    .padding(.top, 10)
+                    .listStyle(.plain)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -44,19 +63,13 @@ struct ScheduleListView: View {
                         }
                     }
                 }
-                .background(Color.background
-                .ignoresSafeArea())
-                .toolbarVisibility(.hidden, for: .tabBar)
+                .background(Color.background.ignoresSafeArea())
                 .navigationBarTitleDisplayMode(.inline)
                 .padding(.top, 10)
-            }
-            .background(Color.background
-                .ignoresSafeArea())
-            .onAppear {
-                
-                checkFirstLaunch()
-                
-            }
+                .background(Color.background.ignoresSafeArea())
+                .onAppear {
+                    checkFirstLaunch()
+                }
         }
     }
     
